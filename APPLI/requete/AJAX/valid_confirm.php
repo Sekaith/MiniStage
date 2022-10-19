@@ -1,0 +1,13 @@
+<?php
+
+	require_once('../../Class/autoload.php');
+	require_once('../../Class/Connexion.class.php');
+	
+	if(isset($_POST['confirmation'])) {
+
+	$json = array();
+	$rqt = "UPDATE t_reservation SET confirmation = 1 WHERE id = ".$_POST['confirmation']."";
+	$Confirm = $mysqli->query($rqt);
+	
+	}
+	?>
