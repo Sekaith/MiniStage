@@ -9,10 +9,10 @@ include_once('requete/rqtProfil.php');
 
 $pageProfil = new page_base('Profil');
 
-if($_POST['mdp'])
+if(isset($_POST['mdp']))
 {updateProfil();}
 
-if($_POST['cp'])
+if(isset($_POST['cp']))
 {updateEtab();}
 
 $Profil = get_profil();
