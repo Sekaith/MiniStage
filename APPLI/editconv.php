@@ -15,7 +15,7 @@ echo ("<SCRIPT LANGUAGE='JavaScript'>
     	window.alert(\"Modification apportée\")
 		</SCRIPT>");
 }
-
+$id = isset($data['id']) ? $data['id'] : 1;
 $imp= get_important();
 
 $pageEditConv->corps .= 
@@ -40,7 +40,7 @@ $pageEditConv->corps .=
 					<div class="span7 text-center">
 					<button type="submit" class="btn btn-success">Modifier</button>
 					<a href="PDFtest.php" target="_blank"><input type="button" class="btn btn-warning" value=" Aperçu "</button></a>
-					<a href="PDF.php?id='.$data['id'].'" target="_blank" >
+					<a href="PDF.php?id='.$id .'" target="_blank" >
 					</div>
 				</form>
 	</div>

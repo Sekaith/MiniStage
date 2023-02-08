@@ -7,6 +7,9 @@ include_once('requete/rqtListeMS.php');
 if(is_null($_SESSION['ID']))
 {header('Location: index.php');}
 
+$pageListeMS = new page_base('Mini_Stage');
+$pageListeMS->corps .="";
+
 $pageListeMSAnt = new page_base('Mini-Stages antérieures');
 $pageListeMSAnt->corps .= '
 

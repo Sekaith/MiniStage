@@ -5,7 +5,7 @@ if(is_null($_SESSION['ID']))
 
 require_once('Class/autoload.php');
 require_once('Class/Connexion.class.php');
-include_once('requete/rqtADM.php');
+require_once('requete/rqtADM.php');
 
 if(!empty($_POST["idprofil"]))
 {insert_Util();
@@ -90,7 +90,7 @@ $pageAjoutUtil->corps .= '
                 <div class="col-sm-10">
                     <SELECT name="fonction" class="form-control" id="fonction" onchange="verifList(this)">
 							<option value="-1" id="none">--Choix de la fonction--</option>';
-                            $fonction= get_fonction();
+                            $fonction = get_fonction();
 								while($data=mysqli_fetch_array($fonction))
               					{
 									$pageAjoutUtil->corps .= '<option value="'.$data["id"].'">'.$data["nom"].'</option>';

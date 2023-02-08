@@ -2,7 +2,7 @@
 session_start();
 require_once('Class/autoload.php');
 require_once('Class/Connexion.class.php');
-include_once('requete/rqtADM.php');
+require_once('requete/rqtADM.php');
 
 if(is_null($_SESSION['ID']))
 {header('Location: index.php');}

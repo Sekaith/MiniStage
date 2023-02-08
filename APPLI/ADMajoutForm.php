@@ -5,7 +5,7 @@ if(is_null($_SESSION['ID']))
 
 require_once('Class/autoload.php');
 require_once('Class/Connexion.class.php');
-include_once('requete/rqtADM.php');
+require_once('requete/rqtADM.php');
 
 if(!empty($_POST["nom"]))
 {insert_Form();
@@ -33,7 +33,7 @@ $pageAjoutForm->corps .= '
                 <div class="col-sm-10">
                     <SELECT name="typeF" class="form-control" id="typeF" onchange="verifList(this)">
 							<option value="-1" id="none">--Choix du type de la formation--</option>';
-                            $typeF= get_typeF();
+                            $typeF = get_typeF();
 								while($data=mysqli_fetch_array($typeF))
               					{
 									$pageAjoutForm->corps .= '<option value="'.$data["id"].'">'.$data["nom"].'</option>';

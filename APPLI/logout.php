@@ -9,13 +9,7 @@
   // Destruction du tableau de session
   unset($_SESSION);
 
-
-
-
-
-header('Location: index.php');
-
-
-
-
 ?>
+<script>
+    window.location = 'index2.php'; // Bien vérifier index et index2
+</script>

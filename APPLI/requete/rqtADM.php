@@ -50,7 +50,7 @@ function get_typeF(){
 	global $mysqli;
 	
 	$rqt = 'SELECT * from t_typeformation';
-	$typeF= $mysqli->query($rqt) or exit(mysqli_error());
+	$typeF = $mysqli->query($rqt) or exit(mysqli_error());
 	
 	return $typeF;
 }

@@ -33,8 +33,8 @@ $pageAjoutMS->corps .= '
 				id=formation onchange="verifList(this)">
             		<option value="-1">--Choix de la formation--</option>
 					<optgroup label="BAC PROFESSIONNEL">';
-					$Formation= get_formation(1); //bacpro
-					while($data=mysqli_fetch_array($Formation))
+					$formation = get_formation(1); //bacpro
+					while($data=mysqli_fetch_array($formation))
               		{
 						$pageAjoutMS->corps .=' <option value="'.$data["id"].'">'.$data["typeformation"].' '.$data["nom"].'</option>';
 					}
@@ -42,8 +42,8 @@ $pageAjoutMS->corps .= '
 					</optgroup>
 					
 					<optgroup label="CAP">';
-					$Formation= get_formation(2); //cap
-					while($data=mysqli_fetch_array($Formation))
+					$formation= get_formation(2); //cap
+					while($data=mysqli_fetch_array($formation))
               		{
 						$pageAjoutMS->corps .=' <option value="'.$data["id"].'">'.$data["typeformation"].' '.$data["nom"].'</option>';
 					}
@@ -51,8 +51,8 @@ $pageAjoutMS->corps .= '
 					</optgroup>
 					
 					<optgroup label="BAC TECHNOLOGIQUE">';
-					$Formation= get_formation(3); //bactechno
-					while($data=mysqli_fetch_array($Formation))
+					$formation= get_formation(3); //bactechno
+					while($data=mysqli_fetch_array($formation))
 	              	{
 						$pageAjoutMS->corps .=' <option value="'.$data["id"].'">'.$data["typeformation"].' '.$data["nom"].'</option>';
 					}
@@ -60,8 +60,8 @@ $pageAjoutMS->corps .= '
 					</optgroup>
 				
 					<optgroup label="BAC GENERAL">';
-					$Formation= get_formation(4); //bacG
-					while($data=mysqli_fetch_array($Formation))
+					$formation= get_formation(4); //bacG
+					while($data=mysqli_fetch_array($formation))
               		{
 						$pageAjoutMS->corps .=' <option value="'.$data["id"].'">'.$data["typeformation"].' '.$data["nom"].'</option>';
 					}
@@ -69,8 +69,8 @@ $pageAjoutMS->corps .= '
 					</optgroup>
 				
 					<optgroup label="BTS">';
-					$Formation= get_formation(5); //BTS
-					while($data=mysqli_fetch_array($Formation))
+					$formation= get_formation(5); //BTS
+					while($data=mysqli_fetch_array($formation))
               		{
 						$pageAjoutMS->corps .=' <option value="'.$data["id"].'">'.$data["typeformation"].' '.$data["nom"].'</option>';
 					}
@@ -78,8 +78,8 @@ $pageAjoutMS->corps .= '
 					</optgroup>
 					
 					<optgroup label="ENSEIGNEMENT OPTIONNEL">';
-					$Formation= get_formation(6); //ENSEIGNEMENT OPTIONNEL
-					while($data=mysqli_fetch_array($Formation))
+					$formation= get_formation(6); //ENSEIGNEMENT OPTIONNEL
+					while($data=mysqli_fetch_array($formation))
              	 	{
 						$pageAjoutMS->corps .=' <option value="'.$data["id"].'">'.$data["typeformation"].' '.$data["nom"].'</option>';
 					}
@@ -87,8 +87,8 @@ $pageAjoutMS->corps .= '
 					</optgroup>
 					
 						<optgroup label="ENSEIGNEMENT DE SPECIALITE">';
-					$Formation= get_formation(8); //ENSEIGNEMENT DE SPECIALITE
-					while($data=mysqli_fetch_array($Formation))
+					$formation= get_formation(8); //ENSEIGNEMENT DE SPECIALITE
+					while($data=mysqli_fetch_array($formation))
              	 	{
 						$pageAjoutMS->corps .=' <option value="'.$data["id"].'">'.$data["typeformation"].' '.$data["nom"].'</option>';
 					}
@@ -96,8 +96,8 @@ $pageAjoutMS->corps .= '
 					</optgroup>
 					
 					<optgroup label="AUTRES">';
-					$Formation= get_formation(7); //autres
-					while($data=mysqli_fetch_array($Formation))
+					$formation= get_formation(7); //autres
+					while($data=mysqli_fetch_array($formation))
              	 	{
 						$pageAjoutMS->corps .=' <option value="'.$data["id"].'">'.$data["typeformation"].' '.$data["nom"].'</option>';
 					}

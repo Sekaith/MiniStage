@@ -15,13 +15,28 @@ if(isset($_POST['mdp']))
 if(isset($_POST['cp']))
 {updateEtab();}
 
+
 $Profil = get_profil();
+
+$prenom = isset($Profil['prenom']) ? $Profil['prenom'] : "";
+$nom = isset($Profil['nom']) ? $Profil['nom'] : "";
+$identifiant = isset($Profil["identifiant"]) ? $Profil['identifiant'] : "";
+$mdp = isset($Profil["mdp"]) ? $Profil['mdp'] : "";
+$mail = isset($Profil["mail"]) ? $Profil["mail"] :"";
+$tel = isset($Profil["tel"]) ? $Profil["tel"] : "";
+$idfonction = isset($Profil["idfonction"]) ? $Profil["idfonction"] : "";
+$mailetab = isset($Profil["mailetab"]) ? $Profil["mailetab"] : "";
+$nomType = isset($Profil['nomtype']) ? $Profil['nomtype'] : "";
+$nomEtab = isset($Profil['nometab']) ? $Profil['nometab'] : "";
+$ville = isset($Profil["ville"]) ? $Profil["ville"] : "";
+$cp = isset($Profil["cp"]) ? $Profil["cp"] : "";
+$adresse = isset($Profil["adresse"]) ? $Profil["adresse"] : "";
 
 $pageProfil->corps .= '
 
 <div class="panel-white">
 	<div class="panel-heading">
-		<h4 class="panel-title"><p><center>Utilisateur : '.$Profil['prenom'].' '.$Profil['nom'].'</center></p></h4>
+		<h4 class="panel-title"><p><center>Utilisateur : '. $prenom .' '. $nom .'</center></p></h4>
 	</div>
 	<div class="panel-body">
 		
@@ -41,23 +56,23 @@ $pageProfil->corps .= '
 				
 						<tr>
 							<td><input type="text" name="id" style="text-align : center" class="form-control" id="id" 
-								value = "'.$Profil["identifiant"].'" required disabled></td>
+								value = "'. $identifiant .'" required disabled></td>
 								
                 			<td><input type="text" name="mdp" style="text-align : center" class="form-control" id="mdp" 
-								value = "'.$Profil["mdp"].'" required></td>
+								value = "'. $mdp .'" required></td>
 								
                 			<td><input type="text" name="nom" style="text-align : center" class="form-control" id="nom" 
-								value = "'.$Profil["nom"].'" onblur="verifChaine(this);MAJ(this);" required></td>
+								value = "'. $nom .'" onblur="verifChaine(this);MAJ(this);" required></td>
 								
                 			<td><input type="text" name="prenom" style="text-align : center" class="form-control" id="prenom" 
-								value = "'.$Profil["prenom"].'" onblur="verifChaine(this);Maj(this);" required></td>
+								value = "'. $prenom .'" onblur="verifChaine(this);Maj(this);" required></td>
 								
-							<td><select name="fct" id="fct" requiered>
+							<td><select name="fct" id="fct" required>
 							';
 								$fct= get_fonction();
 								while($data=mysqli_fetch_array($fct))
               					{
-									if($data["id"]==$Profil["idfonction"])
+									if($data["id"]== $idfonction )
 									{
 										$pageProfil->corps .='<option selected value='.$data["id"].'>'.$data["nom"].'</option>';
 									}
@@ -71,10 +86,10 @@ $pageProfil->corps .= '
 								$pageProfil->corps .='</select></td>
 								
                 			<td><input type="text" name="mail" style="text-align : center" class="form-control" id="mail" 
-								value = "'.$Profil["mail"].'" onblur="verifMail(this)" required></td>
+								value = "'. $mail .'" onblur="verifMail(this)" required></td>
 								
                 			<td><input type="text" name="tel" style="text-align : center" class="form-control" id="tel" 
-								value = "'.$Profil["tel"].'" onblur="verifTel(this)" required></td>
+								value = "'. $tel .'" onblur="verifTel(this)" required></td>
 						</tr>
 					</table>
 					<br/> <br/>
@@ -91,7 +106,7 @@ if ($_SESSION["IdProfil"] == 2  || $_SESSION["IdProfil"] == 4)
 		$pageProfil->corps .= '
 <div class="panel-white">
 	<div class="panel-heading">
-		<h4 class="panel-title"><p><center>Etablissement : '.$Profil['nomtype'].' '.$Profil['nometab'].'</center></p></h4>
+		<h4 class="panel-title"><p><center>Etablissement : '. $nomType .' '. $nomEtab .'</center></p></h4>
 	</div>
 	<div class="panel-body">
 		
@@ -112,12 +127,12 @@ if ($_SESSION["IdProfil"] == 2  || $_SESSION["IdProfil"] == 4)
 						</thead>
 				
 						<tr>
-							<td><select name="type" id="type" requiered>
+							<td><select name="type" id="type" required>
 							';
 								$type= get_type();
 								while($data=mysqli_fetch_array($type))
               					{
-									if($data["nom"]==$Profil["nomtype"])
+									if($data["nom"]==$nomType)
 									{
 										$pageProfil->corps .='<option selected value='.$data["id"].'>'.$data["nom"].'</option>';
 									}
@@ -131,21 +146,21 @@ if ($_SESSION["IdProfil"] == 2  || $_SESSION["IdProfil"] == 4)
 								$pageProfil->corps .='</select></td>
 								
                 			<td><input type="text" name="nometab" style="text-align : center" class="form-control" id="nometab" 
-								value = "'.$Profil["nometab"].'" onblur="verifChaine(this);MAJ(this)" required></td>
+								value = "'. $nomEtab .'" onblur="verifChaine(this);MAJ(this)" required></td>
 								
                 			<td><input type="text" name="ville" style="text-align : center" class="form-control" id="ville" 
-								value = "'.$Profil["ville"].'" onblur="verifChaine(this);MAJ(this)" required></td>
+								value = "'. $ville .'" onblur="verifChaine(this);MAJ(this)" required></td>
 								
                 			<td><input type="text" name="cp" style="text-align : center" class="form-control" id="cp" 
-								value = "'.$Profil["cp"].'" onblur="verifCP(this)" required></td>
+								value = "'. $cp .'" onblur="verifCP(this)" required></td>
 								
                 			<td><input type="text" name="adresse" style="text-align : center" class="form-control" id="adresse" 
-								value = "'.$Profil["adresse"].'" onblur="" required></td>';
+								value = "'. $adresse .'" onblur="" required></td>';
 							
 							if ($_SESSION["IdProfil"] == 4)
 							{$pageProfil->corps .='
 							<td><input type="text" name="mailetab" style="text-align : center" class="form-control" id="mailetab" 
-								value = "'.$Profil["mailetab"].'" onblur="verifMail(this)" required disabled>
+								value = "'. $mailetab .'" onblur="verifMail(this)" required disabled>
 								<p class="help-block"><i class="fa fa-question-circle">
 								</i> Toutes les informations seront</br>envoyées à cette adresse.</p></td>';
 							}$pageProfil->corps .='

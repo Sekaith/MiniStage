@@ -157,7 +157,7 @@ if ($_SESSION['IdProfil']==2)
 																			 	<span aria-hidden="true">&times;</span>
 																			</button>
 																			
-                                                     <h4 class="modal-title" id="myModalLabel">'.$data['typel'].' '.$data['nometab'].'</h4>
+                                                     <h4 class="modal-title" id="myModalLabel">'/*.$data['typel'].' '*/.$data['nometab'].'</h4>
 													 
                                                         				</div>
                                                         				<div class="modal-body" style="text-align:left">
@@ -190,7 +190,7 @@ if ($_SESSION['IdProfil']==2)
 																			 	<span aria-hidden="true">&times;</span>
 																			</button>
 																			
-                                                     <h4 class="modal-title" id="myModalLabel">'.$data['typel'].' '.$data['nometab'].'</h4>
+                                                     <h4 class="modal-title" id="myModalLabel">  ' /* .$data['typel'].' '*/.$data['nometab'].'</h4>
 													 
                                                         				</div>
                                                         				<div class="modal-body" style="text-align:left">
