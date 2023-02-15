@@ -1,4 +1,4 @@
-<?
+<?php
 
 /* Liste les types d'Etablissement */
 function get_type(){

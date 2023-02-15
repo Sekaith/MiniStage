@@ -1,4 +1,4 @@
-<?
+<?php
 
 /* Liste les formations */
 function get_formation($idtype){
