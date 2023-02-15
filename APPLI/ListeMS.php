@@ -85,6 +85,11 @@ $pageListeMS->corps .= '
 												<IMG SRC="image/edit.png" width="25" height="25" title="Editer le mini-stage"
 												id="imgedit'.$data['id'].'" onClick=""</a>
 												
+												<a href="">
+												<IMG SRC="image/dupli.png" width="25" height="25" title="Dupliquer le mini-stage"
+												id="imgedit'.$data['id'].'" onClick=""</a>
+												
+												
 												<a href="#"><IMG SRC="image/trash.png" width="25" height="25"  
 												title="Supprimer le mini-stage"
 												id="trash'.$data['id'].'" onClick="SupprimeMS('.$data['id'].','.$data['nbplace'].'-'.$data['nbplacereste'].')" ></a>  './*on envoie le nb de reserv*/' ';

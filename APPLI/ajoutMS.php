@@ -144,7 +144,7 @@ $pageAjoutMS->corps .= '
 				<div class="form-group">
 					<label for="input-Default" class="col-sm-2 control-label">Date</label>
 					<div class="col-sm-10">
-						<input size="25" type="text" readonly class="col-sm-2 control-label" id="date" 
+						<input size="25" type="text"  class="col-sm-2 control-label" id="date" 
 						name="date" onBlur="" required>
 					</div>
 				</div>
@@ -153,9 +153,9 @@ $pageAjoutMS->corps .= '
 					<label for="input-Default" class="col-sm-2 control-label">Horaires</label>
 					<div class="col-sm-10">
 						<input size="25" type="text" value="" class="col-sm-2 control-label" id="heure1" 
-						placeholder="début" readonly name="heure1" required/>
+						placeholder="début"  name="heure1" required/>
 						<input size="25" type="text" value="" id="heure2" class="col-sm-2 control-label" 
-						placeholder="fin" readonly name="heure2" required" /> 
+						placeholder="fin"  name="heure2" required" /> 
 					</div>
 				</div>
 				
