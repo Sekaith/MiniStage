@@ -5,44 +5,42 @@ if(is_null($_SESSION['ID']))
 
 require_once('Class/autoload.php');
 require_once('Class/Connexion.class.php');
+include_once('requete/rqtCreation.php');
 include_once('requete/rqtModifMS.php');
 
-$pagemodifMS = new page_base('Modification d\'un mini-stage');
+$pageAjoutMS = new page_base('Créer un Mini-stage');
 
 if(!empty($_POST['place']))
-{updateMS();
-echo ("<SCRIPT LANGUAGE='JavaScript'>
-    	window.alert(\"Modification du ministage réussi \")
-    	window.location.href='ListeMS.php';
+{insertMinistage();
+    echo ("<SCRIPT LANGUAGE='JavaScript'>
+    	window.alert(\"Création du ministage réussi \")
+    	window.location.href='accueil.php';
 		</SCRIPT>");
 }
 
 $MS=get_MS();
-
 $prenomProf = isset($MS['prenomProf']) ? $MS['prenomProf'] : "";
 
-$pagemodifMS->corps .= '
-  
-  <a href="ListeMS.php"><button align="centers" class="btn btn-success">Retour</button></a></br></br>
+$pageAjoutMS->corps .= '
+
+<a href="ListeMS.php"><button align="centers" class="btn btn-success">Retour</button></a></br></br>
 
 <div class="panel-white">
 	<div class="panel-heading">
     <h3 class="panel-title">Créneau</h3>
     </div>
 	<div class="panel-body">
-		<form  class=" form-horizontal" action="modifMS.php" method="post" 
-		id="formulaireModifMS" name="formulaireModifMS" onsubmit="return validerModifMS()">
-				
-				'/*on reprend l'id pour l'utiliser dans la requete update*/.'
-				
-				<div style="display:none" ><input type="text" id="id" name="id" value="'.$MS['id'].'"></div>
+		<form  class=" form-horizontal" action="ajoutMS.php" method="post" 
+		id="formulaireCreerMS" name="formulaireCreerMS" onsubmit="return validerCreer()">
 				
 				<div class="form-group">
 				<label for="input-Default"  class="col-sm-2 control-label">Formation</label>
 				<div class="col-sm-10">
 					<input size="120" type="text" disabled id="formation" name="formation"
-					 required value="'.$MS['typeformation'].' '.$MS['formation'].'">
-            		</div></div>
+					 required value="'.$MS['typeformation'].' '.$MS['formation'].'">	
+					 </div>
+					 </div>
+				
 				
 				<div class="form-group">
 					<label for="input-Default" class="col-sm-2 control-label">Date</label>
@@ -55,10 +53,10 @@ $pagemodifMS->corps .= '
 				<div class="form-group">
 					<label for="input-Default" class="col-sm-2 control-label">Horaires</label>
 					<div class="col-sm-10">
-						<input size="25" type="text" class="col-sm-2 control-label" id="heure1" 
-						placeholder="début"  name="heure1" required value="'.$MS['hdebut'].'"/>
-						<input size="25" type="text" id="heure2" class="col-sm-2 control-label" 
-						placeholder="fin" name="heure2" required" value="'.$MS['hfin'].'"/> 
+						<input size="25" type="text" value="" class="col-sm-2 control-label" id="heure1" 
+						placeholder="début"  name="heure1" required/>
+						<input size="25" type="text" value="" id="heure2" class="col-sm-2 control-label" 
+						placeholder="fin"  name="heure2" required" /> 
 					</div>
 				</div>
 				
@@ -69,15 +67,7 @@ $pagemodifMS->corps .= '
 						required onchange="verifplace(this)" onblur="verifNB(this)" value="'.$MS['nbplace'].'"/>
 					</div>
 				</div>
-				
-				<div class="form-group">
-					<label for="input-Default" class="col-sm-2 control-label">Nombre de places restantes</label>
-					<div class="col-sm-10">
-						<input size="25" type="number" class="col-sm-2 control-label" id="placereste" name="placereste" 
-						required  onblur="verifNB(this)" readonly value="'.$MS['nbplacereste'].'"/>
-					</div>
-				</div>
-				
+
 				<div class="form-group">
 					<label for="input-Default" class="col-sm-2 control-label">lieu</label>
 					<div class="col-sm-10">
@@ -98,10 +88,8 @@ $pagemodifMS->corps .= '
 					</div>
 				</div>
 				
-				<div id="placeO" style="display:none">'.$MS['nbplace'].'</div>
-				
 				<div align="center">
-					<button type="submit" class="btn btn-sm btn-primary">Modifier</button>
+					<button type="submit" class="btn btn-success ">Créer</button>
                 </div>
 			</form>
 	</div>
@@ -110,6 +98,6 @@ $pagemodifMS->corps .= '
 
 ';
 
-$pagemodifMS->afficher();
+$pageAjoutMS->afficher();
 
 ?>

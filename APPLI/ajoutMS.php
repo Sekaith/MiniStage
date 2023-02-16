@@ -19,6 +19,8 @@ echo ("<SCRIPT LANGUAGE='JavaScript'>
 
 $pageAjoutMS->corps .= '
 
+<a href="ListeMS.php"><button align="centers" class="btn btn-success">Liste des mini_stages</button></a></br></br>
+
 <div class="panel-white">
 	<div class="panel-heading">
     <h3 class="panel-title">Créneau</h3>
