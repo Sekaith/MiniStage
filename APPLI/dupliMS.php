@@ -14,12 +14,13 @@ if(!empty($_POST['place']))
 {insertMinistage();
     echo ("<SCRIPT LANGUAGE='JavaScript'>
     	window.alert(\"Création du ministage réussi \")
-    	window.location.href='accueil.php';
+    	window.location.href='ListeMS.php';
 		</SCRIPT>");
 }
 
 $MS=get_MS();
 $prenomProf = isset($MS['prenomProf']) ? $MS['prenomProf'] : "";
+
 
 $pageAjoutMS->corps .= '
 
@@ -30,14 +31,18 @@ $pageAjoutMS->corps .= '
     <h3 class="panel-title">Créneau</h3>
     </div>
 	<div class="panel-body">
-		<form  class=" form-horizontal" action="ajoutMS.php" method="post" 
+		<form  class=" form-horizontal" action="dupliMS.php" method="post" 
 		id="formulaireCreerMS" name="formulaireCreerMS" onsubmit="return validerCreer()">
+		
+		        <div style="display:none" ><input type="text" id="id" name="id" value="'.$MS['id'].'"></div>
+		        
+		        <div style="display:none" ><input type="text" id="formation" name="formation" value="'.$MS['idformation'].'"></div>
 				
 				<div class="form-group">
 				<label for="input-Default"  class="col-sm-2 control-label">Formation</label>
 				<div class="col-sm-10">
-					<input size="120" type="text" disabled id="formation" name="formation"
-					 required value="'.$MS['typeformation'].' '.$MS['formation'].'">	
+					<input size="120" type="text" readonly id="tformation" name="tformation" tabindex="-1"
+					 required value=" '.$MS["typeformation"].' '.$MS["formation"].' ">
 					 </div>
 					 </div>
 				
