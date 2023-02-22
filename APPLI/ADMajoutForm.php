@@ -36,7 +36,7 @@ $pageAjoutForm->corps .= '
                             $typeF = get_typeF();
 								while($data=mysqli_fetch_array($typeF))
               					{
-									$pageAjoutForm->corps .= '<option value="'.$data["id"].'">'.$data["nom"].'</option>';
+									$pageAjoutForm->corps .= '<option value="'.$data["idtypeform"].'">'.$data["nom_typeformation"].'</option>';
 								}
 								$pageAjoutForm->corps .= '
 						</SELECT>

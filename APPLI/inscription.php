@@ -103,7 +103,7 @@ else
                             $academie= get_academie();
 								while($data=mysqli_fetch_array($academie))
               					{
-									echo '<option value="'.$data["id"].'">'.$data["nom"].'</option>';
+									echo '<option value="'.$data["idacademie"].'">'.$data["nom_academie"].'</option>';
 								}
 							?>
 						</SELECT>
@@ -115,7 +115,7 @@ else
                             $type= get_type();
 								while($data=mysqli_fetch_array($type))
               					{
-									echo '<option value="'.$data["id"].'">'.$data["nom"].'</option>';
+									echo '<option value="'.$data["idtypeetab"].'">'.$data["nom_typeetab"].'</option>';
 								}
 							?>
 						</SELECT>
@@ -150,7 +150,7 @@ else
                             $fonction= get_fonction();
 								while($data=mysqli_fetch_array($fonction))
               					{
-									echo '<option value="'.$data["id"].'">'.$data["nom"].'</option>';
+									echo '<option value="'.$data["idfonction"].'">'.$data["nom_fonct"].'</option>';
 								}
 							?>
 						</SELECT>

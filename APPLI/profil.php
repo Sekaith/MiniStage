@@ -72,14 +72,14 @@ $pageProfil->corps .= '
 								$fct= get_fonction();
 								while($data=mysqli_fetch_array($fct))
               					{
-									if($data["id"]== $idfonction )
+									if($data["idfonction"]== $idfonction )
 									{
-										$pageProfil->corps .='<option selected value='.$data["id"].'>'.$data["nom"].'</option>';
+										$pageProfil->corps .='<option selected value='.$data["idfonction"].'>'.$data["nom_fonct"].'</option>';
 									}
 									else
 									{
 								$pageProfil->corps .='
-								<option value='.$data["id"].'>'.$data["nom"].'</option>';
+								<option value='.$data["idfonction"].'>'.$data["nom_fonct"].'</option>';
 									}
 								}
 								
@@ -132,14 +132,14 @@ if ($_SESSION["IdProfil"] == 2  || $_SESSION["IdProfil"] == 4)
 								$type= get_type();
 								while($data=mysqli_fetch_array($type))
               					{
-									if($data["nom"]==$nomType)
+									if($data["nom_typeetab"]==$nomType)
 									{
-										$pageProfil->corps .='<option selected value='.$data["id"].'>'.$data["nom"].'</option>';
+										$pageProfil->corps .='<option selected value='.$data["idtypeetab"].'>'.$data["nom_typeetab"].'</option>';
 									}
 									else
 									{
 								$pageProfil->corps .='
-								<option value='.$data["id"].'>'.$data["nom"].'</option>';
+								<option value='.$data["idtypeetab"].'>'.$data["nom_typeetab"].'</option>';
 									}
 								}
 								

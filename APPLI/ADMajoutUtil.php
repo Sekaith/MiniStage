@@ -93,7 +93,7 @@ $pageAjoutUtil->corps .= '
                             $fonction = get_fonction();
 								while($data=mysqli_fetch_array($fonction))
               					{
-									$pageAjoutUtil->corps .= '<option value="'.$data["id"].'">'.$data["nom"].'</option>';
+									$pageAjoutUtil->corps .= '<option value="'.$data["idfonction"].'">'.$data["nom_fonct"].'</option>';
 								}
 								$pageAjoutUtil->corps .= '
 						</SELECT>
@@ -123,7 +123,7 @@ $pageAjoutUtil->corps .= '
 							$type= get_type();
 								while($data=mysqli_fetch_array($type))
               					{
-									$pageAjoutUtil->corps .='<option value="'.$data["id"].'">'.$data["nom"].'</option>';
+									$pageAjoutUtil->corps .='<option value="'.$data["idtypeetab"].'">'.$data["nom_typeetab"].'</option>';
 								} 
 								$pageAjoutUtil->corps .= '
 						</SELECT>
@@ -138,7 +138,7 @@ $pageAjoutUtil->corps .= '
 							$type= get_academie();
 								while($data=mysqli_fetch_array($type))
               					{
-									$pageAjoutUtil->corps .=' <option value='.$data["id"].'>'.$data["nom"].'</option>';
+									$pageAjoutUtil->corps .=' <option value='.$data["idacademie"].'>'.$data["nom_academie"].'</option>';
 								}
 								$pageAjoutUtil->corps .='
 						</SELECT>
@@ -205,8 +205,8 @@ $pageAjoutUtil->corps .= '
 							$offrant= get_Offrant();
 								while($data=mysqli_fetch_array($offrant))
               					{
-									$pageAjoutUtil->corps .='<option value='.$data["id"].'> '.$data["nomcourt"].' '.$data["nometab"].' - '.$data["ville"].'
-									( id : '.$data["id"].' )</option>';
+									$pageAjoutUtil->corps .='<option value='.$data["idetab"].'> '.$data["nomcourt_typeetab"].' '.$data["nometab"].' - '.$data["ville"].'
+									( id : '.$data["idetab"].' )</option>';
 								}
 								$pageAjoutUtil->corps .='
 					</SELECT>

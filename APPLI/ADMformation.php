@@ -36,7 +36,7 @@ $pageListeForm->corps .= '
                                             </tr>
                                         </tfoot>
                                         <tbody>';
-										$ListeForm= get_formation();
+										$ListeForm= get_formations();
 										while($data=mysqli_fetch_assoc($ListeForm))
 										{
 											$pageListeForm->corps .= '

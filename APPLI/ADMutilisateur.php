@@ -48,12 +48,12 @@ $pageListeUtil->corps .= '
 										while($data=mysqli_fetch_assoc($ListeUtil))
 										{
 											$pageListeUtil->corps .= '
-											<tr id="td'.$data['id'].'">
+											<tr id="td'.$data['idcompte'].'">
 												<td>'.$data['identifiant'].'</td>
 												
-												<td>'.$data['nom'].'</td>
+												<td>'.$data['nom_compte'].'</td>
 												
-												<td>'.$data['prenom'].'</td>
+												<td>'.$data['prenom_compte'].'</td>
 												
  												<td>'.$data['profil'].'</td>
 													
@@ -61,13 +61,13 @@ $pageListeUtil->corps .= '
 												
 												<td>'.$data['ville'].'</td>
 												
-												<td><a href="ADMmodifUtil.php?id='.$data['id'].'">
+												<td><a href="ADMmodifUtil.php?id='.$data['idcompte'].'">
 												<IMG SRC="image/edit.png" width="25" height="25" title="Modifier l\'utilisateur"
-												id="imgedit'.$data['id'].'" onClick=""</a>
+												id="imgedit'.$data['idcompte'].'" onClick=""</a>
 												
 												<a href="#"><IMG SRC="image/trash.png" width="25" height="25"  
 												title="Supprimer l\'utilisateur"
-												id="trash'.$data['id'].'" onClick="SupprimeUtil('.$data['id'].')" ></a>
+												id="trash'.$data['idcompte'].'" onClick="SupprimeUtil('.$data['idcompte'].')" ></a>
 												
 												</td>
 											 </tr>';

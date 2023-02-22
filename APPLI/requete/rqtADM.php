@@ -33,12 +33,13 @@ function get_fonction(){
 }
 
 
-/* Liste des offrant MS pour les profs */
+/* Liste des offrant MS pour les profs */ //Liste des établissements
 function get_Offrant(){
 	global $mysqli;
 	
-	$rqt = 'SELECT u.id, nomcourt, nometab, ville FROM  t_utilisateur as u inner join t_typeetab as t on u.idtype = t.id
-	WHERE idprofil=2 ORDER BY nometab ASC';
+	$rqt = 'SELECT idetab, nomcourt_typeetab, nometab, ville FROM t_etablissement as t1
+inner join t_typeetab as t2 on t2.idtypeetab = t1.idtypeetab
+	WHERE idprofil=2 ORDER BY nometab ASC;';
 	$Offrant= $mysqli->query($rqt) or exit(mysqli_error());
 	
 	return $Offrant;
@@ -98,9 +99,11 @@ function get_utilisateur(){
     global $mysqli;
 	
 	if ($_SESSION["IdProfil"] == 1) /* Pour administrateur */{
-    $rqt = 'SELECT u.*, f.nom as fonction, p.nom as profil
-	from t_utilisateur as u inner join t_profil as p on u.idprofil=p.id
-	inner join t_fonction as f on u.idfonction=f.id';
+    $rqt = 'SELECT c.*, e.*, f.nom_fonct, p.nom_profil as profil
+	from t_compte as c
+    inner join t_etablissement as e on c.idetab = e.idetab
+    inner join t_profil as p on c.idprofil=p.idprofil
+	inner join t_fonction as f on c.idfonction=f.idfonction;';
 	
 	$ListeUtil= $mysqli->query($rqt) or exit(mysqli_error());
 	return $ListeUtil;
@@ -114,9 +117,7 @@ function get_utilModif(){
 	
 	if ($_SESSION["IdProfil"] == 1) /* Pour administrateur */{
 		
-		$rqt = 'SELECT *
-		from t_utilisateur
-		where id='.$_GET['id'].'';
+		$rqt = 'SELECT * from t_compte, t_etablissement where idcompte ='.$_GET['id'];
 			
 	$Liste= $mysqli->query($rqt) or exit(mysqli_error());
 	$ListeUtil = $Liste -> fetch_assoc();
@@ -170,7 +171,7 @@ function Modif_Util(){
 function insert_Form(){
 	global $mysqli;
 	
-		$rqt='INSERT INTO t_formation (idtype, nom)
+		$rqt='INSERT INTO t_formation (idtypeform, nom_formation)
 		values ('.$_POST["typeF"].', "'.$_POST["nom"].'")';
     	mysqli_query($mysqli,$rqt) or exit(mysqli_error());
 	
@@ -178,12 +179,11 @@ function insert_Form(){
 
 
 /*liste Formation*/
-function get_formation(){
+function get_formations(){
     global $mysqli;
 	
 	if ($_SESSION["IdProfil"] == 1) /* Pour administrateur */{
-    $rqt = 'SELECT f.*, nomcourt
-	from t_formation as f inner join t_typeformation as t on t.id=f.idtype';
+    $rqt = 'SELECT f.*, nomcourt_typeformation from t_formation as f inner join t_typeformation as t on t.idtypeform=f.idtypeform;';
 	
 	$ListeForm= $mysqli->query($rqt) or exit(mysqli_error());
 	return $ListeForm;
@@ -197,7 +197,7 @@ function get_formModif(){
 	
 	if ($_SESSION["IdProfil"] == 1) /* Pour administrateur */{
 		
-		$rqt = 'SELECT * from t_formation where id='.$_GET['id'].'';
+		$rqt = 'SELECT * from t_formation where idformation='.$_GET['id'].'';
 			
 	$Liste= $mysqli->query($rqt) or exit(mysqli_error());
 	$Form = $Liste -> fetch_assoc();
@@ -209,8 +209,8 @@ function get_formModif(){
 /*Modif utilisateur*/
 function Modif_Form(){
 	global $mysqli;
-		$rqt='Update t_formation SET idtype='.$_POST["typeF"].', nom="'.$_POST["nom"].'"
-		where id= '.$_POST['id'].'';
+		$rqt='Update t_formation SET idtypeform='.$_POST["typeF"].', nom_formation="'.$_POST["nom"].'"
+		where idformation= '.$_POST['id'];
     	mysqli_query($mysqli,$rqt) or exit(mysqli_error());
 }
 ?>

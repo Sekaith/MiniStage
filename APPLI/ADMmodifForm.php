@@ -31,7 +31,7 @@ $pagemodifForm->corps .= '
         <div class="panel-body">
                     
 			'/*pour la requète*/.'
-			<div style="display:none"><input type="text" id="id" name="id" value="'.$Form['id'].'"></div>	
+			<div style="display:none"><input type="text" id="id" name="id" value="'.$Form['idformation'].'"></div>	
 					               
 			<div class="form-group">
                 <label class="col-sm-2 control-label"> Type de la formation </label>
@@ -41,14 +41,14 @@ $pagemodifForm->corps .= '
                             $typeF= get_typeF();
 								while($data=mysqli_fetch_array($typeF))
               					{
-									if($data["id"]==$Form["idtype"])
+									if($data["idtypeform"]==$Form["idtypeform"])
 									{
-										$pagemodifForm->corps .= '<option selected value="'.$data["id"].'">'.$data["nom"].'</option>';
+										$pagemodifForm->corps .= '<option selected value="'.$data["idtypeform"].'">'.$data["nom_typeformation"].'</option>';
 									}
 									else
 									{
 										$pagemodifForm->corps .= '
-										<option value="'.$data["id"].'">'.$data["nom"].'</option>';
+										<option value="'.$data["idtypeform"].'">'.$data["nom_typeformation"].'</option>';
 									}
 								}
 								$pagemodifForm->corps .= '
@@ -61,7 +61,7 @@ $pagemodifForm->corps .= '
                 <div class="col-sm-10">
 					<input type="text" name="nom" class="form-control" id="nom" 
 					placeholder="ex : Systèmes électroniques numériques" 
-					value="'.$Form['nom'].'">
+					value="'.$Form['nom_formation'].'">
                 </div>
             </div>
 			

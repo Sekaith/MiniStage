@@ -39,7 +39,7 @@ $pagemodifUtil->corps .= '
                 </div>
             </div>	
 			'/*même chose*/.'
-			<div style="display:none"><input type="text" id="id" name="id" value="'.$Util['id'].'"></div>	
+			<div style="display:none"><input type="text" id="id" name="id" value="'.$Util['idcompte'].'"></div>	
 					               
 			<div class="form-group">
                 <label for="input-Default" class="col-sm-2 control-label">Identifiant</label>
@@ -61,7 +61,7 @@ $pagemodifUtil->corps .= '
                 <label for="input-Default" class="col-sm-2 control-label">Nom</label>
                 <div class="col-sm-10">
 					<input type="text" name="nom" class="form-control" id="nom" onblur="verifChaine(this);MAJ(this)" 
-					value="'.$Util['nom'].'" >
+					value="'.$Util['nom_compte'].'" >
                 </div>
             </div>
                                         
@@ -69,7 +69,7 @@ $pagemodifUtil->corps .= '
 				<label for="input-help-block" class="col-sm-2 control-label">Prénom</label>
 				<div class="col-sm-10">
 					<input type="text" name="prenom" class="form-control" id="prenom" onblur="verifChaine(this);Maj(this)" 
-					value="'.$Util['prenom'].'" >
+					value="'.$Util['prenom_compte'].'" >
 				</div>
             </div>
 
@@ -77,7 +77,7 @@ $pagemodifUtil->corps .= '
                 <label for="input-rounded" class="col-sm-2 control-label">Email</label>
                 <div class="col-sm-10">
 					<input type="text" name="mail" " class="form-control" id="mail" onblur="verifMail(this)" 
-					value="'.$Util['mail'].'" >
+					value="'.$Util['mail_compte'].'" >
                 </div>
             </div>
 
@@ -89,14 +89,14 @@ $pagemodifUtil->corps .= '
                             $fonction= get_fonction();
 								while($data=mysqli_fetch_array($fonction))
               					{
-									if($data["id"]==$Util["idfonction"])
+									if($data["idfonction"]==$Util["idfonction"])
 									{
-										$pagemodifUtil->corps .='<option selected value='.$data["id"].'>'.$data["nom"].'</option>';
+										$pagemodifUtil->corps .='<option selected value='.$data["idfonction"].'>'.$data["nom_fonct"].'</option>';
 									}
 									else
 									{
 										$pagemodifUtil->corps .='
-										<option value='.$data["id"].'>'.$data["nom"].'</option>';
+										<option value='.$data["idfonction"].'>'.$data["nom_fonct"].'</option>';
 									}
 								}
 								
@@ -132,14 +132,14 @@ $pagemodifUtil->corps .= '
 							 $type= get_type();
 								while($data=mysqli_fetch_array($type))
               					{
-									if($data["id"]==$Util["idtype"])
+									if($data["idtypeetab"]==$Util["idtypeetab"])
 									{
-										$pagemodifUtil->corps .='<option selected value='.$data["id"].'>'.$data["nom"].'</option>';
+										$pagemodifUtil->corps .='<option selected value='.$data["idtypeetab"].'>'.$data["nom_typeetab"].'</option>';
 									}
 									else
 									{
 										$pagemodifUtil->corps .='
-										<option value='.$data["id"].'>'.$data["nom"].'</option>';
+										<option value='.$data["idtypeetab"].'>'.$data["nom_typeetab"].'</option>';
 									}
 								}
 								
@@ -156,14 +156,14 @@ $pagemodifUtil->corps .= '
 							 $academie= get_academie();
 								while($data=mysqli_fetch_array($academie))
               					{
-									if($data["id"]==$Util["idacademie"])
+									if($data["idacademie"]==$Util["idacademie"])
 									{
-										$pagemodifUtil->corps .='<option selected value='.$data["id"].'>'.$data["nom"].'</option>';
+										$pagemodifUtil->corps .='<option selected value='.$data["idacademie"].'>'.$data["nom_academie"].'</option>';
 									}
 									else
 									{
 										$pagemodifUtil->corps .='
-										<option value='.$data["id"].'>'.$data["nom"].'</option>';
+										<option value='.$data["idacademie"].'>'.$data["nom_academie"].'</option>';
 									}
 								}
 								
@@ -238,16 +238,16 @@ $pagemodifUtil->corps .= '
 							 $offrant= get_Offrant();
 								while($data=mysqli_fetch_array($offrant))
               					{
-									if($data["id"]==$Util["rattacher"])
+									if($data["idetab"]==$Util["idetab"])
 									{
-										$pagemodifUtil->corps .='<option selected value='.$data["id"].'> '.$data["nomcourt"].' 
-															'.$data["nometab"].' - '.$data["ville"].' ( id : '.$data["id"].' )</option>';
+										$pagemodifUtil->corps .='<option selected value='.$data["idetab"].'> '.$data["nomcourt_typeetab"].' 
+															'.$data["nometab"].' - '.$data["ville"].' ( id : '.$data["idetab"].' )</option>';
 									}
 									else
 									{
 										$pagemodifUtil->corps .='
-										<option value='.$data["id"].'> '.$data["nomcourt"].' '.$data["nometab"].' - '.$data["ville"].'
-										( id : '.$data["id"].' )</option>';
+										<option value='.$data["idetab"].'> '.$data["nomcourt_typeetab"].' '.$data["nometab"].' - '.$data["ville"].'
+										( id : '.$data["idcompte"].' )</option>';
 									}
 								}
 								
