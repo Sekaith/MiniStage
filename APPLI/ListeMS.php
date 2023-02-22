@@ -81,9 +81,15 @@ $pageListeMS->corps .= '
 												$pageListeMS->corps .= '
 												
 												
-												<td><a href="modifMS.php?id='.$data['id'].'"">
+												<td><a href="modifMS.php?id='.$data['id'].'">
 												<IMG SRC="image/edit.png" width="25" height="25" title="Editer le mini-stage"
 												id="imgedit'.$data['id'].'" onClick=""</a>
+												
+												<a href="dupliMS.php?id='.$data['id'].'">
+												<IMG SRC="image/dupli.png" width="25" height="25" title="Dupliquer le mini-stage"
+												id="imgedit'.$data['id'].'" onClick=""</a>
+												
+											    &nbsp&#160;
 												
 												<a href="#"><IMG SRC="image/trash.png" width="25" height="25"  
 												title="Supprimer le mini-stage"

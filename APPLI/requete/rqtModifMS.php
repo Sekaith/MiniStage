@@ -4,7 +4,7 @@
 function get_MS(){
     global $mysqli;
 	
-    $rqt = 'SELECT m.id, tf.nom as typeformation, f.nom as formation, civilite, nomProf, date as dateUS, DATE_FORMAT(date, "%d-%m-%Y") AS dateFR, 
+    $rqt = 'SELECT m.id, tf.nom as typeformation, f.nom as formation, f.id as idformation, civilite, nomProf, date as dateUS, DATE_FORMAT(date, "%d-%m-%Y") AS dateFR, 
 	hdebut, hfin, nbplace, nbplacereste, lieu
 	from t_ministage as m inner join t_formation as f on m.idformation=f.id
 	inner join t_typeformation as tf on f.idtype=tf.id
