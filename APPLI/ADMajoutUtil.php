@@ -1,15 +1,16 @@
 <?php
 session_start();
-if(is_null($_SESSION['ID']))
-{header('Location: index.php');}
+if (is_null($_SESSION['ID'])) {
+    header('Location: index.php');
+}
 
 require_once('Class/autoload.php');
 require_once('Class/Connexion.class.php');
 require_once('requete/rqtADM.php');
 
-if(!empty($_POST["idprofil"]))
-{insert_Util();
-echo ("<SCRIPT LANGUAGE='JavaScript'>
+if (!empty($_POST["idprofil"])) {
+    insert_Util();
+    echo("<SCRIPT LANGUAGE='JavaScript'>
     	window.alert(\"Utilisateur créé \")
 		</SCRIPT>");
 }
@@ -42,7 +43,7 @@ $pageAjoutUtil->corps .= '
         </div>
         <div class="panel-body">
                     
-			'/*bloc nécéssaire à la requette mais invisible*/.'
+			'/*bloc nécéssaire à la requette mais invisible*/ . '
 			<div class="form-group" style="display:none">
                 <label for="input-Default" class="col-sm-2 control-label">Id profil</label>
                 <div class="col-sm-10">
@@ -90,12 +91,11 @@ $pageAjoutUtil->corps .= '
                 <div class="col-sm-10">
                     <SELECT name="fonction" class="form-control" id="fonction" onchange="verifList(this)">
 							<option value="-1" id="none">--Choix de la fonction--</option>';
-                            $fonction = get_fonction();
-								while($data=mysqli_fetch_array($fonction))
-              					{
-									$pageAjoutUtil->corps .= '<option value="'.$data["idfonction"].'">'.$data["nom_fonct"].'</option>';
-								}
-								$pageAjoutUtil->corps .= '
+$fonction = get_fonction();
+while ($data = mysqli_fetch_array($fonction)) {
+    $pageAjoutUtil->corps .= '<option value="' . $data["idfonction"] . '">' . $data["nom_fonct"] . '</option>';
+}
+$pageAjoutUtil->corps .= '
 						</SELECT>
                 </div>
             </div>
@@ -107,7 +107,7 @@ $pageAjoutUtil->corps .= '
 				</div>
 			</div>
 		
-	<div id="etab"> '/* devient invisible pour un prof */.'
+	<div id="etab"> '/* devient invisible pour un prof */ . '
 			<div class="form-group">
                 <label for="input-Default" class="col-sm-2 control-label">Etablissement</label>
                 <div class="col-sm-10">
@@ -120,12 +120,11 @@ $pageAjoutUtil->corps .= '
                 <div class="col-sm-10">
                     <SELECT name="type" class="form-control" id="academie" onchange="verifList(this)">
                         	<option value="-1">--Choix du type--</option>';
-							$type= get_type();
-								while($data=mysqli_fetch_array($type))
-              					{
-									$pageAjoutUtil->corps .='<option value="'.$data["idtypeetab"].'">'.$data["nom_typeetab"].'</option>';
-								} 
-								$pageAjoutUtil->corps .= '
+$type = get_type();
+while ($data = mysqli_fetch_array($type)) {
+    $pageAjoutUtil->corps .= '<option value="' . $data["idtypeetab"] . '">' . $data["nom_typeetab"] . '</option>';
+}
+$pageAjoutUtil->corps .= '
 						</SELECT>
 				</div>
 			</div>
@@ -135,12 +134,11 @@ $pageAjoutUtil->corps .= '
                 <div class="col-sm-10">
                     <SELECT name="academie" class="form-control" id="academie" onchange="verifList(this)">
                         	<option value="-1">--Choix de l\'académie--</option>';
-							$type= get_academie();
-								while($data=mysqli_fetch_array($type))
-              					{
-									$pageAjoutUtil->corps .=' <option value='.$data["idacademie"].'>'.$data["nom_academie"].'</option>';
-								}
-								$pageAjoutUtil->corps .='
+$type = get_academie();
+while ($data = mysqli_fetch_array($type)) {
+    $pageAjoutUtil->corps .= ' <option value=' . $data["idacademie"] . '>' . $data["nom_academie"] . '</option>';
+}
+$pageAjoutUtil->corps .= '
 						</SELECT>
 				</div>
 			</div>
@@ -172,8 +170,21 @@ $pageAjoutUtil->corps .= '
 					<input type="text" name="mailEtab" " class="form-control" id="mailEtab" onblur="verifMail(this)">
                 </div>
             </div>
+            
 	</div>
-	
+	<div class="form-group">
+                <label class="col-sm-2 control-label"> Secteur </label>
+                <div class="col-sm-10">
+                    <SELECT name="idsecteur" class="form-control" id="idsecteur" onchange="verifList(this)">
+                        	<option value="-1">--Choix du secteur--</option>';
+$secteur = get_secteur();
+while ($data = mysqli_fetch_array($secteur)) {
+    $pageAjoutUtil->corps .= '<option value="' . $data["idsecteur"] . '">' . $data["nom_secteur"] . '</option>';
+}
+$pageAjoutUtil->corps .= '
+						</SELECT>
+				</div>
+			</div>
 	<div id="logosign">
 	<div class="form-group">
                 <label for="input-rounded" class="col-sm-2 control-label">Nom logo</label>
@@ -196,19 +207,18 @@ $pageAjoutUtil->corps .= '
 	
 	
 	
-	<div id="rattacher"> '/* pour rattacher un profil prof à un compte type 2 */.'
+	<div id="rattacher"> '/* pour rattacher un profil prof à un compte type 2 */ . '
 			<div class="form-group">
                 <label class="col-sm-2 control-label"> Etablissement </label>
                 <div class="col-sm-10">
                     <SELECT name="idrattache" class="form-control" id="idrattache" onchange="verifList(this)">
                         	<option value="-1">--Choix de l\'établissement rattaché--</option>';
-							$offrant= get_Offrant();
-								while($data=mysqli_fetch_array($offrant))
-              					{
-									$pageAjoutUtil->corps .='<option value='.$data["idetab"].'> '.$data["nomcourt_typeetab"].' '.$data["nometab"].' - '.$data["ville"].'
-									( id : '.$data["idetab"].' )</option>';
-								}
-								$pageAjoutUtil->corps .='
+$offrant = get_Offrant();
+while ($data = mysqli_fetch_array($offrant)) {
+    $pageAjoutUtil->corps .= '<option value=' . $data["idetab"] . '> ' . $data["nomcourt_typeetab"] . ' ' . $data["nometab"] . ' - ' . $data["ville"] . '
+									( id : ' . $data["idetab"] . ' )</option>';
+}
+$pageAjoutUtil->corps .= '
 					</SELECT>
 				</div>
 			</div>

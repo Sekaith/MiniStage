@@ -43,6 +43,7 @@ $pagemodifForm->corps .= '
               					{
 									if($data["idtypeform"]==$Form["idtypeform"])
 									{
+                                        echo $data["idtypeform"];
 										$pagemodifForm->corps .= '<option selected value="'.$data["idtypeform"].'">'.$data["nom_typeformation"].'</option>';
 									}
 									else

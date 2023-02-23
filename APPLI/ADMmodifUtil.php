@@ -9,7 +9,8 @@ include_once('requete/rqtADM.php');
 
 $pagemodifUtil = new page_base('Modification Utilisateur');
 
-if(!empty($_POST['id']))
+
+if(!empty($_POST['idcompte']))
 { Modif_Util();
 echo ("<SCRIPT LANGUAGE='JavaScript'>
     	window.alert(\"Utilisateur modifié \")
@@ -18,6 +19,7 @@ echo ("<SCRIPT LANGUAGE='JavaScript'>
 }
 
 $Util=get_utilModif();
+
 
 $pagemodifUtil->corps .= '
 
@@ -39,7 +41,7 @@ $pagemodifUtil->corps .= '
                 </div>
             </div>	
 			'/*même chose*/.'
-			<div style="display:none"><input type="text" id="id" name="id" value="'.$Util['idcompte'].'"></div>	
+			<div style="display:none"><input type="text" id="idcompte" name="idcompte" value="'.$Util['idcompte'].'"></div>	
 					               
 			<div class="form-group">
                 <label for="input-Default" class="col-sm-2 control-label">Identifiant</label>
@@ -76,7 +78,7 @@ $pagemodifUtil->corps .= '
 			<div class="form-group">
                 <label for="input-rounded" class="col-sm-2 control-label">Email</label>
                 <div class="col-sm-10">
-					<input type="text" name="mail" " class="form-control" id="mail" onblur="verifMail(this)" 
+					<input type="text" name="mail" class="form-control" id="mail" onblur="verifMail(this)" 
 					value="'.$Util['mail_compte'].'" >
                 </div>
             </div>
@@ -116,6 +118,13 @@ $pagemodifUtil->corps .= '
 		if ($Util['idprofil']!=3)
 		{$pagemodifUtil->corps .='
 	<div id="etab"> '/* devient invisible pour un prof */.'
+	    <div class="form-group" style="display:none">
+                <label for="input-Default" class="col-sm-2 control-label">Id etab</label>
+                <div class="col-sm-10">
+					<input type="text" name="idetab" class="form-control" id="idetab" 
+					value="'.$Util['idetab'].'" >
+                </div>
+            </div>	
 			<div class="form-group">
                 <label for="input-Default" class="col-sm-2 control-label">Etablissement</label>
                 <div class="col-sm-10">
@@ -247,7 +256,7 @@ $pagemodifUtil->corps .= '
 									{
 										$pagemodifUtil->corps .='
 										<option value='.$data["idetab"].'> '.$data["nomcourt_typeetab"].' '.$data["nometab"].' - '.$data["ville"].'
-										( id : '.$data["idcompte"].' )</option>';
+										( id : '.$data["idetab"].' )</option>';
 									}
 								}
 								

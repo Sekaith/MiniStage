@@ -40,18 +40,18 @@ $pageListeForm->corps .= '
 										while($data=mysqli_fetch_assoc($ListeForm))
 										{
 											$pageListeForm->corps .= '
-											<tr id="td'.$data['id'].'">
-												<td>'.$data['nomcourt'].'</td>
+											<tr id="td'.$data['idformation'].'">
+												<td>'.$data['nomcourt_typeformation'].'</td>
 												
-                                                <td>'.$data['nom'].'</td>
+                                                <td>'.$data['nom_formation'].'</td>
 												
-												<td><a href="ADMmodifForm.php?id='.$data['id'].'">
+												<td><a href="ADMmodifForm.php?idformation='.$data['idformation'].'">
 												<IMG SRC="image/edit.png" width="25" height="25" title="Modifier la formation"
-												id="imgedit'.$data['id'].'" onClick=""</a>
+												id="imgedit'.$data['idformation'].'" onClick=""</a>
 												
 												<a href="#"><IMG SRC="image/trash.png" width="25" height="25"  
 												title="Supprimer la formation"
-												id="trash'.$data['id'].'" onClick="SupprimeForm('.$data['id'].')" ></a>
+												id="trash'.$data['idformation'].'" onClick="SupprimeForm('.$data['idformation'].')" ></a>
 												
 												</td>
 											 </tr>';

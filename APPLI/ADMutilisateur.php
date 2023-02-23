@@ -61,7 +61,7 @@ $pageListeUtil->corps .= '
 												
 												<td>'.$data['ville'].'</td>
 												
-												<td><a href="ADMmodifUtil.php?id='.$data['idcompte'].'">
+												<td><a href="ADMmodifUtil.php?idcompte='.$data['idcompte'].'">
 												<IMG SRC="image/edit.png" width="25" height="25" title="Modifier l\'utilisateur"
 												id="imgedit'.$data['idcompte'].'" onClick=""</a>
 												
