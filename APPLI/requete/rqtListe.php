@@ -67,9 +67,11 @@ inner join t_etablissement as e on e.idetab=c.idetab
 inner join t_typeetab as tye on tye.idtypeetab=e.idtypeetab
 inner join t_fonction as fon on fon.idfonction=c.idfonction
 inner join t_professeur as p on m.idProf=p.idProf
-where c.idcompte = '.$_SESSION['IdUtilisateur'].' and date>= DATE(NOW())
+where c.idcompte = '.$_SESSION['IdUtilisateur'].' and m.date>= DATE(NOW())
 order by date;';
-    $ListeReserv= $mysqli->query($rqt) or exit(mysqli_error());
+
+
+    $ListeReserv= $mysqli->query($rqt) or exit(mysqli_error($mysqli));
 
     return $ListeReserv;
 }

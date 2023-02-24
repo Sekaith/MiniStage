@@ -47,7 +47,7 @@ inner join t_etablissement as e on e.idetab=c.idetab
 					$_SESSION['MailEtab']=$Utilisateur['mailetab'];
 					$_SESSION['AdresseEtab']=$Utilisateur['adresse'];
 					$_SESSION['IdTypeEtab']=$Utilisateur['idtypeetab'];
-					$_SESSION['IdUtilisateur']=$Utilisateur['id'];
+					$_SESSION['IdUtilisateur']=$Utilisateur['idcompte'];
 					$_SESSION['Idrattacher']=$Utilisateur['idetab'];
 					
 					

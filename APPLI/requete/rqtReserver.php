@@ -99,7 +99,6 @@ function get_formationR($idtype){
 	where idtype='.$idtype.' AND idOffrant= '.$_SESSION['IdUtilisateur'].' order by nom asc';
 	*/
 
-    var_dump($_SESSION);
 
     $rqt = 'SELECT distinct f.idformation as id, f.nom_formation as nom, tyf.nom_typeformation as typeformation 
 FROM t_formation as f 
