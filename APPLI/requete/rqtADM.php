@@ -196,7 +196,6 @@ function Modif_Util()
 {
     global $mysqli;
 
-    var_dump($_POST);
 
     if ($_POST["idprofil"] == 3) {
 
