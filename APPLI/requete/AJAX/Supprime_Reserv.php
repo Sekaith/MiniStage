@@ -5,8 +5,8 @@
 	
 	if(isset($_POST['id'])) {
 
-	$rqt = "DELETE FROM t_reservation WHERE id = ".$_POST['id']."";
+	$rqt = "DELETE FROM t_reservation WHERE idreserv = ".$_POST['id']."";
 	$Confirm = $mysqli->query($rqt);
 	
 	}
-	?>
+?>
