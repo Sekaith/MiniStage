@@ -4,7 +4,7 @@
 	$hostname = "localhost";
 	$user     = "root";
 	$password = "root";
-	$nom_base_donnees = "ministages44_1";
+	$nom_base_donnees = "ministages44_3";
 
 	$mysqli = new mysqli($hostname, $user, $password,$nom_base_donnees) or die(mysql_error());
 	$mysqli->set_charset("utf8");

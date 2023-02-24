@@ -2,18 +2,18 @@
 require_once('Class/autoload.php');
 
 
-	// on vérifie que le champ "Pseudo" n'est pas vide
-    // empty vérifie à la fois si le champ est vide et si le champ existe belle et bien (is set)
+	// on vï¿½rifie que le champ "Pseudo" n'est pas vide
+    // empty vï¿½rifie ï¿½ la fois si le champ est vide et si le champ existe belle et bien (is set)
          include("Class/Connexion.class.php");
-            // les champs sont bien posté et pas vide, on sécurise les données entrées par le membre:
-            $Pseudo = ($_POST['id']); // le htmlentities() passera les guillemets en entités HTML, ce qui empêchera les injections SQL
+            // les champs sont bien postï¿½ et pas vide, on sï¿½curise les donnï¿½es entrï¿½es par le membre:
+            $Pseudo = ($_POST['id']); // le htmlentities() passera les guillemets en entitï¿½s HTML, ce qui empï¿½chera les injections SQL
             $MotDePasse = htmlentities($_POST['mdp'], ENT_QUOTES, "ISO-8859-1");
-            //on se connecte à la base de données:
+            //on se connecte ï¿½ la base de donnï¿½es:
             
-                // on fait maintenant la requête dans la base de données pour rechercher si ces données existe et correspondent:
-                $Requete = mysqli_query($mysqli,"SELECT * FROM t_utilisateur WHERE identifiant = '".$Pseudo."' AND mdp = '".$MotDePasse."'");
-                // si il y a un résultat, mysqli_num_rows() nous donnera alors 1
-                // si mysqli_num_rows() retourne 0 c'est qu'il a trouvé aucun résultat
+                // on fait maintenant la requï¿½te dans la base de donnï¿½es pour rechercher si ces donnï¿½es existe et correspondent:
+                $Requete = mysqli_query($mysqli,"SELECT * FROM t_compte WHERE identifiant = '".$Pseudo."' AND mdp = '".$MotDePasse."'");
+                // si il y a un rï¿½sultat, mysqli_num_rows() nous donnera alors 1
+                // si mysqli_num_rows() retourne 0 c'est qu'il a trouvï¿½ aucun rï¿½sultat
                 if(mysqli_num_rows($Requete) == 0) {
                    
 				   echo ("<script>alert('Erreur dans votre identifiant ou votre mot de passe')
@@ -31,13 +31,14 @@ require_once('Class/autoload.php');
 					
 /**************************************************ENREGISTREMENTS INFORMATIONS DE SESSIONS**********************************************/
 					//Informations de l'utilisateur
-					$RqtUtilisateur = "Select * from t_utilisateur
+					$RqtUtilisateur = "Select * from t_compte as c
+inner join t_etablissement as e on e.idetab=c.idetab
 					where identifiant = '".$Pseudo."'";
                     $tabUtilisateur = $mysqli->query ($RqtUtilisateur);
                     $Utilisateur=$tabUtilisateur->fetch_assoc();
                 
-                    $_SESSION['Nom']=$Utilisateur['nom'];
-					$_SESSION['Prenom']=$Utilisateur['prenom'];
+                    $_SESSION['Nom']=$Utilisateur['nom_compte'];
+					$_SESSION['Prenom']=$Utilisateur['prenom_compte'];
 					$_SESSION['IdProfil']=$Utilisateur['idprofil'];
 					$_SESSION['ID']=$Utilisateur['identifiant'];
 					$_SESSION['NomEtab']=$Utilisateur['nometab'];
@@ -45,24 +46,24 @@ require_once('Class/autoload.php');
 					$_SESSION['CP']=$Utilisateur['cp'];
 					$_SESSION['MailEtab']=$Utilisateur['mailetab'];
 					$_SESSION['AdresseEtab']=$Utilisateur['adresse'];
-					$_SESSION['IdTypeEtab']=$Utilisateur['idtype'];
+					$_SESSION['IdTypeEtab']=$Utilisateur['idtypeetab'];
 					$_SESSION['IdUtilisateur']=$Utilisateur['id'];
-					$_SESSION['Idrattacher']=$Utilisateur['rattacher'];
+					$_SESSION['Idrattacher']=$Utilisateur['idetab'];
 					
 					
 					//Nom du profil
-					$RqtProfil = "SELECT * FROM t_profil  WHERE id = '".$_SESSION['IdProfil']."'";
+					$RqtProfil = "SELECT * FROM t_profil  WHERE idprofil = '".$_SESSION['IdProfil']."'";
                     $tabProfil = $mysqli->query ($RqtProfil);
                     $Profil=$tabProfil->fetch_assoc();
                     
-					$_SESSION['Profil']=$Profil['nom'];
+					$_SESSION['Profil']=$Profil['nom_profil'];
 					
-					//Nom du type d'établissement
-					$RqtProfil = "SELECT nom FROM t_typeetab  WHERE id = '".$_SESSION['IdTypeEtab']."'";
-                    $tabProfil = $mysqli->query ($RqtProfil);
-                    $Profil=$tabProfil->fetch_assoc();
+					//Nom du type d'Ã©tablissement
+					$RqtEtab = "SELECT nom_typeetab as nom FROM t_typeetab  WHERE idtypeetab = '".$_SESSION['IdTypeEtab']."'";
+                    $tabEtab = $mysqli->query ($RqtEtab);
+                    $Etab=$tabEtab->fetch_assoc();
                     
-					$_SESSION['TypeEtab']=$Utilisateur['type'];
+					$_SESSION['TypeEtab']=$Etab['nom'];
 					
 					
 					/*
