@@ -47,13 +47,13 @@ order by f.nom_formation ASC;';
 function insertMinistage(){
 	global $mysqli;
 	
-	$rqt='INSERT INTO t_reservation (idmini,nom,prenom,idReservant,confirmation,rappel,absence)
+	$rqt='INSERT INTO t_reservation (idministage,nom_eleve,prenom_eleve,idReservant,confirmation,rappel,absence)
 	values ('.$_POST['mini'].', "'.$_POST['nom'].'", "'.$_POST['prenom'].'", '.$_SESSION['IdUtilisateur'].', 0,0,0)';
     mysqli_query($mysqli,$rqt) or exit(mysqli_error());
 	
-	$rqt='Select tf.nom as typeformation, f.nom as form, t.nom, nometab from t_formation as f inner join t_ministage as m on idformation=f.id  
-	inner join t_utilisateur as u on idOffrant=u.id inner join t_typeetab as t on u.idtype=t.id inner join t_typeformation as tf on f.idtype=tf.id
-	where m.id='.$_POST['mini'].'';
+	$rqt='Select tf.nom_typeformation as typeformation, f.nom_formation as form, t.nom_typeetab  as nom, e.nometab from t_formation as f inner join t_ministage as m on m.idformation=f.idformation  
+	inner join t_compte as u on idOffrant=u.idcompte inner join t_etablissement e on e.idetab=u.idetab inner join t_typeetab as t on e.idtypeetab=t.idtypeetab inner join t_typeformation as tf on f.idtypeform=tf.idtypeform 
+	where m.idministage='.$_POST['mini'].'';
 	$data= mysqli_query($mysqli,$rqt) or exit(mysqli_error());
 	$Reserv = $data -> fetch_assoc();
 	
@@ -67,22 +67,22 @@ function insertMinistageR(){
 	
 	if ($_POST['autre'] == "1")
 	{
-		$rqt='INSERT INTO t_reservation (idmini,nom,prenom,idReservant,confirmation,rappel,absence)
+		$rqt='INSERT INTO t_reservation (idministage,nom_eleve,prenom_eleve,idReservant,confirmation,rappel,absence)
 		values ('.$_POST['miniR'].', "'.$_POST['nomR'].'", "'.$_POST['prenomR'].'", 999, 0,0,0)';
     	mysqli_query($mysqli,$rqt) or exit(mysqli_error());
 	
 	}
 	else
 	{
-		$rqt='INSERT INTO t_reservation (idmini,nom,prenom,idReservant,confirmation,rappel,absence)
+		$rqt='INSERT INTO t_reservation (idministage,nom_eleve,prenom_eleve,idReservant,confirmation,rappel,absence)
 		values ('.$_POST['miniR'].', "'.$_POST['nomR'].'", "'.$_POST['prenomR'].'", '.$_POST['etablissementR'].', 0,0,0)';
     	mysqli_query($mysqli,$rqt) or exit(mysqli_error());
 		
 	}
 	
-	$rqt='Select tf.nom as typeformation, f.nom as form, t.nom, nometab from t_formation as f inner join t_ministage as m on idformation=f.id  
-	inner join t_utilisateur as u on idOffrant=u.id inner join t_typeetab as t on u.idtype=t.id inner join t_typeformation as tf on f.idtype=tf.id
-	where m.id='.$_POST['miniR'].'';
+	$rqt='Select tf.nom_typeformation as typeformation, f.nom_formation as form, t.nom_typeetab  as nom, e.nometab from t_formation as f inner join t_ministage as m on m.idformation=f.idformation  
+	inner join t_compte as u on idOffrant=u.idcompte inner join t_etablissement e on e.idetab=u.idetab inner join t_typeetab as t on e.idtypeetab=t.idtypeetab inner join t_typeformation as tf on f.idtypeform=tf.idtypeform 
+	where m.idministage='.$_POST['miniR'].'';
 	$data= mysqli_query($mysqli,$rqt) or exit(mysqli_error());
 	$Reserv = $data -> fetch_assoc();
 	

@@ -13,9 +13,9 @@
     join (
         select m1.idministage, count(distinct r1.idreserv) as nbreserv from t_reservation as r1
         inner join t_ministage as m1 on m1.idministage=r1.idministage
-        where m1.idOffrant=".$_POST['formation']." and m1.idformation=".$_POST['formation']."
+        where m1.idOffrant=".$_POST['etablissement']." and m1.idformation=".$_POST['formation']."
         GROUP by r1.idministage) t1 on t1.idministage = m.idministage
-        where idOffrant=".$_POST['formation']." and idformation=".$_POST['formation']."";
+        where idOffrant=".$_POST['etablissement']." and idformation=".$_POST['formation']."";
 	$Creneau = $mysqli->query($rqt);
 	}
 	else{
@@ -26,9 +26,9 @@
     join (
         select m1.idministage, count(distinct r1.idreserv) as nbreserv from t_reservation as r1
         inner join t_ministage as m1 on m1.idministage=r1.idministage
-        where m1.idOffrant=".$_POST['formation2']." and m1.idformation=".$_POST['formation2']."
+        where m1.idOffrant=".$_POST['etablissement2']." and m1.idformation=".$_POST['formation2']."
         GROUP by r1.idministage) t1 on t1.idministage = m.idministage
-        where idOffrant=".$_POST['formation2']." and idformation=".$_POST['formation2']."";
+        where idOffrant=".$_POST['etablissement2']." and idformation=".$_POST['formation2']."";
 	$Creneau = $mysqli->query($rqt);
 	}
 	else{
@@ -38,9 +38,9 @@
     join (
         select m1.idministage, count(distinct r1.idreserv) as nbreserv from t_reservation as r1
         inner join t_ministage as m1 on m1.idministage=r1.idministage
-        where m1.idOffrant=".$_POST['formationR']." and m1.idformation=".$_POST['formationR']."
+        where m1.idOffrant=".$_POST['etablissementR']." and m1.idformation=".$_POST['formationR']."
         GROUP by r1.idministage) t1 on t1.idministage = m.idministage
-        where idOffrant=".$_POST['formationR']." and idformation=".$_POST['formationR']."";
+        where idOffrant=".$_POST['etablissementR']." and idformation=".$_POST['formationR']."";
 	$Creneau = $mysqli->query($rqt);
 	}
 	}

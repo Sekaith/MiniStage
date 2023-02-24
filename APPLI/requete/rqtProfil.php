@@ -6,12 +6,18 @@ function get_profil(){
     global $mysqli;
 	
 	if ($_SESSION["IdProfil"] == 3){
-    $rqtProfil = 'SELECT u.id,identifiant,mdp,idprofil,u.nom,prenom,mail,idfonction,
-	tel from t_utilisateur as u  where id='.$_SESSION['IdUtilisateur'].'';
-	} else {
-	$rqtProfil = 'SELECT u.id,identifiant,mdp,idprofil,u.nom,prenom,mail,idfonction,
-	tel,nometab,idtype,ville,adresse,mailetab,idacademie,cp, t.nom as nomtype
-	from t_utilisateur as u inner join t_typeetab as t on u.idtype=t.id where u.id='.$_SESSION['IdUtilisateur'].' ';
+//    $rqtProfil = 'SELECT u.id,identifiant,mdp,idprofil,u.nom,prenom,mail,idfonction,
+//	tel from t_utilisateur as u  where id='.$_SESSION['IdUtilisateur'].'';
+//	} else {
+//	$rqtProfil = 'SELECT u.id,identifiant,mdp,idprofil,u.nom,prenom,mail,idfonction,
+//	tel,nometab,idtype,ville,adresse,mailetab,idacademie,cp, t.nom as nomtype
+//	from t_utilisateur as u inner join t_typeetab as t on u.idtype=t.id where u.id='.$_SESSION['IdUtilisateur'].' ';
+    $rqtProfil = 'SELECT u.idcompte as id, u.identifiant, u.mdp, u.idprofil, u.nom_compte as nom, u.prenom_compte as prenom ,u.mail_compte as mail, u.idfonction,
+	tel from t_compte as u  where u.idcompte='.$_SESSION['IdUtilisateur'].'';
+    } else {
+    $rqtProfil = 'SELECT u.idcompte as id,u.identifiant,u.mdp,u.idprofil,u.nom_compte as nom,u.prenom_compte as prenom,u.mail_compte as mail,u.idfonction,
+	tel,e.nometab,e.idtypeetab as idtype,e.ville,e.adresse,e.mailetab,e.idacademie,e.cp, t.nom_typeetab as nomtype
+	from t_compte as u inner join t_etablissement e on e.idetab=u.idetab inner join t_typeetab as t on e.idtypeetab=t.idtypeetab where u.idcompte='.$_SESSION['IdUtilisateur'].' ';
 	}
 	
 	$tabProfil= mysqli_query($mysqli,$rqtProfil) or exit(mysqli_error());
@@ -25,10 +31,10 @@ function get_profil(){
 function updateProfil(){
 	global $mysqli;
 	
-	$rqt ='UPDATE t_utilisateur SET identifiant="'.$_SESSION['ID'].'",mdp="'.$_POST['mdp'].'",
-	nom="'.$_POST['nom'].'",prenom="'.$_POST['prenom'].'", idfonction="'.$_POST['fct'].'",
-    mail="'.$_POST['mail'].'",tel="'.$_POST['tel'].'"  
-	where id= '.$_SESSION['IdUtilisateur'].'';
+	$rqt ='UPDATE t_compte SET identifiant="'.$_SESSION['ID'].'",mdp="'.$_POST['mdp'].'",
+	nom_compte="'.$_POST['nom'].'",prenom_compte="'.$_POST['prenom'].'", idfonction="'.$_POST['fct'].'",
+    mail_compte="'.$_POST['mail'].'",tel="'.$_POST['tel'].'"  
+	where idcompte= '.$_SESSION['IdUtilisateur'].'';
 	mysqli_query($mysqli,$rqt) or exit(mysqli_error());
 }
 
@@ -37,8 +43,8 @@ function updateProfil(){
 function updateEtab(){
 	global $mysqli;
 	
-	$rqt ='UPDATE t_utilisateur SET nometab = "'.$_POST['nometab'].'", idtype = '.$_POST['type'].', ville = "'.$_POST['ville'].'",
-	cp =  '.$_POST['cp'].' WHERE id= '.$_SESSION['IdUtilisateur'].'';
+	$rqt ='UPDATE t_etablissement SET nometab = "'.$_POST['nometab'].'", idtypeetab = '.$_POST['type'].', ville = "'.$_POST['ville'].'",
+	cp =  '.$_POST['cp'].' WHERE idetab= '.$_SESSION['IdUtilisateur'].'';
 	mysqli_query($mysqli,$rqt) or exit(mysqli_error());
 }
 
@@ -80,7 +86,7 @@ function get_fonction(){
 function Verif_RNE(){
 	global $mysqli;
 	
-	$Rqt = mysqli_query($mysqli,'SELECT * FROM t_utilisateur WHERE identifiant = "'.$_POST['rne'].'"');
+	$Rqt = mysqli_query($mysqli,'SELECT * FROM t_compte WHERE identifiant = "'.$_POST['rne'].'"');
 	if(mysqli_num_rows($Rqt) == 0) {
 	return true;
 	}
@@ -106,7 +112,7 @@ function inscription(){
                     } 
 	
 	//recup nom academie
-	$rqt = 'SELECT nom FROM t_academie where id='.$_POST['academie'].'';
+	$rqt = 'SELECT nom_academie FROM t_academie where idacademie='.$_POST['academie'].'';
 	$tabAcademie=  mysqli_query($mysqli,$rqt) or exit(mysqli_error());
 	$academie= $tabAcademie->fetch_assoc();
 			
@@ -115,12 +121,15 @@ function inscription(){
 	$mailetab = 'ce.'.$RNEmin.'@ac-'.$academiemin.'.fr';
 	
 	//insertion
-	$rqt='INSERT INTO `t_utilisateur`(`id`,`identifiant`,`mdp`,`idprofil`,`nom`,`prenom`,`mail`,`idfonction`,
-	`tel`,`nometab`,`idtype`,`ville`,`adresse`,`mailetab`,`idacademie`,`cp`,`logo`,`cachet`,`important`) 
+	$rqt='INSERT INTO `t_etablissement`(`nometab`,`idtypeetab`,`ville`,`adresse`,`mailetab`,`idacademie`,`cp`,`logo`,`cachet`,`important`,`important2`) 
+	 VALUES("'.$_POST['etab'].'",'.$_POST['type'].',"'.$_POST['ville'].'","'.$_POST['adresse'].'","'.$mailetab.'", '.$_POST['academie'].', '.$_POST['cp'].',"","","")';
+    mysqli_query($mysqli,$rqt) or exit(mysqli_error());
+    $rqt = 'SELECT idetab FROM t_etablissement where nometab='.$_POST['etab'].'';
+    $etab = $mysqli->query($rqt);
+    $rqt2='INSERT INTO `t_compte`(`identifiant`,`mdp`,`idprofil`,`nom`,`prenom`,`mail`,`idfonction`,`tel`,`idetab`) 
 	 VALUES(NULL,"'.$_POST['rne'].'","'.$pass.'",4,"'.$_POST['nom'].'","'.$_POST['prenom'].'","'.$_POST['mail'].'",
-	 '.$_POST['fonction'].',"'.$_POST['tel'].'","'.$_POST['etab'].'",'.$_POST['type'].',"'.$_POST['ville'].'","'.$_POST['adresse'].'",
-	 "'.$mailetab.'", '.$_POST['academie'].', '.$_POST['cp'].',"","","")';
-	 mysqli_query($mysqli,$rqt) or exit(mysqli_error());
+	 '.$_POST['fonction'].',"'.$_POST['tel'].'","'.$etab.'")';
+     mysqli_query($mysqli,$rqt2) or exit(mysqli_error());
 
 
 //envoie du mail d'inscription 
@@ -171,7 +180,7 @@ function mdpoublie(){
 	global $mysqli;
 	
 	
-	$rqt = "SELECT mdp FROM t_utilisateur where identifiant = '".$_POST['rne']."'";
+	$rqt = "SELECT mdp FROM t_compte where identifiant = '".$_POST['rne']."'";
 	$motdp= $mysqli->query($rqt) or exit(mysqli_error());
 	
 	if(mysqli_num_rows($motdp) == 1) 
@@ -179,7 +188,7 @@ function mdpoublie(){
 		$mdp = $motdp->fetch_assoc();
 		$pass=$mdp['mdp'];
 	//recup nom academie
-	$rqt = "SELECT mailetab FROM t_utilisateur where identifiant='".$_POST['rne']."'";
+	$rqt = "SELECT mailetab FROM t_compte where identifiant='".$_POST['rne']."'";
 	$tabMail=  $mysqli->query($rqt) or exit(mysqli_error());
 	$mailEta= $tabMail->fetch_assoc();
 			
