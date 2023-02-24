@@ -5,23 +5,42 @@
 	
 	if((isset($_POST['formation'])) && (isset($_POST['etablissement']))) {
 	
-	$rqt = " Select id, date, DATE_FORMAT(date, '%d-%m-%Y') AS dateFR,hdebut,hfin,nbplace,nbplacereste from t_ministage where idOffrant= ".$_POST['etablissement']."
-	AND idformation=".$_POST['formation']."";
+//	$rqt = " Select id, date, DATE_FORMAT(date, '%d-%m-%Y') AS dateFR,hdebut,hfin,nbplace,nbplacereste from t_ministage where idOffrant= ".$_POST['etablissement']."
+//	AND idformation=".$_POST['formation']."";
+
+
+    $rqt ="select m.idministage as id, m.date, DATE_FORMAT(m.date, '%d-%m-%Y') AS dateFR, m.hdebut, m.hfin, m.nbplace, (nbplace - t1.nbreserv) as nbplacereste from t_ministage as m 
+    join (
+        select m1.idministage, count(distinct r1.idreserv) as nbreserv from t_reservation as r1
+        inner join t_ministage as m1 on m1.idministage=r1.idministage
+        where m1.idOffrant=".$_POST['formation']." and m1.idformation=".$_POST['formation']."
+        GROUP by r1.idministage) t1 on t1.idministage = m.idministage
+        where idOffrant=".$_POST['formation']." and idformation=".$_POST['formation']."";
 	$Creneau = $mysqli->query($rqt);
 	}
 	else{
 	if((isset($_POST['formation2'])) && (isset($_POST['etablissement2'])))
 	{
 		
-	$rqt = " Select id, date,  DATE_FORMAT(date, '%d-%m-%Y') AS dateFR,hdebut,hfin,nbplace,nbplacereste from t_ministage where idOffrant= ".$_POST['etablissement2']."
-	AND idformation=".$_POST['formation2']."";
+	$rqt = "select m.idministage as id, m.date, DATE_FORMAT(m.date, '%d-%m-%Y') AS dateFR, m.hdebut, m.hfin, m.nbplace, (nbplace - t1.nbreserv) as nbplacereste from t_ministage as m 
+    join (
+        select m1.idministage, count(distinct r1.idreserv) as nbreserv from t_reservation as r1
+        inner join t_ministage as m1 on m1.idministage=r1.idministage
+        where m1.idOffrant=".$_POST['formation2']." and m1.idformation=".$_POST['formation2']."
+        GROUP by r1.idministage) t1 on t1.idministage = m.idministage
+        where idOffrant=".$_POST['formation2']." and idformation=".$_POST['formation2']."";
 	$Creneau = $mysqli->query($rqt);
 	}
 	else{
 	if((isset($_POST['formationR'])) && (isset($_POST['etabR'])))
 	{
-	$rqt = " Select id, date, DATE_FORMAT(date, '%d-%m-%Y') AS dateFR,hdebut,hfin,nbplace,nbplacereste from t_ministage where idOffrant= ".$_POST['etabR']."
-	AND idformation=".$_POST['formationR']."";
+	$rqt = "select m.idministage as id, m.date, DATE_FORMAT(m.date, '%d-%m-%Y') AS dateFR, m.hdebut, m.hfin, m.nbplace, (nbplace - t1.nbreserv) as nbplacereste from t_ministage as m 
+    join (
+        select m1.idministage, count(distinct r1.idreserv) as nbreserv from t_reservation as r1
+        inner join t_ministage as m1 on m1.idministage=r1.idministage
+        where m1.idOffrant=".$_POST['formation2']." and m1.idformation=".$_POST['formation2']."
+        GROUP by r1.idministage) t1 on t1.idministage = m.idministage
+        where idOffrant=".$_POST['formation2']." and idformation=".$_POST['formation2']."";
 	$Creneau = $mysqli->query($rqt);
 	}
 	}
