@@ -14,7 +14,7 @@ inner join t_etablissement as e on e.idetab=c.idetab
 inner join t_typeetab as tye on tye.idtypeetab=e.idtypeetab
 order by e.nometab ASC;';
 
-	$Etab= $mysqli->query($rqt) or exit(mysqli_error());
+	$Etab= $mysqli->query($rqt) or exit(mysqli_error($mysqli));
 	
 	return $Etab;
 }
@@ -36,7 +36,7 @@ inner join t_typeformation as tyf on tyf.idtypeform=f.idtypeform
 where tyf.idtypeform = '.$idtype.'
 order by f.nom_formation ASC;';
 
-	$Formation= $mysqli->query($rqt) or exit(mysqli_error());
+	$Formation= $mysqli->query($rqt) or exit(mysqli_error($mysqli));
 	
 	if(mysqli_num_rows($Formation)>0);
 	{return $Formation;}
@@ -49,12 +49,12 @@ function insertMinistage(){
 	
 	$rqt='INSERT INTO t_reservation (idministage,nom_eleve,prenom_eleve,idReservant,confirmation,rappel,absence)
 	values ('.$_POST['mini'].', "'.$_POST['nom'].'", "'.$_POST['prenom'].'", '.$_SESSION['IdUtilisateur'].', 0,0,0)';
-    mysqli_query($mysqli,$rqt) or exit(mysqli_error());
+    mysqli_query($mysqli,$rqt) or exit(mysqli_error($mysqli));
 	
 	$rqt='Select tf.nom_typeformation as typeformation, f.nom_formation as form, t.nom_typeetab  as nom, e.nometab from t_formation as f inner join t_ministage as m on m.idformation=f.idformation  
 	inner join t_compte as u on idOffrant=u.idcompte inner join t_etablissement e on e.idetab=u.idetab inner join t_typeetab as t on e.idtypeetab=t.idtypeetab inner join t_typeformation as tf on f.idtypeform=tf.idtypeform 
 	where m.idministage='.$_POST['mini'].'';
-	$data= mysqli_query($mysqli,$rqt) or exit(mysqli_error());
+	$data= mysqli_query($mysqli,$rqt) or exit(mysqli_error($mysqli));
 	$Reserv = $data -> fetch_assoc();
 	
 	return $Reserv;
@@ -69,21 +69,21 @@ function insertMinistageR(){
 	{
 		$rqt='INSERT INTO t_reservation (idministage,nom_eleve,prenom_eleve,idReservant,confirmation,rappel,absence)
 		values ('.$_POST['miniR'].', "'.$_POST['nomR'].'", "'.$_POST['prenomR'].'", 999, 0,0,0)';
-    	mysqli_query($mysqli,$rqt) or exit(mysqli_error());
+    	mysqli_query($mysqli,$rqt) or exit(mysqli_error($mysqli));
 	
 	}
 	else
 	{
 		$rqt='INSERT INTO t_reservation (idministage,nom_eleve,prenom_eleve,idReservant,confirmation,rappel,absence)
 		values ('.$_POST['miniR'].', "'.$_POST['nomR'].'", "'.$_POST['prenomR'].'", '.$_POST['etablissementR'].', 0,0,0)';
-    	mysqli_query($mysqli,$rqt) or exit(mysqli_error());
+    	mysqli_query($mysqli,$rqt) or exit(mysqli_error($mysqli));
 		
 	}
 	
 	$rqt='Select tf.nom_typeformation as typeformation, f.nom_formation as form, t.nom_typeetab  as nom, e.nometab from t_formation as f inner join t_ministage as m on m.idformation=f.idformation  
 	inner join t_compte as u on idOffrant=u.idcompte inner join t_etablissement e on e.idetab=u.idetab inner join t_typeetab as t on e.idtypeetab=t.idtypeetab inner join t_typeformation as tf on f.idtypeform=tf.idtypeform 
 	where m.idministage='.$_POST['miniR'].'';
-	$data= mysqli_query($mysqli,$rqt) or exit(mysqli_error());
+	$data= mysqli_query($mysqli,$rqt) or exit(mysqli_error($mysqli));
 	$Reserv = $data -> fetch_assoc();
 	
 	return $Reserv;
@@ -107,7 +107,7 @@ inner join t_ministage as m on m.idformation=f.idformation
 	where tyf.idtypeform='.$idtype.' AND m.idOffrant='.$_SESSION['IdUtilisateur'].'
     order by nom asc;';
 
-    $Formation= $mysqli->query($rqt) or exit(mysqli_error());
+    $Formation= $mysqli->query($rqt) or exit(mysqli_error($mysqli));
 	
 	if(mysqli_num_rows($Formation)>0);
 	{return $Formation;}
@@ -130,7 +130,7 @@ inner join t_typeetab as tye on tye.idtypeetab=e.idtypeetab
 where c.idprofil=4
 order by e.nometab ASC;';
 
-	$Etab= $mysqli->query($rqt) or exit(mysqli_error());
+	$Etab= $mysqli->query($rqt) or exit(mysqli_error($mysqli));
 	
 	return $Etab;
 }

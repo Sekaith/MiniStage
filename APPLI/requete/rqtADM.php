@@ -164,7 +164,7 @@ function get_utilisateur()
     inner join t_profil as p on c.idprofil=p.idprofil
 	inner join t_fonction as f on c.idfonction=f.idfonction;';
 
-        $ListeUtil = $mysqli->query($rqt) or exit(mysqli_error());
+        $ListeUtil = $mysqli->query($rqt) or exit(mysqli_error($mysqli));
         return $ListeUtil;
     }
 }

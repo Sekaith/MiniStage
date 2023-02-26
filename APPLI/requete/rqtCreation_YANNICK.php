@@ -7,7 +7,7 @@ function get_formation($idtype){
 	$rqt = 'SELECT f.id, f.nom, tf.nom as typeformation FROM t_formation as f
 	inner join t_typeformation as tf on f.idtype=tf.id
 	where idtype='.$idtype.' order by nom asc';
-	$Formation= $mysqli->query($rqt) or exit(mysqli_error());
+	$Formation= $mysqli->query($rqt) or exit(mysqli_error($mysqli));
 	
 	return $Formation;
 }
@@ -20,7 +20,7 @@ function get_formation_export($idtype, $qui){
 	where ut.id=m.idOffrant and f.idtype=tf.id and m.idformation=f.id and m.idformation=f.id
 	and f.idtype='.$idtype.' and ut.identifiant="'.$qui.'" order by nom asc';
 
-	$Formation= $mysqli->query($rqt) or exit(mysqli_error());
+	$Formation= $mysqli->query($rqt) or exit(mysqli_error($mysqli));
 	
 	if(mysqli_num_rows($Formation)>0)
 	{return $Formation;}
@@ -40,7 +40,7 @@ function get_donnees_export($formation, $date) {
 	}
 	$rqt .= 'm.id=r.idmini and ut.id=r.idReservant and ty.id=ut.idtype order by nom asc';
 
-	$Formation= $mysqli->query($rqt) or exit(mysqli_error());
+	$Formation= $mysqli->query($rqt) or exit(mysqli_error($mysqli));
 	
 	if(mysqli_num_rows($Formation)>0)
 	{return $Formation;}
@@ -55,7 +55,7 @@ function insertMinistage(){
 	$rqt='INSERT INTO t_ministage (idOffrant,idformation,civilite,nomProf,date,hdebut,hfin,nbplace,nbplacereste)
 	values ('.$_SESSION['IdUtilisateur'].', '.$_POST['formation'].', "'.$_POST['civilite'].'", "'.$_POST['nomprof'].'", STR_TO_DATE("'.$_POST['date'].'", "%d-%m-%Y"), 
 	"'.$_POST['heure1'].'", "'.$_POST['heure2'].'",'.$_POST['place'].', '.$_POST['place'].')';
-    mysqli_query($mysqli,$rqt) or exit(mysqli_error());
+    mysqli_query($mysqli,$rqt) or exit(mysqli_error($mysqli));
 return button1;
 }
 

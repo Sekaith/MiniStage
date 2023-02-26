@@ -15,7 +15,7 @@ FROM t_formation as f
     inner join t_typeformation as tf on f.idtypeform=tf.idtypeform 
 where f.idtypeform='.$idtype.'
 order by nom asc';
-    $Formation= $mysqli->query($rqt) or exit(mysqli_error());
+    $Formation= $mysqli->query($rqt) or exit(mysqli_error($mysqli));
 
     return $Formation;
 }
@@ -41,7 +41,7 @@ function getCoordAdmin(){
      */
 
     $rqt = 'select prenom_compte as prenom, nom_compte as nom, mail_compte as mail, tel from t_compte where idprofil = 1 limit 0,1';
-    $data= $mysqli->query($rqt) or exit(mysqli_error());
+    $data= $mysqli->query($rqt) or exit(mysqli_error($mysqli));
     $coord = $data -> fetch_assoc();
 
     return $coord;

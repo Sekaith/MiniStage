@@ -33,7 +33,7 @@ inner join t_ministage as m on m.idministage=r.idministage
 	inner join t_fonction as fo on c.idfonction=fo.idfonction
 	where idReservant = '.$_SESSION['IdUtilisateur'].' AND date>=DATE(NOW())
 	ORDER BY date;';
-    $ListeReserv= $mysqli->query($rqt) or exit(mysqli_error());
+    $ListeReserv= $mysqli->query($rqt) or exit(mysqli_error($mysqli));
 
     return $ListeReserv;
 }
@@ -109,7 +109,7 @@ where c.idcompte = '.$_SESSION['Idrattacher'].' and date>= DATE(NOW())
 order by date;';
 
 
-    $ListeReserv= $mysqli->query($rqt) or exit(mysqli_error());
+    $ListeReserv= $mysqli->query($rqt) or exit(mysqli_error($mysqli));
 
     return $ListeReserv;
 }
@@ -144,7 +144,7 @@ inner join t_professeur as p on m.idProf=p.idProf
 where date>= DATE(NOW())
 order by date;';
 
-    $ListeReserv= $mysqli->query($rqt) or exit(mysqli_error());
+    $ListeReserv= $mysqli->query($rqt) or exit(mysqli_error($mysqli));
 
     return $ListeReserv;
 }
@@ -185,7 +185,7 @@ inner join t_ministage as m on m.idministage=r.idministage
 	where idReservant = '.$_SESSION['IdUtilisateur'].' AND date<DATE(NOW())
 	ORDER BY date;';
 
-    $ListeReserv= $mysqli->query($rqt) or exit(mysqli_error());
+    $ListeReserv= $mysqli->query($rqt) or exit(mysqli_error($mysqli));
 
     return $ListeReserv;
 }
@@ -222,7 +222,7 @@ inner join t_professeur as p on m.idProf=p.idProf
 where c.idcompte = '.$_SESSION['IdUtilisateur'].' and date<DATE(NOW())
 order by date;';
 
-    $ListeReserv= $mysqli->query($rqt) or exit(mysqli_error());
+    $ListeReserv= $mysqli->query($rqt) or exit(mysqli_error($mysqli));
 
     return $ListeReserv;
 }
@@ -258,7 +258,7 @@ inner join t_professeur as p on m.idProf=p.idProf
 where c.idcompte = '.$_SESSION['Idrattacher'].' and date<DATE(NOW())
 order by date;';
 
-    $ListeReserv= $mysqli->query($rqt) or exit(mysqli_error());
+    $ListeReserv= $mysqli->query($rqt) or exit(mysqli_error($mysqli));
 
     return $ListeReserv;
 }
@@ -293,7 +293,7 @@ inner join t_professeur as p on m.idProf=p.idProf
 where date<DATE(NOW())
 order by date;';
 
-    $ListeReserv= $mysqli->query($rqt) or exit(mysqli_error());
+    $ListeReserv= $mysqli->query($rqt) or exit(mysqli_error($mysqli));
 
     return $ListeReserv;
 }

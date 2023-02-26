@@ -5,7 +5,7 @@ function get_type(){
 	global $mysqli;
 	
 	$rqt = 'SELECT * from t_typeetab';
-	$Type= $mysqli->query($rqt) or exit(mysqli_error());
+	$Type= $mysqli->query($rqt) or exit(mysqli_error($mysqli));
 	
 	return $Type;
 }
@@ -16,7 +16,7 @@ function get_academie(){
 	global $mysqli;
 	
 	$rqt = 'SELECT * FROM t_academie';
-	$Academie= $mysqli->query($rqt) or exit(mysqli_error());
+	$Academie= $mysqli->query($rqt) or exit(mysqli_error($mysqli));
 	
 	return $Academie;
 }
@@ -27,7 +27,7 @@ function get_fonction(){
 	global $mysqli;
 	
 	$rqt = 'SELECT * FROM t_fonction';
-	$Fonction= $mysqli->query($rqt) or exit(mysqli_error());
+	$Fonction= $mysqli->query($rqt) or exit(mysqli_error($mysqli));
 	
 	return $Fonction;
 }
@@ -39,7 +39,7 @@ function get_Offrant(){
 	
 	$rqt = 'SELECT u.id, nomcourt, nometab, ville FROM  t_utilisateur as u inner join t_typeetab as t on u.idtype = t.id
 	WHERE idprofil=2 ORDER BY nometab ASC';
-	$Offrant= $mysqli->query($rqt) or exit(mysqli_error());
+	$Offrant= $mysqli->query($rqt) or exit(mysqli_error($mysqli));
 	
 	return $Offrant;
 }
@@ -50,7 +50,7 @@ function get_typeF(){
 	global $mysqli;
 	
 	$rqt = 'SELECT * from t_typeformation';
-	$typeF= $mysqli->query($rqt) or exit(mysqli_error());
+	$typeF= $mysqli->query($rqt) or exit(mysqli_error($mysqli));
 	
 	return $typeF;
 }
@@ -65,7 +65,7 @@ function insert_Util(){
 		$rqt='INSERT INTO t_utilisateur (identifiant, mdp, idprofil, nom, prenom, mail, idfonction, tel, rattacher)
 		values ("'.$_POST["identifiant"].'","'.$_POST["mdp"].'",3,"'.$_POST["nom"].'","'.$_POST["prenom"].'","'.$_POST["mail"].'",
 		'.$_POST["fonction"].', "'.$_POST["tel"].'",'.$_POST["idrattache"].')';
-    	mysqli_query($mysqli,$rqt) or exit(mysqli_error());
+    	mysqli_query($mysqli,$rqt) or exit(mysqli_error($mysqli));
 	}
 	else 
 	{
@@ -77,7 +77,7 @@ function insert_Util(){
 		"'.$_POST["prenom"].'","'.$_POST["mail"].'",'.$_POST["fonction"].', "'.$_POST["tel"].'",
 		"'.$_POST["etab"].'",'.$_POST["type"].','.$_POST["academie"].',"'.$_POST["adresse"].'",
 		"'.$_POST["ville"].'",'.$_POST["cp"].',"'.$_POST["mailEtab"].'")';
-    	mysqli_query($mysqli,$rqt) or exit(mysqli_error());
+    	mysqli_query($mysqli,$rqt) or exit(mysqli_error($mysqli));
 		}
 		else
 		{
@@ -87,7 +87,7 @@ function insert_Util(){
 			"'.$_POST["prenom"].'","'.$_POST["mail"].'",'.$_POST["fonction"].', "'.$_POST["tel"].'",
 			"'.$_POST["etab"].'",'.$_POST["type"].','.$_POST["academie"].',"'.$_POST["adresse"].'",
 			"'.$_POST["ville"].'",'.$_POST["cp"].',"'.$_POST["mailEtab"].'","'.$_POST["logo"].'","'.$_POST["sign"].'")';
-    		mysqli_query($mysqli,$rqt) or exit(mysqli_error());
+    		mysqli_query($mysqli,$rqt) or exit(mysqli_error($mysqli));
 		}
 	}
 }
@@ -102,7 +102,7 @@ function get_utilisateur(){
 	from t_utilisateur as u inner join t_profil as p on u.idprofil=p.id
 	inner join t_fonction as f on u.idfonction=f.id';
 	
-	$ListeUtil= $mysqli->query($rqt) or exit(mysqli_error());
+	$ListeUtil= $mysqli->query($rqt) or exit(mysqli_error($mysqli));
 	return $ListeUtil;
 	}
 }
@@ -118,7 +118,7 @@ function get_utilModif(){
 		from t_utilisateur
 		where id='.$_GET['id'].'';
 			
-	$Liste= $mysqli->query($rqt) or exit(mysqli_error());
+	$Liste= $mysqli->query($rqt) or exit(mysqli_error($mysqli));
 	$ListeUtil = $Liste -> fetch_assoc();
 	return $ListeUtil;
 	}
@@ -135,7 +135,7 @@ function Modif_Util(){
 		nom="'.$_POST["nom"].'", prenom="'.$_POST["prenom"].'", mail="'.$_POST["mail"].'", idfonction='.$_POST["fonction"].',
 		tel="'.$_POST["tel"].'", rattacher='.$_POST["idrattache"].'
 		where id= '.$_POST['id'].'';
-    	mysqli_query($mysqli,$rqt) or exit(mysqli_error());
+    	mysqli_query($mysqli,$rqt) or exit(mysqli_error($mysqli));
 	}
 	else 
 	{	
@@ -146,7 +146,7 @@ function Modif_Util(){
 		tel = "'.$_POST["tel"].'", nometab="'.$_POST["etab"].'", idtype='.$_POST["type"].', idacademie='.$_POST["academie"].', 
 		adresse="'.$_POST["adresse"].'", ville="'.$_POST["ville"].'", cp='.$_POST["cp"].', mailetab="'.$_POST["mailEtab"].'"
 		where id= '.$_POST['id'].'';
-    	mysqli_query($mysqli,$rqt) or exit(mysqli_error());
+    	mysqli_query($mysqli,$rqt) or exit(mysqli_error($mysqli));
 		}
 		else
 		{
@@ -156,7 +156,7 @@ function Modif_Util(){
 		adresse="'.$_POST["adresse"].'", ville="'.$_POST["ville"].'", cp='.$_POST["cp"].', mailetab="'.$_POST["mailEtab"].'",
 		logo="'.$_POST["logo"].'",cachet="'.$_POST["sign"].'"
 		where id= '.$_POST['id'].'';
-    	mysqli_query($mysqli,$rqt) or exit(mysqli_error());
+    	mysqli_query($mysqli,$rqt) or exit(mysqli_error($mysqli));
 		}
 	}
 }
@@ -172,7 +172,7 @@ function insert_Form(){
 	
 		$rqt='INSERT INTO t_formation (idtype, nom)
 		values ('.$_POST["typeF"].', "'.$_POST["sigle"].' - '.$_POST["nom"].'")';
-    	mysqli_query($mysqli,$rqt) or exit(mysqli_error());
+    	mysqli_query($mysqli,$rqt) or exit(mysqli_error($mysqli));
 	
 }
 
@@ -185,7 +185,7 @@ function get_formation(){
     $rqt = 'SELECT f.*, nomcourt
 	from t_formation as f inner join t_typeformation as t on t.id=f.idtype';
 	
-	$ListeForm= $mysqli->query($rqt) or exit(mysqli_error());
+	$ListeForm= $mysqli->query($rqt) or exit(mysqli_error($mysqli));
 	return $ListeForm;
 	}
 }
@@ -199,7 +199,7 @@ function get_formModif(){
 		
 		$rqt = 'SELECT * from t_formation where id='.$_GET['id'].'';
 			
-	$Liste= $mysqli->query($rqt) or exit(mysqli_error());
+	$Liste= $mysqli->query($rqt) or exit(mysqli_error($mysqli));
 	$Form = $Liste -> fetch_assoc();
 	return $Form;
 	}
@@ -211,6 +211,6 @@ function Modif_Form(){
 	global $mysqli;
 		$rqt='Update t_formation SET idtype='.$_POST["typeF"].', nom="'.$_POST["nom"].'"
 		where id= '.$_POST['id'].'';
-    	mysqli_query($mysqli,$rqt) or exit(mysqli_error());
+    	mysqli_query($mysqli,$rqt) or exit(mysqli_error($mysqli));
 }
 ?>

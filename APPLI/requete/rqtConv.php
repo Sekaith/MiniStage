@@ -9,7 +9,7 @@ function get_important(){
     $rqt = 'select important, important2 from t_etablissement e
 inner join t_compte c on c.idetab=e.idetab
 where idcompte='.$_SESSION['IdUtilisateur'];
-    $data= mysqli_query($mysqli,$rqt) or exit(mysqli_error());
+    $data= mysqli_query($mysqli,$rqt) or exit(mysqli_error($mysqli));
     $important = $data -> fetch_assoc();
 
     return $important;
@@ -28,7 +28,7 @@ function modif_important(){
 from t_etablissement e
 inner join t_compte as c on e.idetab=c.idetab
 where c.idcompte ='.$_SESSION['IdUtilisateur'];
-    mysqli_query($mysqli,$rqt) or exit(mysqli_error());
+    mysqli_query($mysqli,$rqt) or exit(mysqli_error($mysqli));
 
 }
 
@@ -71,7 +71,7 @@ inner join t_typeetab as typeOff on eOff.idtypeetab=typeOff.idtypeetab
 inner join t_typeetab as typeRes on eRes.idtypeetab=typeRes.idtypeetab
 where r.idreserv='.$_GET['id'];
 
-    $Convention= mysqli_query($mysqli,$rqt) or exit(mysqli_error());
+    $Convention= mysqli_query($mysqli,$rqt) or exit(mysqli_error($mysqli));
     $Conv = $Convention -> fetch_assoc();
 
     return $Conv;
@@ -93,7 +93,7 @@ inner join t_etablissement as e on e.idetab=c.idcompte
 inner join t_typeetab as ty on e.idtypeetab = ty.idtypeetab
 where c.idcompte= '.$_SESSION['IdUtilisateur'];
 
-    $Convention= mysqli_query($mysqli,$rqt) or exit(mysqli_error());
+    $Convention= mysqli_query($mysqli,$rqt) or exit(mysqli_error($mysqli));
     $Conv = $Convention -> fetch_assoc();
 
     return $Conv;

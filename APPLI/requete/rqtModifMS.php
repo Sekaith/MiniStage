@@ -16,7 +16,7 @@ function get_MS(){
 	inner join t_typeformation as tf on f.idtypeform=tf.idtypeform
     inner join t_professeur as p on p.idProf = m.idProf
 	where m.idministage= '.$_GET['id'].'';
-    $tab= mysqli_query($mysqli,$rqt) or exit(mysqli_error());
+    $tab= mysqli_query($mysqli,$rqt) or exit(mysqli_error($mysqli));
 	$MS = $tab -> fetch_assoc();
 	
 	return $MS;
@@ -30,7 +30,7 @@ function updateMS(){
 	date= STR_TO_DATE("'.$_POST['date'].'", "%d-%m-%Y"), hdebut="'.$_POST['heure1'].'", hfin="'.$_POST['heure2'].'", 
 	nbplace='.$_POST['place'].', lieu="'.$_POST['lieu'].'"
 	where id= '.$_POST['id'].'';
-    mysqli_query($mysqli,$rqt) or exit(mysqli_error());
+    mysqli_query($mysqli,$rqt) or exit(mysqli_error($mysqli));
 }
 
 ?>
