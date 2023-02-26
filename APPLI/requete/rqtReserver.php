@@ -29,7 +29,7 @@ function get_formation($idtype){
 	where idtype='.$idtype.' order by nom asc';
     */
 
-    $rqt = 'select distinct f.idformation as id, f.nom_formation as nom, tyf.nom_typeformation as typeeformation 
+    $rqt = 'select distinct f.idformation as id, f.nom_formation as nom, tyf.nom_typeformation as typeformation 
 from t_formation as f
 inner join t_ministage as m on m.idformation=f.idformation
 inner join t_typeformation as tyf on tyf.idtypeform=f.idtypeform

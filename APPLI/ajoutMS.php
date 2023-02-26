@@ -1,5 +1,6 @@
 <?php
 session_start();
+
 if(is_null($_SESSION['ID']))
 {header('Location: index.php');}
 
@@ -36,6 +37,7 @@ $pageAjoutMS->corps .= '
 				id=formation onchange="verifList(this)">
             		<option value="-1">--Choix de la formation--</option>
 					<optgroup label="BAC PROFESSIONNEL">';
+
 					$formation = get_formation(1); //bacpro
 					while($data=mysqli_fetch_array($formation))
               		{
