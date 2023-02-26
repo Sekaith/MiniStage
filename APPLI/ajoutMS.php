@@ -10,6 +10,7 @@ include_once('requete/rqtCreation.php');
 $pageAjoutMS = new page_base('Créer un Mini-stage');
 
 if(!empty($_POST['place']))
+
 {insertMinistage();
 echo ("<SCRIPT LANGUAGE='JavaScript'>
     	window.alert(\"Création du ministage réussi \")
@@ -143,6 +144,8 @@ $pageAjoutMS->corps .= '
 								</p>
 				</div></div>
 				
+				<div style="display:none" ><input type="text" id="idprof" name="idprof" value=1></div>
+				
 				<div class="form-group">
 					<label for="input-Default" class="col-sm-2 control-label">Date</label>
 					<div class="col-sm-10">
@@ -187,6 +190,7 @@ $pageAjoutMS->corps .= '
 						</select>
 						<input size="25" type="text" value="" class="col-sm-2 control-label" id="nomprof" name="nomprof" 
 						placeholder="Nom" onblur="MAJ(this);verifChaine(this)"/>
+						
 					</div>
 				</div>
 				
