@@ -68,16 +68,7 @@ $pagemodifMS->corps .= '
 						<input size="25" type="number" class="col-sm-2 control-label" id="place" name="place" 
 						required onchange="verifplace(this)" onblur="verifNB(this)" value="'.$MS['nbplace'].'"/>
 					</div>
-				</div>
-				
-				<div class="form-group">
-					<label for="input-Default" class="col-sm-2 control-label">Nombre de places restantes</label>
-					<div class="col-sm-10">
-						<input size="25" type="number" class="col-sm-2 control-label" id="placereste" name="placereste" 
-						required  onblur="verifNB(this)" readonly value="'.$MS['nbplacereste'].'"/>
-					</div>
-				</div>
-				
+				</div>				
 				<div class="form-group">
 					<label for="input-Default" class="col-sm-2 control-label">lieu</label>
 					<div class="col-sm-10">
