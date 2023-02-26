@@ -2,7 +2,7 @@
 
 	require_once('../../Class/autoload.php');
 	require_once('../../Class/Connexion.class.php');
-	
+	global $mysqli;
 	if((isset($_POST['formation'])) && (isset($_POST['etablissement']))) {
 	
 //	$rqt = " Select id, date, DATE_FORMAT(date, '%d-%m-%Y') AS dateFR,hdebut,hfin,nbplace,nbplacereste from t_ministage where idOffrant= ".$_POST['etablissement']."
@@ -23,7 +23,7 @@
 	{
 		
 	$rqt = "select m.idministage as id, m.date, DATE_FORMAT(m.date, '%d-%m-%Y') AS dateFR, m.hdebut, m.hfin, m.nbplace, case when t1.nbreserv is null then m.nbplace else (m.nbplace - t1.nbreserv) end as nbplacereste from t_ministage as m 
-    join (
+    left join (
         select m1.idministage, count(distinct r1.idreserv) as nbreserv from t_reservation as r1
         inner join t_ministage as m1 on m1.idministage=r1.idministage
         where m1.idOffrant=".$_POST['etablissement2']." and m1.idformation=".$_POST['formation2']."
@@ -35,7 +35,7 @@
 	if((isset($_POST['formationR'])) && (isset($_POST['etabR'])))
 	{
 	$rqt = "select m.idministage as id, m.date, DATE_FORMAT(m.date, '%d-%m-%Y') AS dateFR, m.hdebut, m.hfin, m.nbplace, case when t1.nbreserv is null then m.nbplace else (m.nbplace - t1.nbreserv) end as nbplacereste from t_ministage as m 
-    join (
+    left join (
         select m1.idministage, count(distinct r1.idreserv) as nbreserv from t_reservation as r1
         inner join t_ministage as m1 on m1.idministage=r1.idministage
         where m1.idOffrant=".$_POST['etablissementR']." and m1.idformation=".$_POST['formationR']."
