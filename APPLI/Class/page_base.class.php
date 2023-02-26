@@ -182,38 +182,40 @@ class page_base {
 				</div>
 			</div>
 			<ul class="menu accordion-menu">
-            
+
 				<li><a href="accueil.php" class="waves-effect waves-button">
             		<span class="menu-icon glyphicon glyphicon-home"></span><p>Accueil</p></a></li>
-			
-            	<?php
-                if($_SESSION['IdProfil']!=3)
-				{?>
-                	<li><a href="profil.php" class="waves-effect waves-button">
-            		<span class="menu-icon glyphicon glyphicon-user"></span><p>Profil</p></a></li>
-                <?php 
-				;} 
-                
-            	
+
+                <?php
 				if($_SESSION['IdProfil']==1)
 					{$this->affiche_menu_admin();}
 				if($_SESSION['IdProfil']==2)
-					{$this->affiche_menu_chef();}  
+					{$this->affiche_menu_chef();}
 				if($_SESSION['IdProfil']==3)
-					{$this->affiche_menu_prof();}  
-				if($_SESSION['IdProfil']==4)                   
+					{$this->affiche_menu_prof();}
+				if($_SESSION['IdProfil']==4)
 					{$this->affiche_menu_reservation();}
 			?>
             </ul>
 		</div>
 	</div><!-- Page Sidebar -->
-    
+
     
 	<?php
 	}
 	
 	private function affiche_menu_admin() {
 	?>
+                <li class="droplink"><a href="#" class="waves-effect waves-button">
+                        <span class="menu-icon glyphicon glyphicon-user"></span><p>Compte</p><span class="arrow"></span></a>
+                    <ul class="sub-menu">
+                        <li><a href="profil.php?pbool=1">Utilisateur</a></li>
+                        <li><a href="profil.php?pbool=2">Etablissement</a></li>
+                        <li><a href="profil.php?pbool=3">Gestion Formations</a></li>
+                        <li><a href="profil.php?pbool=4">Logo</a></li>
+                    </ul>
+                </li>
+
     			<li class="droplink"><a href="#" class="waves-effect waves-button">
                 	<span class="menu-icon glyphicon glyphicon-edit"></span><p>Ajout</p><span class="arrow"></span></a>
                             <ul class="sub-menu">
@@ -244,6 +246,16 @@ class page_base {
     
 	private function affiche_menu_chef() {
 	?>
+                <li class="droplink"><a href="#" class="waves-effect waves-button">
+                    <span class="menu-icon glyphicon glyphicon-user"></span><p>Compte</p><span class="arrow"></span></a>
+                    <ul class="sub-menu">
+                        <li><a href="profil.php?pbool=1">Utilisateur</a></li>
+                        <li><a href="profil.php?pbool=2">Etablissement</a></li>
+                        <li><a href="profil.php?pbool=3">Gestion Formations</a></li>
+                        <li><a href="profil.php?pbool=4">Logo</a></li>
+                    </ul>
+                </li>
+
     			<li class="droplink"><a href="#" class="waves-effect waves-button">
                 	<span class="menu-icon glyphicon glyphicon-list"></span><p>Mini-Stages</p><span class="arrow"></span></a>
                             <ul class="sub-menu">
@@ -264,14 +276,18 @@ class page_base {
     
 	private function affiche_menu_reservation() {
 	?>
+                <li class="droplink"><a href="#" class="waves-effect waves-button">
+                        <span class="menu-icon glyphicon glyphicon-user"></span><p>Compte</p><span class="arrow"></span></a>
+                    <ul class="sub-menu">
+                        <li><a href="profil.php?pbool=1">Utilisateur</a></li>
+                        <li><a href="profil.php?pbool=2">Etablissement</a></li>
+                        <li><a href="profil.php?pbool=4">Logo</a></li>
+                    </ul>
+                </li>
     			<li class="droplink"><a href="#" class="waves-effect waves-button">
                 	<span class="menu-icon glyphicon glyphicon-list"></span><p>Mini-Stages</p><span class="arrow"></span></a>
                             <ul class="sub-menu">
                             	<li><a href="reserver.php">Réserver un mini-stage</a></li>
-                                <li><a href="reservation.php">Liste des réservations</a>
-								
-                                
-                                
                             </ul>
 				</li>
     <?php
@@ -279,6 +295,15 @@ class page_base {
 	
 	private function affiche_menu_prof() {
 	?>
+                <li class="droplink"><a href="#" class="waves-effect waves-button">
+                        <span class="menu-icon glyphicon glyphicon-user"></span><p>Compte</p><span class="arrow"></span></a>
+                    <ul class="sub-menu">
+                        <li><a href="profil.php?pbool=1">Utilisateur</a></li>
+                        <li><a href="profil.php?pbool=2">Etablissement</a></li>
+                        <li><a href="profil.php?pbool=3">Gestion Formations</a></li>
+                        <li><a href="profil.php?pbool=4">Logo</a></li>
+                    </ul>
+                </li>
     			<li class="droplink"><a href="#" class="waves-effect waves-button">
                 	<span class="menu-icon glyphicon glyphicon-list"></span><p>Mini-Stages</p><span class="arrow"></span></a>
                             <ul class="sub-menu">
