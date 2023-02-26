@@ -81,6 +81,8 @@ $pageAjoutMS->corps .= '
 					</div>
 				</div>
 				
+				<div style="display:none" ><input type="text" id="idprof" name="idprof" value="'.$MS['idprof'].'"></div>
+				
 				<div class="form-group">
 					<label for="input-Default" class="col-sm-2 control-label">Professeur en charge</label>
 					<div class="col-sm-10">
