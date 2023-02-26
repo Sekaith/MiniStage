@@ -10,7 +10,7 @@ function get_MS(){
 //	inner join t_typeformation as tf on f.idtype=tf.id
 //	where m.id= '.$_GET['id'].'';
 
-    $rqt = 'SELECT m.idministage as id, tf.nom_typeformation  as typeformation, f.nom_formation as formation, f.idformation as idformation, p.civilite, p.nom_prof as nomprof, date as dateUS, DATE_FORMAT(date, "%d-%m-%Y") AS dateFR, 
+    $rqt = 'SELECT m.idministage as id, tf.nom_typeformation  as typeformation, f.nom_formation as formation, f.idformation as idformation, p.civilite, p.nom_prof as nomProf, date as dateUS, DATE_FORMAT(date, "%d-%m-%Y") AS dateFR, 
 	hdebut, hfin, nbplace, lieu
 	from t_ministage as m inner join t_formation as f on m.idformation=f.idformation
 	inner join t_typeformation as tf on f.idtypeform=tf.idtypeform
