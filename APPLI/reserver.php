@@ -29,6 +29,7 @@ echo ("<SCRIPT LANGUAGE='JavaScript'>
 /*************************************************Reservation pour un chef de travaux **************************************************/
 if ($_SESSION['IdProfil']==2)
 {
+
 	$pageReserver->corps .= '
 	
 	<form class=" form-horizontal" action="reserver.php" method="post" 
