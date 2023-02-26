@@ -16,9 +16,8 @@ function get_ListeForm()
         $rqt = 'SELECT m.idministage as id, tf.nomcourt_typeformation as typeformation, f.nom_formation as formation, p.civilite, p.nom_prof as nomProf, m.date as dateUS, 
 	DATE_FORMAT(m.date, "%d-%m-%Y") AS dateFR, 
 	m.hdebut, m.hfin, m.nbplace, case when t1.nbreserv is null then m.nbplace else (m.nbplace - t1.nbreserv) end as nbplacereste
-    
 	from t_ministage as m 
-    join (
+    left join (
     select m1.idministage, count(distinct r1.idreserv) as nbreserv from t_reservation as r1
 inner join t_ministage as m1 on m1.idministage=r1.idministage
 GROUP by r1.idministage) t1 on t1.idministage = m.idministage
@@ -46,7 +45,7 @@ left join t_professeur as p on p.idProf = m.idProf
 	DATE_FORMAT(m.date, "%d-%m-%Y") AS dateFR, 
 	m.hdebut, m.hfin, m.nbplace, case when t1.nbreserv is null then m.nbplace else (m.nbplace - t1.nbreserv) end as nbplacereste
 	from t_ministage as m 
-    join (
+    left join (
     select m1.idministage, count(distinct r1.idreserv) as nbreserv from t_reservation as r1
 inner join t_ministage as m1 on m1.idministage=r1.idministage
 GROUP by r1.idministage) t1 on t1.idministage = m.idministage
@@ -71,7 +70,7 @@ left join t_professeur as p on p.idProf = m.idProf
 	DATE_FORMAT(m.date, "%d-%m-%Y") AS dateFR, 
 	m.hdebut, m.hfin, m.nbplace, case when t1.nbreserv is null then m.nbplace else (m.nbplace - t1.nbreserv) end as nbplacereste
 	from t_ministage as m 
-    join (
+    left join (
     select m1.idministage, count(distinct r1.idreserv) as nbreserv from t_reservation as r1
 inner join t_ministage as m1 on m1.idministage=r1.idministage
 GROUP by r1.idministage) t1 on t1.idministage = m.idministage
@@ -84,7 +83,7 @@ left join t_professeur as p on p.idProf = m.idProf
         }
     }
 
-    $ListeForm = $mysqli->query($rqt) or exit(mysqli_error());
+    $ListeForm = $mysqli->query($rqt) or exit(mysqli_error($mysqli));
     return $ListeForm;
 }
 
@@ -108,7 +107,7 @@ function get_ListeFormAnt()
 	m.hdebut, m.hfin, m.nbplace, case when t1.nbreserv is null then m.nbplace else (m.nbplace - t1.nbreserv) end as nbplacereste
     
 	from t_ministage as m 
-    join (
+    left join (
     select m1.idministage, count(distinct r1.idreserv) as nbreserv from t_reservation as r1
 inner join t_ministage as m1 on m1.idministage=r1.idministage
 GROUP by r1.idministage) t1 on t1.idministage = m.idministage
@@ -135,7 +134,7 @@ left join t_professeur as p on p.idProf = m.idProf
 	DATE_FORMAT(m.date, "%d-%m-%Y") AS dateFR, 
 	m.hdebut, m.hfin, m.nbplace, case when t1.nbreserv is null then m.nbplace else (m.nbplace - t1.nbreserv) end as nbplacereste
 	from t_ministage as m 
-    join (
+    left join (
     select m1.idministage, count(distinct r1.idreserv) as nbreserv from t_reservation as r1
 inner join t_ministage as m1 on m1.idministage=r1.idministage
 GROUP by r1.idministage) t1 on t1.idministage = m.idministage
@@ -160,7 +159,7 @@ left join t_professeur as p on p.idProf = m.idProf
 	DATE_FORMAT(m.date, "%d-%m-%Y") AS dateFR, 
 	m.hdebut, m.hfin, m.nbplace, case when t1.nbreserv is null then m.nbplace else (m.nbplace - t1.nbreserv) end as nbplacereste
 	from t_ministage as m 
-    join (
+    left join (
     select m1.idministage, count(distinct r1.idreserv) as nbreserv from t_reservation as r1
 inner join t_ministage as m1 on m1.idministage=r1.idministage
 GROUP by r1.idministage) t1 on t1.idministage = m.idministage
@@ -173,7 +172,7 @@ left join t_professeur as p on p.idProf = m.idProf
         }
     }
 
-    $ListeForm = $mysqli->query($rqt) or exit(mysqli_error());
+    $ListeForm = $mysqli->query($rqt) or exit(mysqli_error($mysqli));
     return $ListeForm;
 }
 
