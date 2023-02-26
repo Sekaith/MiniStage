@@ -9,7 +9,7 @@
 //	AND idformation=".$_POST['formation']."";
 
 
-    $rqt ="select m.idministage as id, m.date, DATE_FORMAT(m.date, '%d-%m-%Y') AS dateFR, m.hdebut, m.hfin, m.nbplace, (nbplace - t1.nbreserv) as nbplacereste from t_ministage as m 
+    $rqt ="select m.idministage as id, m.date, DATE_FORMAT(m.date, '%d-%m-%Y') AS dateFR, m.hdebut, m.hfin, m.nbplace, case when t1.nbreserv is null then m.nbplace else (m.nbplace - t1.nbreserv) end as nbplacereste from t_ministage as m 
     join (
         select m1.idministage, count(distinct r1.idreserv) as nbreserv from t_reservation as r1
         inner join t_ministage as m1 on m1.idministage=r1.idministage
@@ -22,7 +22,7 @@
 	if((isset($_POST['formation2'])) && (isset($_POST['etablissement2'])))
 	{
 		
-	$rqt = "select m.idministage as id, m.date, DATE_FORMAT(m.date, '%d-%m-%Y') AS dateFR, m.hdebut, m.hfin, m.nbplace, (nbplace - t1.nbreserv) as nbplacereste from t_ministage as m 
+	$rqt = "select m.idministage as id, m.date, DATE_FORMAT(m.date, '%d-%m-%Y') AS dateFR, m.hdebut, m.hfin, m.nbplace, case when t1.nbreserv is null then m.nbplace else (m.nbplace - t1.nbreserv) end as nbplacereste from t_ministage as m 
     join (
         select m1.idministage, count(distinct r1.idreserv) as nbreserv from t_reservation as r1
         inner join t_ministage as m1 on m1.idministage=r1.idministage
@@ -34,7 +34,7 @@
 	else{
 	if((isset($_POST['formationR'])) && (isset($_POST['etabR'])))
 	{
-	$rqt = "select m.idministage as id, m.date, DATE_FORMAT(m.date, '%d-%m-%Y') AS dateFR, m.hdebut, m.hfin, m.nbplace, (nbplace - t1.nbreserv) as nbplacereste from t_ministage as m 
+	$rqt = "select m.idministage as id, m.date, DATE_FORMAT(m.date, '%d-%m-%Y') AS dateFR, m.hdebut, m.hfin, m.nbplace, case when t1.nbreserv is null then m.nbplace else (m.nbplace - t1.nbreserv) end as nbplacereste from t_ministage as m 
     join (
         select m1.idministage, count(distinct r1.idreserv) as nbreserv from t_reservation as r1
         inner join t_ministage as m1 on m1.idministage=r1.idministage

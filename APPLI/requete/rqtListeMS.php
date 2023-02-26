@@ -15,7 +15,7 @@ function get_ListeForm()
 
         $rqt = 'SELECT m.idministage as id, tf.nomcourt_typeformation as typeformation, f.nom_formation as formation, p.civilite, p.nom_prof as nomProf, m.date as dateUS, 
 	DATE_FORMAT(m.date, "%d-%m-%Y") AS dateFR, 
-	m.hdebut, m.hfin, m.nbplace, (m.nbplace - t1.nbreserv) as nbplacereste
+	m.hdebut, m.hfin, m.nbplace, case when t1.nbreserv is null then m.nbplace else (m.nbplace - t1.nbreserv) end as nbplacereste
     
 	from t_ministage as m 
     join (
@@ -44,7 +44,7 @@ left join t_professeur as p on p.idProf = m.idProf
 
             $rqt = 'SELECT m.idministage as id, tf.nomcourt_typeformation as typeformation, f.nom_formation as formation, p.civilite, p.nom_prof as nomProf, m.date as dateUS, 
 	DATE_FORMAT(m.date, "%d-%m-%Y") AS dateFR, 
-	m.hdebut, m.hfin, m.nbplace, (m.nbplace - t1.nbreserv) as nbplacereste
+	m.hdebut, m.hfin, m.nbplace, case when t1.nbreserv is null then m.nbplace else (m.nbplace - t1.nbreserv) end as nbplacereste
 	from t_ministage as m 
     join (
     select m1.idministage, count(distinct r1.idreserv) as nbreserv from t_reservation as r1
@@ -69,7 +69,7 @@ left join t_professeur as p on p.idProf = m.idProf
 
             $rqt = 'SELECT m.idministage as id, tf.nomcourt_typeformation as typeformation, f.nom_formation as formation, p.civilite, p.nom_prof as nomProf, m.date as dateUS, 
 	DATE_FORMAT(m.date, "%d-%m-%Y") AS dateFR, 
-	m.hdebut, m.hfin, m.nbplace, (m.nbplace - t1.nbreserv) as nbplacereste
+	m.hdebut, m.hfin, m.nbplace, case when t1.nbreserv is null then m.nbplace else (m.nbplace - t1.nbreserv) end as nbplacereste
 	from t_ministage as m 
     join (
     select m1.idministage, count(distinct r1.idreserv) as nbreserv from t_reservation as r1
@@ -105,7 +105,7 @@ function get_ListeFormAnt()
 
         $rqt = 'SELECT m.idministage as id, tf.nomcourt_typeformation as typeformation, f.nom_formation as formation, p.civilite, p.nom_prof as nomProf, m.date as dateUS, 
 	DATE_FORMAT(m.date, "%d-%m-%Y") AS dateFR, 
-	m.hdebut, m.hfin, m.nbplace, (m.nbplace - t1.nbreserv) as nbplacereste
+	m.hdebut, m.hfin, m.nbplace, case when t1.nbreserv is null then m.nbplace else (m.nbplace - t1.nbreserv) end as nbplacereste
     
 	from t_ministage as m 
     join (
@@ -133,7 +133,7 @@ left join t_professeur as p on p.idProf = m.idProf
 
             $rqt = 'SELECT m.idministage as id, tf.nomcourt_typeformation as typeformation, f.nom_formation as formation, p.civilite, p.nom_prof as nomProf, m.date as dateUS, 
 	DATE_FORMAT(m.date, "%d-%m-%Y") AS dateFR, 
-	m.hdebut, m.hfin, m.nbplace, (m.nbplace - t1.nbreserv) as nbplacereste
+	m.hdebut, m.hfin, m.nbplace, case when t1.nbreserv is null then m.nbplace else (m.nbplace - t1.nbreserv) end as nbplacereste
 	from t_ministage as m 
     join (
     select m1.idministage, count(distinct r1.idreserv) as nbreserv from t_reservation as r1
@@ -158,7 +158,7 @@ left join t_professeur as p on p.idProf = m.idProf
 
             $rqt = 'SELECT m.idministage as id, tf.nomcourt_typeformation as typeformation, f.nom_formation as formation, p.civilite, p.nom_prof as nomProf, m.date as dateUS, 
 	DATE_FORMAT(m.date, "%d-%m-%Y") AS dateFR, 
-	m.hdebut, m.hfin, m.nbplace, (m.nbplace - t1.nbreserv) as nbplacereste
+	m.hdebut, m.hfin, m.nbplace, case when t1.nbreserv is null then m.nbplace else (m.nbplace - t1.nbreserv) end as nbplacereste
 	from t_ministage as m 
     join (
     select m1.idministage, count(distinct r1.idreserv) as nbreserv from t_reservation as r1
