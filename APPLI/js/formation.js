@@ -3,10 +3,11 @@ function SupprimeFormation(id, compte) {
     document.getElementById('td' + id).style.display = 'none';
 
     if (id > 0) {
+        var array = {'id' : id, "compte" : compte}
         var filterDataRequest = $.ajax({
             url: 'requete/AJAX/SupprimerFormation.php',
             type: 'POST',
-            data: ['id=' + id, "compte=" + compte],
+            data: array,
             dataType: 'json'
         });
 
@@ -29,6 +30,23 @@ function SupprimeFormation(id, compte) {
             "hideMethod": "fadeOut"
         }
     }
+}
 
+function AjouterFormation(compte) {
 
+var formation = document.getElementById("fct_select").value;
+
+    if (formation > 0) {
+        var array = {'id' : formation, "compte" : compte}
+        var filterDataRequest = $.ajax({
+            url: 'requete/AJAX/AjouterFormation.php',
+            type: 'POST',
+            data: array,
+            dataType: 'json'
+        });
+
+        window.alert("Ajout d'une formation réussi ")
+        window.location.href='profil.php?pbool=3'
+
+    }
 }

@@ -1,8 +1,9 @@
 <?php
 session_start();
 
-if(is_null($_SESSION['ID']))
-{header('Location: index.php');}
+if (is_null($_SESSION['ID'])) {
+    header('Location: index.php');
+}
 
 require_once('Class/autoload.php');
 require_once('Class/Connexion.class.php');
@@ -10,10 +11,9 @@ include_once('requete/rqtCreation.php');
 
 $pageAjoutMS = new page_base('Créer un Mini-stage');
 
-if(!empty($_POST['place']))
-
-{insertMinistage();
-echo ("<SCRIPT LANGUAGE='JavaScript'>
+if (!empty($_POST['place'])) {
+    insertMinistage();
+    echo("<SCRIPT LANGUAGE='JavaScript'>
     	window.alert(\"Création du ministage réussi \")
     	window.location.href='accueil.php';
 		</SCRIPT>");
@@ -36,88 +36,83 @@ $pageAjoutMS->corps .= '
 				<div class="col-sm-10"><SELECT name="formation" class="form-control" tabindex="-1" 
 				id=formation onchange="verifList(this)">
             		<option value="-1">--Choix de la formation--</option>
-					<optgroup label="BAC PROFESSIONNEL">';
+					';
 
-					$formation = get_formation(1); //bacpro
-					while($data=mysqli_fetch_array($formation))
-              		{
-						$pageAjoutMS->corps .=' <option value="'.$data["id"].'">'.$data["typeformation"].' '.$data["nom"].'</option>';
-					}
-					$pageAjoutMS->corps .='
-					</optgroup>
-					
-					<optgroup label="CAP">';
-					$formation= get_formation(2); //cap
-					while($data=mysqli_fetch_array($formation))
-              		{
-						$pageAjoutMS->corps .=' <option value="'.$data["id"].'">'.$data["typeformation"].' '.$data["nom"].'</option>';
-					}
-					$pageAjoutMS->corps .='
-					</optgroup>
-					
-					<optgroup label="BAC TECHNOLOGIQUE">';
-					$formation= get_formation(3); //bactechno
-					while($data=mysqli_fetch_array($formation))
-	              	{
-						$pageAjoutMS->corps .=' <option value="'.$data["id"].'">'.$data["typeformation"].' '.$data["nom"].'</option>';
-					}
-					$pageAjoutMS->corps .='
-					</optgroup>
-				
-					<optgroup label="BAC GENERAL">';
-					$formation= get_formation(4); //bacG
-					while($data=mysqli_fetch_array($formation))
-              		{
-						$pageAjoutMS->corps .=' <option value="'.$data["id"].'">'.$data["typeformation"].' '.$data["nom"].'</option>';
-					}
-					$pageAjoutMS->corps .='
-					</optgroup>
-				
-					<optgroup label="BTS">';
-					$formation= get_formation(5); //BTS
-					while($data=mysqli_fetch_array($formation))
-              		{
-						$pageAjoutMS->corps .=' <option value="'.$data["id"].'">'.$data["typeformation"].' '.$data["nom"].'</option>';
-					}
-					$pageAjoutMS->corps .='
-					</optgroup>
-					
-					<optgroup label="ENSEIGNEMENT OPTIONNEL">';
-					$formation= get_formation(6); //ENSEIGNEMENT OPTIONNEL
-					while($data=mysqli_fetch_array($formation))
-             	 	{
-						$pageAjoutMS->corps .=' <option value="'.$data["id"].'">'.$data["typeformation"].' '.$data["nom"].'</option>';
-					}
-					$pageAjoutMS->corps .='
-					</optgroup>
-					
-						<optgroup label="ENSEIGNEMENT DE SPECIALITE">';
-					$formation= get_formation(8); //ENSEIGNEMENT DE SPECIALITE
-					while($data=mysqli_fetch_array($formation))
-             	 	{
-						$pageAjoutMS->corps .=' <option value="'.$data["id"].'">'.$data["typeformation"].' '.$data["nom"].'</option>';
-					}
-					$pageAjoutMS->corps .='
-					</optgroup>
-					
-					<optgroup label="AUTRES">';
-					$formation= get_formation(7); //autres
-					while($data=mysqli_fetch_array($formation))
-             	 	{
-						$pageAjoutMS->corps .=' <option value="'.$data["id"].'">'.$data["typeformation"].' '.$data["nom"].'</option>';
-					}
-					$pageAjoutMS->corps .='
-					</optgroup>
-					
-				</SELECT>
-				';/* si la formation n'est pas dans la liste on commmunique les coordonnées de l'admin (le premier de la table si plusieurs) */
-								$coord=getCoordAdmin();
-								$pageAjoutMS->corps .='
+                $formation = get_formation(1); //bacpro
+                if ($formation->num_rows != 0) {
+                    $pageAjoutMS->corps .= '<optgroup label="BAC PROFESSIONNEL">';
+                    while ($data = mysqli_fetch_array($formation)) {
+                        $pageAjoutMS->corps .= ' <option value="' . $data["id"] . '">' . $data["typeformation"] . ' ' . $data["nom"] . '</option>';
+                    }
+                    $pageAjoutMS->corps .= '</optgroup>';
+                }
+
+$formation = get_formation(2); //bacpro
+if ($formation->num_rows != 0) {
+    $pageAjoutMS->corps .= '<optgroup label="CAP">';
+    while ($data = mysqli_fetch_array($formation)) {
+        $pageAjoutMS->corps .= ' <option value="' . $data["id"] . '">' . $data["typeformation"] . ' ' . $data["nom"] . '</option>';
+    }
+    $pageAjoutMS->corps .= '</optgroup>';
+}
+
+$formation = get_formation(3); //bacpro
+if ($formation->num_rows != 0) {
+    $pageAjoutMS->corps .= '<optgroup label="BAC TECHNOLOGIQUE">';
+    while ($data = mysqli_fetch_array($formation)) {
+        $pageAjoutMS->corps .= ' <option value="' . $data["id"] . '">' . $data["typeformation"] . ' ' . $data["nom"] . '</option>';
+    }
+    $pageAjoutMS->corps .= '</optgroup>';
+}
+$formation = get_formation(4); //bacpro
+if ($formation->num_rows != 0) {
+    $pageAjoutMS->corps .= '<optgroup label="BAC GENERAL">';
+    while ($data = mysqli_fetch_array($formation)) {
+        $pageAjoutMS->corps .= ' <option value="' . $data["id"] . '">' . $data["typeformation"] . ' ' . $data["nom"] . '</option>';
+    }
+    $pageAjoutMS->corps .= '</optgroup>';
+}
+$formation = get_formation(5); //bacpro
+if ($formation->num_rows != 0) {
+    $pageAjoutMS->corps .= '<optgroup label="BTS">';
+    while ($data = mysqli_fetch_array($formation)) {
+        $pageAjoutMS->corps .= ' <option value="' . $data["id"] . '">' . $data["typeformation"] . ' ' . $data["nom"] . '</option>';
+    }
+    $pageAjoutMS->corps .= '</optgroup>';
+}
+$formation = get_formation(6); //bacpro
+if ($formation->num_rows != 0) {
+    $pageAjoutMS->corps .= '<optgroup label="ENSEIGNEMENT OPTIONNEL">';
+    while ($data = mysqli_fetch_array($formation)) {
+        $pageAjoutMS->corps .= ' <option value="' . $data["id"] . '">' . $data["typeformation"] . ' ' . $data["nom"] . '</option>';
+    }
+    $pageAjoutMS->corps .= '</optgroup>';
+}
+$formation = get_formation(8); //bacpro
+if ($formation->num_rows != 0) {
+    $pageAjoutMS->corps .= '<optgroup label="ENSEIGNEMENT DE SPECIALITE">';
+    while ($data = mysqli_fetch_array($formation)) {
+        $pageAjoutMS->corps .= ' <option value="' . $data["id"] . '">' . $data["typeformation"] . ' ' . $data["nom"] . '</option>';
+    }
+    $pageAjoutMS->corps .= '</optgroup>';
+}$formation = get_formation(7); //bacpro
+if ($formation->num_rows != 0) {
+    $pageAjoutMS->corps .= '<optgroup label="AUTRES">';
+    while ($data = mysqli_fetch_array($formation)) {
+        $pageAjoutMS->corps .= ' <option value="' . $data["id"] . '">' . $data["typeformation"] . ' ' . $data["nom"] . '</option>';
+    }
+    $pageAjoutMS->corps .= '</optgroup> ';
+}
+
+$pageAjoutMS->corps .= '</SELECT>';/* si la formation n'est pas dans la liste on commmunique les coordonnées de l'admin (le premier de la table si plusieurs) */
+$coord = getCoordAdmin();
+$pageAjoutMS->corps .= '
 								<p class="help-block"><i class="fa fa-question-circle">
 								</i> La formation n\'est pas dans la liste ? Contactez l\'administrateur en cliquant sur le téléphone. 
 								<a href="#myModal" data-toggle="modal"><IMG SRC="image/phone.png" width="20" height="20"  title="Contact"></a>
 								
-								'. /*popus*/'	<div class="modal fade" id="myModal" tabindex="-1" role="dialog" 
+								' . /*popus*/
+    '	<div class="modal fade" id="myModal" tabindex="-1" role="dialog" 
 																aria-labelledby="myModalLabel" aria-hidden="true">
                                                 				<div class="modal-dialog">
                                                     				<div class="modal-content">
@@ -127,13 +122,13 @@ $pageAjoutMS->corps .= '
 																			 	<span aria-hidden="true">&times;</span>
 																			</button>
 																			
-                                                     <h4 class="modal-title" id="myModalLabel">'.$coord['prenom'].' '.$coord['nom'].'</h4>
+                                                     <h4 class="modal-title" id="myModalLabel">' . $coord['prenom'] . ' ' . $coord['nom'] . '</h4>
 													 
                                                         				</div>
                                                         				<div class="modal-body">
                                                             				
-																			<b>Adresse mail : </b>'.$coord['mail'].' </br>
-																			<b>Numéro de téléphone : </b>'.$coord['tel'].'
+																			<b>Adresse mail : </b>' . $coord['mail'] . ' </br>
+																			<b>Numéro de téléphone : </b>' . $coord['tel'] . '
 																			
                                                        					 </div>
                                                        					 <div class="modal-footer">

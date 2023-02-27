@@ -9,11 +9,13 @@ if (isset($_POST['id'])) {
 
         global $mysqli;
 
-        $rqt = "DELETE FROM t_formation_compte WHERE idformation = " . $_POST['id'] . " and idcompte =" . $_POST['compte'];
+        $rqt = "INSERT INTO t_formation_compte (idformation, idcompte) VALUES (".$_POST["id"].", ".$_POST['compte'].");";
 
         $Confirm = $mysqli->query($rqt);
     }
 }
+
+
 
 ?>
 

@@ -13,7 +13,8 @@ function get_formation($idtype){
     $rqt = 'SELECT f.idformation as id, f.nom_formation as nom, tf.nom_typeformation as typeformation 
 FROM t_formation as f 
     inner join t_typeformation as tf on f.idtypeform=tf.idtypeform 
-where f.idtypeform='.$idtype.'
+inner join t_formation_compte as fc on fc.idformation=f.idformation
+where f.idtypeform='.$idtype.'  and fc.idcompte = '.$_SESSION['IdUtilisateur'].'
 order by nom asc';
     $Formation= $mysqli->query($rqt) or exit(mysqli_error($mysqli));
 

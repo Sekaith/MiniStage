@@ -254,7 +254,8 @@ function mdpoublie(){
 function getFormationsNotInProfil(){
     global $mysqli;
 
-    $rqt = 'select f.idformation, f.nom_formation from t_formation f 
+    $rqt = 'select f.idformation, concat(tf.nomcourt_typeformation, " ", f.nom_formation) as nom_formation from t_formation f 
+inner join t_typeformation as tf on f.idtypeform = tf.idtypeform
 left join t_formation_compte as fc on fc.idformation=f.idformation
 where fc.idcompte is null or fc.idcompte != '.$_SESSION['IdUtilisateur'];
 
@@ -267,7 +268,8 @@ where fc.idcompte is null or fc.idcompte != '.$_SESSION['IdUtilisateur'];
 function getFormationsInProfil(){
     global $mysqli;
 
-    $rqt = 'select f.idformation, f.nom_formation from t_formation f 
+    $rqt = 'select f.idformation, concat(tf.nomcourt_typeformation, " ", f.nom_formation) as nom_formation from t_formation f 
+    inner join t_typeformation as tf on f.idtypeform = tf.idtypeform
 left join t_formation_compte as fc on fc.idformation=f.idformation
 where fc.idcompte = '.$_SESSION['IdUtilisateur'];
 
@@ -277,12 +279,3 @@ where fc.idcompte = '.$_SESSION['IdUtilisateur'];
 
 }
 
-function AjoutFormationToCompte(){
-
-
-}
-
-function SupprimerFormationToCompte(){
-
-
-}
