@@ -2,7 +2,7 @@
 class page_base {
 	private $titre;
 	private $corps;
-	private $script=array('VerifJS','Reserver','Liste','modifMS','ADMUtilisateur','datatable', 'formation');
+	private $script=array('VerifJS','Reserver','Liste','modifMS','ADMUtilisateur','datatable', 'formation', 'Image');
 	
 	public function __construct($t){
 		$this->titre = $t;
