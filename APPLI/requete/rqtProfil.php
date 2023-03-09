@@ -279,6 +279,17 @@ where fc.idcompte = '.$_SESSION['IdUtilisateur'];
 
 }
 
+function getProfesseursInProfil(){
+    global $mysqli;
+
+    $rqt = 'select p.idProf, p.nom_prof, p.prenom_prof, p.civilite, p.idetab from t_professeur as p natural join t_compte as tc
+        where tc.idcompte = '.$_SESSION['IdUtilisateur'];
+
+    $Professeurs= $mysqli->query($rqt) or exit(mysqli_error($mysqli));
+
+    return $Professeurs;
+}
+
 function getLogo(){
     global $mysqli;
 

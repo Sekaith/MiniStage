@@ -422,9 +422,53 @@ function validFileType(file) {
 
             }
 
-            //gestion des logos
+            break;
 
+        case "5":
+            // Gestion des professeurs
+            if ($_SESSION["IdProfil"] == 2 ) {
 
+                $pageProfil->corps .= '
+<div class="panel-white">
+	<div class="panel-heading">
+		<h4 class="panel-title"><p><center>Professeurs</center></p></h4>
+	</div>
+	<div class="panel-body">      	
+        
+        Nom : <input name="nomprof" id="nomprof" nom :> 
+        Prénom :  <input name="prenomprof" id="prenomprof" prenom :> 
+        Civilité : <input name="civilite" id="civilite" civilité :> 
+        <div style="display:none" ><input type="text" id="id" name="id" value="'. $Profil['idetab'].'"></div>
+        <option value="-1">--Informations du professeur à ajouter--</option>
+        </br>
+        <span class="span7 text-center" style="margin-right: 17.5%"><button onClick="AjouterProfesseur('.$idcompte.')" class="btn btn-primary btn-sucess">Ajouter professeur</button></br></span>
+       </br>
+        	<table class="table" width="600" height="100" style="text-align: center;" >
+                    <thead>
+                			<th style="text-align: left;">Liste des professeur de l\'établissement : </th>
+                			<th style="text-align: center;">Action</th>
+                    </thead>
+                    
+                    ';
+
+                $professeurs = getProfesseursInProfil();
+
+                while ($data = mysqli_fetch_array($professeurs)) {
+
+                    $pageProfil->corps .=
+                        '<tr id="td' . $data['idProf'] . '"> 
+<td style="text-align: left;"> ' . $data["nom_prof"] . ' ' . $data["prenom_prof"] . '</td>
+<td> 
+<a href="">
+        <IMG SRC="image/trash.png" width="25" height="25" title="Supprimer le professeur de l\'établissement"
+        id="imgedit' . $data['idProf'] . '" onClick="SupprimeProfesseur(' . $data['idProf'] . ',' . $idcompte . ' )"</a></td>
+</tr>';
+                }
+                $pageProfil->corps .= '             
+       </div>
+	</div>
+';
+            }
             break;
     }
 }
