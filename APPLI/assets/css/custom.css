@@ -1,1 +1,16 @@
 /* Write your custom CSS here */
+
+
+.changer_image_profil{
+
+    color: white;
+    background: #7a6fbe;
+    padding: 5px 10px 5px 10px;
+    display: inline-block;
+    cursor : pointer;
+    margin-bottom: 0px;
+}
+.changer_image_profil:hover{
+
+    background: #6A5FAC;
+}

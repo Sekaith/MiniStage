@@ -2,7 +2,7 @@
 class page_base {
 	private $titre;
 	private $corps;
-	private $script=array('VerifJS','Reserver','Liste','modifMS','ADMUtilisateur','datatable', 'formation');
+	private $script=array('VerifJS','Reserver','Liste','modifMS','ADMUtilisateur','datatable', 'formation', 'Image', 'professeur');
 	
 	public function __construct($t){
 		$this->titre = $t;
@@ -213,6 +213,7 @@ class page_base {
                         <li><a href="profil.php?pbool=2">Etablissement</a></li>
                         <li><a href="profil.php?pbool=3">Gestion Formations</a></li>
                         <li><a href="profil.php?pbool=4">Logo</a></li>
+                        <li><a href="profil.php?pbool=5">Gestion des professeurs</a></li>
                     </ul>
                 </li>
 
@@ -253,6 +254,7 @@ class page_base {
                         <li><a href="profil.php?pbool=2">Etablissement</a></li>
                         <li><a href="profil.php?pbool=3">Gestion Formations</a></li>
                         <li><a href="profil.php?pbool=4">Logo</a></li>
+                        <li><a href="profil.php?pbool=5">Gestion des professeurs</a></li>
                     </ul>
                 </li>
 
@@ -302,6 +304,7 @@ class page_base {
                         <li><a href="profil.php?pbool=2">Etablissement</a></li>
                         <li><a href="profil.php?pbool=3">Gestion Formations</a></li>
                         <li><a href="profil.php?pbool=4">Logo</a></li>
+                        <li><a href="profil.php?pbool=5">Gestion des professeurs</a></li>
                     </ul>
                 </li>
     			<li class="droplink"><a href="#" class="waves-effect waves-button">

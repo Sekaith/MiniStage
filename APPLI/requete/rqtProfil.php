@@ -16,7 +16,7 @@ function get_profil(){
 	tel from t_compte as u  where u.idcompte='.$_SESSION['IdUtilisateur'].'';
     } else {
         $rqtProfil = 'SELECT u.idcompte as id,u.identifiant,u.mdp,u.idprofil,u.nom_compte as nom,u.prenom_compte as prenom,u.mail_compte as mail,u.idfonction,
-	tel,e.nometab,e.idtypeetab as idtype,e.ville,e.adresse,e.mailetab,e.idacademie,e.cp, t.nom_typeetab as nomtype
+	tel,e.nometab,e.idtypeetab as idtype,e.ville,e.adresse,e.mailetab,e.idacademie,e.cp, t.nom_typeetab as nomtype,e.idetab 
 	from t_compte as u inner join t_etablissement e on e.idetab=u.idetab inner join t_typeetab as t on e.idtypeetab=t.idtypeetab where u.idcompte='.$_SESSION['IdUtilisateur'].' ';
     }
 
@@ -279,3 +279,39 @@ where fc.idcompte = '.$_SESSION['IdUtilisateur'].' ORDER BY nom_formation';
 
 }
 
+function getProfesseursInProfil(){
+    global $mysqli;
+
+    $rqt = 'select p.idProf, p.nom_prof, p.prenom_prof, p.civilite, p.idetab from t_professeur as p natural join t_compte as tc
+        where tc.idcompte = '.$_SESSION['IdUtilisateur'];
+
+    $Professeurs= $mysqli->query($rqt) or exit(mysqli_error($mysqli));
+
+    return $Professeurs;
+}
+
+function getLogo(){
+    global $mysqli;
+
+    $rqt = 'select logo from t_etablissement
+natural join t_compte c
+where c.idcompte= '.$_SESSION['IdUtilisateur'];
+
+    $logo= $mysqli->query($rqt) or exit(mysqli_error($mysqli));
+
+    return $logo;
+
+}
+
+function getSignature(){
+    global $mysqli;
+
+    $rqt = 'select cachet from t_etablissement
+natural join t_compte c
+where c.idcompte= '.$_SESSION['IdUtilisateur'];
+
+    $sign= $mysqli->query($rqt) or exit(mysqli_error($mysqli));
+
+    return $sign;
+
+}

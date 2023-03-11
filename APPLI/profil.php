@@ -29,6 +29,7 @@ $mdp = isset($Profil["mdp"]) ? $Profil['mdp'] : "";
 $mail = isset($Profil["mail"]) ? $Profil["mail"] : "";
 $tel = isset($Profil["tel"]) ? $Profil["tel"] : "";
 $idfonction = isset($Profil["idfonction"]) ? $Profil["idfonction"] : "";
+$idetab = isset($Profil["idetab"]) ? $Profil["idetab"] : "";
 $mailetab = isset($Profil["mailetab"]) ? $Profil["mailetab"] : "";
 $nomType = isset($Profil['nomtype']) ? $Profil['nomtype'] : "";
 $nomEtab = isset($Profil['nometab']) ? $Profil['nometab'] : "";
@@ -178,6 +179,7 @@ if (isset($_GET["pbool"])) {
             }
 
             break;
+
         case "3":
 
             if ($_SESSION["IdProfil"] == 2 || $_SESSION["IdProfil"] == 4) {
@@ -188,7 +190,8 @@ if (isset($_GET["pbool"])) {
 		<h4 class="panel-title"><p><center>Formations proposées :</center></p></h4>
 	</div>
 	<div class="panel-body">      	
-        <select nom="fct_select" id="fct_select" style="margin-left: 5%; width: 800px" required>
+
+        <select name="fct_select" id="fct_select" style="margin-left: 5%" required>
         <option value="-1">--Choix de la formation à ajouter--</option>';
 
                 $formations = getFormationsNotInProfil();
@@ -196,11 +199,12 @@ if (isset($_GET["pbool"])) {
 
                     $pageProfil->corps .= '
 								<option value=' . $data["idformation"] . '>' . $data["nom_formation"] . '</option>';
+
                 }
 
                 $pageProfil->corps .= '</select>
-    <span class="span7 text-center" style="margin-left: 7.5%"><button onClick="AjouterFormation('.$idcompte.')" class="btn btn-primary btn-sucess">Ajouter formation</button></br></span>
- 
+    <span class="span7 text-center" style="margin-left: 17.5%"><button onClick="AjouterFormation(' . $idcompte . ')" class="btn btn-primary btn-sucess">Ajouter formation</button></br></span>
+       
         	<table class="table" width="600" height="100" style="text-align: center;" >
                     <thead>
                 			<th style="text-align: left;">Liste des formations disponibles dans l\'établissement : </th>
@@ -230,10 +234,241 @@ if (isset($_GET["pbool"])) {
             break;
 
         case "4":
+            if ($_SESSION["IdProfil"] == 2 || $_SESSION["IdProfil"] == 4) {
 
-            //gestion des logos
+                $pageProfil->corps .= '
+<div class="panel-white">
+	<div class="panel-heading">
+		<h4 class="panel-title"><p><center>Gestion des images de la convention</center></p></h4>
+	</div>
+	    <div class="panel-body">
+<table class="table" style="text-align: center">
+    <th style="text-align: center">Logo établissement</th>
+    <th style="text-align: center">Signature établissement</th>
+    
+    <tr>
+    
+    ';
+                //Logo
+                $pageProfil->corps .= '      
+        <td>
+  <div> 
+<span class="changer_image_profil">
+  <label for="image_uploadsLogo" style="cursor: pointer; margin-bottom: 0px;">Sélectionner l\'image à modifier ! </label>
+</span>    <input type="file" id="image_uploadsLogo" name="image_uploadsLogo" accept=".jpg, .jpeg, .png" class="inputLogo">
+  </div>
+  <div class="previewLogo">';
+
+                $logo = getLogo();
+                $data = mysqli_fetch_array($logo);
+
+                if(!empty($data[0])){
+                    $pageProfil->corps .= '
+    <img src="../APPLI/image/logos/' . $data[0] . '"  style="max-block-size: 300px; size: 300px; max-height:300px;max-width:300px"/>
+  </div>
+  
+  
+  </td>
+';
+                }else{
+                    $pageProfil->corps .= '
+<span>Vous n\'avez pas encore d\'image !</span>
+  </div></td>
+';
+                }
+
+                //signature
+                $pageProfil->corps .= '  
+                <td>
+  <div> 
+<span class="changer_image_profil">
+  <label for="image_uploadsSignature" style="cursor: pointer; margin-bottom: 0px;">Sélectionner l\'image à modifier ! </label>
+</span>    
+<input type="file" id="image_uploadsSignature" name="image_uploadsSignature" accept=".jpg, .jpeg, .png" class="inputSignature">
+  </div>
+  <div class="previewSignature">';
+
+                $signature = getSignature();
+                $data = mysqli_fetch_array($signature);
+                if(!empty($data[0])){
+                $pageProfil->corps .= '
+    <img src="../APPLI/image/signatures/' . $data[0] . '"  style="max-block-size: 300px; size: 300px; max-height:300px;max-width:300px"/>
+  </div>
+  
+  </td>
+';
+ }else{
+                    $pageProfil->corps .= '
+<span>Vous n\'avez pas encore d\'image !</span>
+  </div></td>
+';
+                }
+
+                $pageProfil->corps .= '  
+    </tr>
+    <tr>
+    <td style="border-top: 0px">
+        <div>
+        <button class="btn btn-primary btn-sucess" onClick="AjouterLogo('.$idetab.')">Envoyer</button>
+      </div>
+  </td>
+    <td style="border-top: 0px">
+        <div>
+        <button class="btn btn-primary btn-sucess" onClick="AjouterSignature('.$idetab.')">Envoyer</button>
+      </div>
+  </td>
+</tr>
+</table>';
 
 
+                $pageProfil->corps .= "<script>
+
+var inputLogo = document.querySelector('.inputLogo');
+var previewLogo = document.querySelector('.previewLogo');
+
+var inputSignature = document.querySelector('.inputSignature');
+var previewSignature = document.querySelector('.previewSignature');
+
+
+inputLogo.style.opacity = 0;
+inputSignature.style.opacity = 0;
+
+inputLogo.addEventListener('change', updateImageDisplayLogo);
+inputSignature.addEventListener('change', updateImageDisplaySignature);
+
+function updateImageDisplayLogo() {
+  while(previewLogo.firstChild) {
+    previewLogo.removeChild(previewLogo.firstChild);
+  }
+
+  var curFiles = inputLogo.files;
+
+  
+  if(curFiles.length === 0) {
+    var para = document.createElement('p');
+    para.textContent = 'Pas d\'image encore séléctionnée !';
+    previewLogo.appendChild(para);
+  } else {
+    var list = document.createElement('ol');
+    previewLogo.appendChild(list);
+      
+      if(validFileType(curFiles[0])) {
+            var image = document.createElement('img');
+            image.setAttribute('style', 'max-height:300px;max-width:300px;max-block-size: 300px; size: 300px;')
+
+            image.src = window.URL.createObjectURL(curFiles[0]);
+            list.appendChild(image);
+
+      } else {    
+            var para = document.createElement('p');
+            para.textContent = 'Image ' + curFiles[0].name + ': Ce n\'est pas un bon format de fichier. Merci de le modifier.';
+            list.appendChild(para);
+            
+    }
+  }
+}
+
+
+function updateImageDisplaySignature() {
+  while(previewSignature.firstChild) {
+    previewSignature.removeChild(previewSignature.firstChild);
+  }
+
+  var curFiles = inputSignature.files;
+
+  
+  if(curFiles.length === 0) {
+    var para = document.createElement('p');
+    para.textContent = 'Pas d\'image encore séléctionnée !';
+    previewSignature.appendChild(para);
+  } else {
+    var list = document.createElement('ol');
+    previewSignature.appendChild(list);
+      
+      if(validFileType(curFiles[0])) {
+            var image = document.createElement('img');
+            image.setAttribute('style', 'max-height:300px;max-width:300px;max-block-size: 300px; size: 300px;')
+
+            image.src = window.URL.createObjectURL(curFiles[0]);
+            list.appendChild(image);
+
+      } else {    
+            var para = document.createElement('p');
+            para.textContent = 'Image ' + curFiles[0].name + ': Ce n\'est pas un bon format de fichier. Merci de le modifier.';
+            list.appendChild(para);
+            
+    }
+  }
+}
+
+var fileTypes = [
+  'image/jpeg',
+  'image/jpg',
+  'image/pjpeg',
+  'image/png'
+]
+
+function validFileType(file) {
+  for(var i = 0; i < fileTypes.length; i++) {
+    if(file.type === fileTypes[i]) {
+      return true;
+    }
+  }
+
+  return false;
+}
+
+</script>";
+
+            }
+
+            break;
+
+        case "5":
+            // Gestion des professeurs
+            if ($_SESSION["IdProfil"] == 2 ) {
+
+                $pageProfil->corps .= '
+<div class="panel-white">
+	<div class="panel-heading">
+		<h4 class="panel-title"><p><center>Professeurs</center></p></h4>
+	</div>
+	<div class="panel-body">      	
+        
+        Nom : <input name="nomprof" id="nomprof" nom :> 
+        Prénom :  <input name="prenomprof" id="prenomprof" prenom :> 
+        Civilité : <input name="civilite" id="civilite" civilité :> 
+        <div style="display:none" ><input type="text" id="id" name="id" value="'. $Profil['idetab'].'"></div>
+        <option value="-1">--Informations du professeur à ajouter--</option>
+        </br>
+        <span class="span7 text-center" style="margin-right: 17.5%"><button onClick="AjouterProfesseur('.$idcompte.')" class="btn btn-primary btn-sucess">Ajouter professeur</button></br></span>
+       </br>
+        	<table class="table" width="600" height="100" style="text-align: center;" >
+                    <thead>
+                			<th style="text-align: left;">Liste des professeur de l\'établissement : </th>
+                			<th style="text-align: center;">Action</th>
+                    </thead>
+                    
+                    ';
+
+                $professeurs = getProfesseursInProfil();
+
+                while ($data = mysqli_fetch_array($professeurs)) {
+
+                    $pageProfil->corps .=
+                        '<tr id="td' . $data['idProf'] . '"> 
+<td style="text-align: left;"> ' . $data["nom_prof"] . ' ' . $data["prenom_prof"] . '</td>
+<td> 
+<a href="">
+        <IMG SRC="image/trash.png" width="25" height="25" title="Supprimer le professeur de l\'établissement"
+        id="imgedit' . $data['idProf'] . '" onClick="SupprimeProfesseur(' . $data['idProf'] . ',' . $idcompte . ' )"</a></td>
+</tr>';
+                }
+                $pageProfil->corps .= '             
+       </div>
+	</div>
+';
+            }
             break;
     }
 }
