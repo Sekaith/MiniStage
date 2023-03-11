@@ -15,9 +15,9 @@ html {
     position: relative;
 }
 
-a:hover,
-a:active,
-a:focus {
+form-submit-button,a:hover,
+form-submit-button,a:active,
+form-submit-button,a:focus {
     outline: none!important;
 }
 
@@ -3397,6 +3397,17 @@ body:not(.page-horizontal-bar):not(.small-sidebar) .menu.accordion-menu a {
     font-size: 13px;
 }
 
+.input[type=submit] {
+    background: #0066A2;
+    color: white;
+    border-style: outset;
+    border-color: #0066A2;
+    height: 50px;
+    width: 100px;
+    font: bold15px arial,sans-serif;
+    text-shadow: none;
+}
+
 .menu.accordion-menu ul li ul {
     padding: 2px 0 2px 0;
 }
@@ -5092,3 +5103,4 @@ body:not(.small-sidebar):not(.page-horizontal-bar) .menu.accordion-menu,
 .show-menu .overlay {
     display: block;
 }
+

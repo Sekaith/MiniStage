@@ -27,7 +27,7 @@ function updateMS(){
     global $mysqli;
 	
     $rqt = 'UPDATE t_ministage SET civilite="'.$_POST['civilite'].'", nomProf="'.$_POST['nomprof'].'", 
-	date= STR_TO_DATE("'.$_POST['date'].'", "%d-%m-%Y"), hdebut="'.$_POST['heure1'].'", hfin="'.$_POST['heure2'].'", 
+	date= STR_TO_DATE("'.$_POST['date'].'", "%Y-%m-%d"), hdebut="'.$_POST['heure1'].'", hfin="'.$_POST['heure2'].'", 
 	nbplace='.$_POST['place'].', lieu="'.$_POST['lieu'].'"
 	where id= '.$_POST['id'].'';
     mysqli_query($mysqli,$rqt) or exit(mysqli_error($mysqli));

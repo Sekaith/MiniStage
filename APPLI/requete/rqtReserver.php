@@ -12,7 +12,7 @@ from t_ministage as m
 inner join t_compte as c on c.idcompte=m.idOffrant
 inner join t_etablissement as e on e.idetab=c.idetab
 inner join t_typeetab as tye on tye.idtypeetab=e.idtypeetab
-order by e.nometab ASC;';
+order by e.nometab;';
 
 	$Etab= $mysqli->query($rqt) or exit(mysqli_error($mysqli));
 	

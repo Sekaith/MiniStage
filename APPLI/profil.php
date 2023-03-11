@@ -188,8 +188,7 @@ if (isset($_GET["pbool"])) {
 		<h4 class="panel-title"><p><center>Formations proposées :</center></p></h4>
 	</div>
 	<div class="panel-body">      	
-
-        <select name="fct_select" id="fct_select" style="margin-left: 5%; max-width: 800px" required>
+        <select nom="fct_select" id="fct_select" style="margin-left: 5%; width: 800px" required>
         <option value="-1">--Choix de la formation à ajouter--</option>';
 
                 $formations = getFormationsNotInProfil();
@@ -197,12 +196,11 @@ if (isset($_GET["pbool"])) {
 
                     $pageProfil->corps .= '
 								<option value=' . $data["idformation"] . '>' . $data["nom_formation"] . '</option>';
-
                 }
 
                 $pageProfil->corps .= '</select>
     <span class="span7 text-center" style="margin-left: 7.5%"><button onClick="AjouterFormation('.$idcompte.')" class="btn btn-primary btn-sucess">Ajouter formation</button></br></span>
-       
+ 
         	<table class="table" width="600" height="100" style="text-align: center;" >
                     <thead>
                 			<th style="text-align: left;">Liste des formations disponibles dans l\'établissement : </th>

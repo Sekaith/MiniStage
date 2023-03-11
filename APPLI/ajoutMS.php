@@ -146,7 +146,7 @@ $pageAjoutMS->corps .= '
 				<div class="form-group">
 					<label for="input-Default" class="col-sm-2 control-label">Date</label>
 					<div class="col-sm-10">
-						<input size="25" type="text"  class="col-sm-2 control-label" id="date" 
+						<input size="25" type="date"  class="col-sm-2 control-label" id="date" 
 						name="date" onBlur="" required>
 					</div>
 				</div>
@@ -204,3 +204,4 @@ $pageAjoutMS->corps .= '
 $pageAjoutMS->afficher();
 
 ?>
+
