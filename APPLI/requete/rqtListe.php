@@ -18,7 +18,7 @@ function get_ListeReserv(){
     ORDER BY date';
     */
 
-    $rqt = 'select r.idministage as id, r.nom_eleve as nom, r.prenom_eleve as prenom, e.mailetab, c.mail_compte, e.ville, c.tel, t.nomcourt_typeetab as type, 
+    $rqt = 'select r.idreserv as id, r.nom_eleve as nom, r.prenom_eleve as prenom, e.mailetab, c.mail_compte, e.ville, c.tel, t.nomcourt_typeetab as type, 
 	e.nometab, tf.nomcourt_typeformation as typeformation, f.nom_formation as formation, 
 	 date as dateUS, DATE_FORMAT(date, "%d-%m-%Y") AS dateFR, hdebut, hfin, 
      confirmation, rappel, absence, c.nom_compte as nomO, c.prenom_compte as prenomO, fo.nom_fonct as fonction
@@ -150,9 +150,6 @@ order by date;';
 }
 
 
-
-
-
 /* Affiche Liste reservation pour les collèges */      /*on garde la date US pour effectuer le trie par date dans le tableau*/
 function get_ListeReservAnt(){
     global $mysqli;
@@ -170,7 +167,7 @@ function get_ListeReservAnt(){
 	ORDER BY date';
     */
 
-    $rqt = 'select r.idministage as id, r.nom_eleve as nom, r.prenom_eleve as prenom, e.mailetab, c.mail_compte, e.ville, c.tel, t.nomcourt_typeetab as type, 
+    $rqt = 'select r.idreserv as id, r.nom_eleve as nom, r.prenom_eleve as prenom, e.mailetab, c.mail_compte, e.ville, c.tel, t.nomcourt_typeetab as type, 
 	e.nometab, tf.nomcourt_typeformation as typeformation, f.nom_formation as formation, 
 	 date as dateUS, DATE_FORMAT(date, "%d-%m-%Y") AS dateFR, hdebut, hfin, 
      confirmation, rappel, absence, c.nom_compte as nomO, c.prenom_compte as prenomO, fo.nom_fonct as fonction

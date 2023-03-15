@@ -72,7 +72,8 @@ if ($_SESSION['IdProfil']==2)
 												{$list= get_ListeReservAdmin();}
 												while($data=mysqli_fetch_assoc($list))
 												{
-													$pageReservation->corps .= '
+
+                                                    $pageReservation->corps .= '
 													<tr id="td'.$data['id'].'">
 												 		<td>'.$data['nom'].' '.$data['prenom'].'</td>
 														<td><div style="display:none">'.$data['nometab'].'</div>'.$data['type'].' 
@@ -134,11 +135,11 @@ if ($_SESSION['IdProfil']==2)
 															id="conv'.$data['id'].'"></a>';
 															}
 /**********************************************************icone supprimer**************************************************************/
-															
+
 															if (($_SESSION['IdProfil']==2) or ($_SESSION['IdProfil']==4))
 															$pageReservation->corps .= ' 	
 															<a href="#"><IMG SRC="image/trash.png" width="25" height="25"  
-															title="Supprimer le mini-stage"
+															title="Supprimer la réservation"
 															id="trash'.$data['id'].'" onClick="SupprimeReserv('.$data['id'].')" ></a>';
 				
 															
@@ -192,7 +193,7 @@ if ($_SESSION['IdProfil']==2)
 																			 	<span aria-hidden="true">&times;</span>
 																			</button>
 																			
-                                                     <h4 class="modal-title" id="myModalLabel">'.$data['typel'].' '.$data['nometab'].'</h4>
+                                                     <h4 class="modal-title" id="myModalLabel">'.$data['type'].' '.$data['nometab'].'</h4>
 													 
                                                         				</div>
                                                         				<div class="modal-body" style="text-align:left">
@@ -202,7 +203,7 @@ if ($_SESSION['IdProfil']==2)
 																			<b>Contact : </b>'.$data['prenomO'].' '.$data['nomO'].'</br>
 																			<b>Fonction : </b>'.$data['fonction'].'</br>
 																			<b>Numéro de téléphone : </b>'.$data['tel'].'</br>
-																			<b>Mail : </b>'.$data['mail'].'
+																			<b>Mail : </b>'.$data['mail_compte'].'
 																			
                                                        					 </div>
                                                        					 <div class="modal-footer">
