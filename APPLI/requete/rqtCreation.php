@@ -26,7 +26,7 @@ function insertMinistage(){
     global $mysqli;
 
     $rqt='INSERT INTO t_ministage (idOffrant,idformation,idProf,date,hdebut,hfin,nbplace,lieu)
-	values ('.$_SESSION['IdUtilisateur'].', '.$_POST['formation'].', '.$_POST['idprof'].', STR_TO_DATE("'.$_POST['date'].'", "%Y-%m-%d"), 
+	values ('.$_SESSION['IdUtilisateur'].', '.$_POST['formation'].', '.$_POST['professeur'].', STR_TO_DATE("'.$_POST['date'].'", "%Y-%m-%d"), 
 	"'.$_POST['heure1'].'", "'.$_POST['heure2'].'",'.$_POST['place'].', "'.$_POST['lieu'].'")';
 
     mysqli_query($mysqli,$rqt) or exit(mysqli_error($mysqli));

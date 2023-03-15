@@ -435,13 +435,8 @@ function validFileType(file) {
 	</div>
 	<div class="panel-body">      	
         
-        Nom : <input name="nomprof" id="nomprof" nom :> 
-        Prénom :  <input name="prenomprof" id="prenomprof" prenom :> 
-        Civilité : <input name="civilite" id="civilite" civilité :> 
-        <div style="display:none" ><input type="text" id="id" name="id" value="'. $Profil['idetab'].'"></div>
-        <option value="-1">--Informations du professeur à ajouter--</option>
         </br>
-        <span class="span7 text-center" style="margin-right: 17.5%"><button onClick="AjouterProfesseur('.$idcompte.')" class="btn btn-primary btn-sucess">Ajouter professeur</button></br></span>
+        <a href="ajoutPROF.php"><button class="btn btn-primary btn-sucess">Ajouter professeur</button></a></br>
        </br>
         	<table class="table" width="600" height="100" style="text-align: center;" >
                     <thead>
@@ -461,7 +456,7 @@ function validFileType(file) {
 <td> 
 <a href="">
         <IMG SRC="image/trash.png" width="25" height="25" title="Supprimer le professeur de l\'établissement"
-        id="imgedit' . $data['idProf'] . '" onClick="SupprimeProfesseur(' . $data['idProf'] . ',' . $idcompte . ' )"</a></td>
+        id="imgedit' . $data['idProf'] . '" onClick="SupprimerProfesseur(' . $data['idProf'] . ',' . $idetab . ' )"</a></td>
 </tr>';
                 }
                 $pageProfil->corps .= '             

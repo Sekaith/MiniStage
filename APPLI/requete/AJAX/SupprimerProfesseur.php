@@ -9,7 +9,7 @@ if (isset($_POST['compte'])) {
 
 global $mysqli;
 
-$rqt = "DELETE FROM t_professeur WHERE idProf = " . $_POST['id'] . " and idcompte =" . $_POST['compte'];
+$rqt = "DELETE FROM t_professeur WHERE idProf = " . $_POST['id'] . " and idetab =" . $_POST['compte'];
 
 $Confirm = $mysqli->query($rqt);
 }

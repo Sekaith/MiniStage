@@ -50,7 +50,7 @@ $pageAjoutMS->corps .= '
 				<div class="form-group">
 					<label for="input-Default" class="col-sm-2 control-label">Date</label>
 					<div class="col-sm-10">
-						<input size="25" type="text" class="col-sm-2 control-label" id="date" 
+						<input size="25" type="date" class="col-sm-2 control-label" id="date" 
 						name="date" required value="'.$MS['dateFR'].'">
 					</div>
 				</div>
@@ -81,16 +81,16 @@ $pageAjoutMS->corps .= '
 					</div>
 				</div>
 				
-				<div style="display:none" ><input type="text" id="idprof" name="idprof" value="'.$MS['idprof'].'"></div>
+				<div style="display:none" ><input type="text" id="professeur" name="professeur" value="'.$MS['idprof'].'"></div>
 				
 				<div class="form-group">
 					<label for="input-Default" class="col-sm-2 control-label">Professeur en charge</label>
 					<div class="col-sm-10">
-					<select name="civilite" class="form-control" onchange="verifList(this)" style="width:150px" id="civilite" value="'.$prenomProf.'">
-							<option value="M.">M.</option>
-							<option value="Mme">Mme</option>
+					<select name="civilite" readonly class="form-control" onchange="verifList(this)" style="width:150px" id="civilite" value="'.$prenomProf.'">
+							<option readonly value="M.">M.</option>
+							<option readonly value="Mme">Mme</option>
 						</select>
-						<input size="25" type="text" class="col-sm-2 control-label" id="nomprof" name="nomprof" 
+						<input size="25" type="text" readonly class="col-sm-2 control-label" id="nomprof" name="nomprof" 
 						placeholder="Nom" onblur="MAJ(this)" value="'.$MS['nomProf'].'"/>
 					</div>
 				</div>

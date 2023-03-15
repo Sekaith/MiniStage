@@ -1,4 +1,4 @@
-function SupprimeProfesseur(id, compte) {
+function SupprimerProfesseur(id, compte) {
 
     document.getElementById('td' + id).style.display = 'none';
 
@@ -30,19 +30,4 @@ function SupprimeProfesseur(id, compte) {
             "hideMethod": "fadeOut"
         }
     }
-}
-
-function AjouterProfesseur(compte) {
-
-
-        var filterDataRequest = $.ajax({
-            url: 'requete/AJAX/AjouterProfesseur.php',
-            type: 'POST',
-            dataType: 'json'
-        });
-
-        window.alert("Ajout d'un professeur réussi ")
-        window.location.href='profil.php?pbool=5'
-
-
 }

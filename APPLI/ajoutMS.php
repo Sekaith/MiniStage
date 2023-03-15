@@ -8,6 +8,7 @@ if (is_null($_SESSION['ID'])) {
 require_once('Class/autoload.php');
 require_once('Class/Connexion.class.php');
 include_once('requete/rqtCreation.php');
+include_once('requete/rqtProfil.php');
 
 $pageAjoutMS = new page_base('Créer un Mini-stage');
 
@@ -141,7 +142,7 @@ $pageAjoutMS->corps .= '
 								</p>
 				</div></div>
 				
-				<div style="display:none" ><input type="text" id="idprof" name="idprof" value=1></div>
+				
 				
 				<div class="form-group">
 					<label for="input-Default" class="col-sm-2 control-label">Date</label>
@@ -178,17 +179,20 @@ $pageAjoutMS->corps .= '
 				</div>
 				
 				<div class="form-group">
-					<label for="input-Default" class="col-sm-2 control-label">Professeur en charge</label>
-					<div class="col-sm-10">
-						<select name="civilite" class="form-control" onchange="verifList(this)" style="width:150px" id="civilite"" >
-                        <option value="-1">--Sélectionner--</option>
-							<option value="M.">M.</option>
-							<option value="Mme">Mme</option>
-						</select>
-						<input size="25" type="text" value="" class="col-sm-2 control-label" id="nomprof" name="nomprof" 
-						placeholder="Nom" onblur="MAJ(this);verifChaine(this)"/>
-						
-					</div>
+				<label for="input-Default"  class="col-sm-2 control-label">Professeur en charge</label>
+				<div class="col-sm-6"><SELECT name="professeur" class="form-control" tabindex="-1" 
+				id=professeur onchange="verifList(this)">
+            		<option value="-1">--Choix du professeur--</option>
+				';
+
+                $professeurs = getProfesseursInProfil();
+                while ($data = mysqli_fetch_array($professeurs)) {
+                    $pageAjoutMS->corps .= ' <option value="' . $data["idProf"] . '">' . $data["civilite"] . ' ' . $data["prenom_prof"] .  ' ' . $data["nom_prof"]. '</option>';
+                }
+
+
+    $pageAjoutMS->corps .= '</SELECT>
+                    </div>
 				</div>
 				
 				<div align="center">
