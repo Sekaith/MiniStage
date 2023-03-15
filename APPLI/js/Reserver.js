@@ -114,7 +114,8 @@ function charge_mini2()//Recherche par formation
             	$.each(data, function(index, value) {
                 $('#mini').append(value);
                 });	
-				});	
+				});
+				console.log($('#mini'));
 }
 
 function charge_inscription()
