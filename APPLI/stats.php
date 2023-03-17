@@ -41,7 +41,7 @@ if (isset($_GET["sbool"])) {
                         '<tr id="td' . $data['idformation'] . '"> 
                         <td style="text-align: left;"> ' . $data["nom_formation"] . ' </td>
                          <td style="text-align: center;">  ' . $data["nb_ministages"] . '</td>
-                        </br>
+                        
                         </tr>';
                 }
                 $pageStats->corps .= '    
