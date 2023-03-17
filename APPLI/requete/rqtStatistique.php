@@ -1,6 +1,6 @@
 <?php
 	
-	function get_statistique(){
+	/*function get_statistique(){
 		
 		$requete = "SELECT idcompte FROM t_compte";
         $resultat = $mysqli->query($requete) or die ('Erreur '.$requete.' '.$mysqli->error);
@@ -18,7 +18,19 @@
         $resultat4 = $mysqli->query($requete4) or die ('Erreur '.$requete4.' '.$mysqli->error);
         $nbrFormation = $resultat4->num_rows;
 		
-		return $nbrUtilisateur;/*,$nbrEtab, $nbrMinistage, $nbrFormation)*/;
-	}
+		return $nbrUtilisateur;/*,$nbrEtab, $nbrMinistage, $nbrFormation);
+	}*/
+
+    function getNbMSform(){
+        global $mysqli;
+
+        $rqt = "SELECT idformation, nom_formation, COUNT(idministage) AS nb_ministages
+        FROM t_ministage NATURAL JOIN t_formation
+        GROUP BY idformation
+        ORDER BY Nb_ministages DESC";
+
+        $nbMSf = $mysqli->query($rqt) or exit(mysqli_error($mysqli));
+        return $nbMSf;
+    }
 	
 ?>

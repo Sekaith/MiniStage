@@ -443,7 +443,7 @@ function validFileType(file) {
                 			<th style="text-align: left;">Liste des professeur de l\'établissement : </th>
                 			<th style="text-align: center;">Action</th>
                     </thead>
-                    
+              
                     ';
 
                 $professeurs = getProfesseursInProfil();
@@ -464,6 +464,14 @@ function validFileType(file) {
 	</div>
 ';
             }
+            break;
+
+        case "6" :
+            $pageProfil->corps .= ' 
+                        <li><a href="stats.php?sbool=1">Mini_stages par formation</a></li>
+                        <li><a href="stats.php?sbool=2">Nombre de place par formation</a></li>
+                        <li><a href="stats.php?sbool=3">Nombre de réservation par formation</a></li>'
+            ;
             break;
     }
 }

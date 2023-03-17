@@ -306,7 +306,6 @@ class page_base {
                         <li><a href="profil.php?pbool=2">Etablissement</a></li>
                         <li><a href="profil.php?pbool=3">Gestion Formations</a></li>
                         <li><a href="profil.php?pbool=4">Logo</a></li>
-                        <li><a href="profil.php?pbool=5">Gestion des professeurs</a></li>
                         <li><a href="profil.php?pbool=6">Statistiques</a></li>
                     </ul>
                 </li>
