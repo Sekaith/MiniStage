@@ -470,7 +470,11 @@ function validFileType(file) {
             $pageProfil->corps .= ' 
                         <li><a href="stats.php?sbool=1">Mini_stages par formation</a></li>
                         <li><a href="stats.php?sbool=2">Nombre de place par formation</a></li>
-                        <li><a href="stats.php?sbool=3">Nombre de réservation par formation</a></li>'
+                        <li><a href="stats.php?sbool=3">Nombre de réservation par formation</a></li>
+                        <li><a href="stats.php?sbool=4">Classement des établissements par réservations</a></li>
+                        <li><a href="stats.php?sbool=5">Classement des établissements par réservations annulées</a></li>
+                        <li><a href="stats.php?sbool=6">Classement des établissements par nombre d\'absences</a></li>
+                        <li><a href="stats.php?sbool=7">Nombre de réservations par formations de votre établissement</a></li>'
             ;
             break;
     }

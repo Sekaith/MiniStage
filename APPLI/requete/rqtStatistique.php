@@ -24,13 +24,89 @@
     function getNbMSform(){
         global $mysqli;
 
-        $rqt = "SELECT idformation, nom_formation, COUNT(idministage) AS nb_ministages
-        FROM t_ministage NATURAL JOIN t_formation
+        $rqt = "SELECT idformation, nom_typeformation, nom_formation, COUNT(idministage) AS nb_ministages
+        FROM t_ministage NATURAL JOIN t_formation NATURAL JOIN t_typeformation
         GROUP BY idformation
-        ORDER BY Nb_ministages DESC";
+        ORDER BY nom_formation ASC";
 
         $nbMSf = $mysqli->query($rqt) or exit(mysqli_error($mysqli));
         return $nbMSf;
     }
-	
+
+    function getNbPlaceform(){
+        global $mysqli;
+
+        $rqt = "SELECT idformation, nom_typeformation, nom_formation, SUM(nbplace) AS Nb_places
+        FROM t_ministage NATURAL JOIN t_formation NATURAL JOIN t_typeformation
+        GROUP BY idformation
+        ORDER BY nom_formation ASC";
+
+        $nbPlc = $mysqli->query($rqt) or exit(mysqli_error($mysqli));
+        return $nbPlc;
+    }
+
+    function getNbResaForm(){
+        global $mysqli;
+
+        $rqt = "SELECT idformation, nom_typeformation, nom_formation, COUNT(confirmation) AS Nb_reserv_actee
+        FROM t_ministage NATURAL JOIN t_reservation NATURAL JOIN t_formation NATURAL JOIN t_typeformation
+        WHERE confirmation = 1
+        GROUP BY idformation
+        ORDER BY nom_formation ASC";
+
+        $nbResa = $mysqli->query($rqt) or exit(mysqli_error($mysqli));
+        return $nbResa;
+    }
+
+    function getEtabResa(){
+        global $mysqli;
+        $rqt = "SELECT idetab, nom_typeetab, nometab, COUNT(idreserv) AS Nb_reserv
+        FROM t_reservation INNER JOIN t_compte ON t_reservation.idReservant = t_compte.idcompte NATURAL JOIN t_etablissement NATURAL JOIN t_typeetab
+        GROUP BY idetab
+        ORDER BY Nb_reserv DESC";
+
+        $rankEtab = $mysqli->query($rqt) or exit(mysqli_error($mysqli));
+        return $rankEtab;
+    }
+
+    function getEtabResaAnnul(){
+        global $mysqli;
+        $rqt = "SELECT idetab, nom_typeetab, nometab, COUNT(confirmation) AS Nb_reserv_annulee
+        FROM t_reservation INNER JOIN t_compte ON t_reservation.idReservant = t_compte.idcompte NATURAL JOIN t_etablissement NATURAL JOIN t_typeetab
+        WHERE confirmation = 0
+        GROUP BY idetab
+        ORDER BY Nb_reserv_annulee DESC";
+
+        $rankEtabCancel = $mysqli->query($rqt) or exit(mysqli_error($mysqli));
+        return $rankEtabCancel;
+    }
+
+    function getEtabNbAbs(){
+        global $mysqli;
+        $rqt = "SELECT idetab, nom_typeetab, nometab, COUNT(absence) AS Nb_absences
+        FROM t_reservation INNER JOIN t_compte ON t_reservation.idReservant = t_compte.idcompte NATURAL JOIN t_etablissement NATURAL JOIN t_typeetab
+        WHERE absence = 1
+        GROUP BY idetab
+        ORDER BY Nb_absences DESC";
+
+        $rankEtabAbs = $mysqli->query($rqt) or exit(mysqli_error($mysqli));
+        return $rankEtabAbs;
+    }
+
+    function getResaFormEtab(){
+        global $mysqli;
+        $rqt ='select f.idformation, tf.nom_typeformation ,f.nom_formation,  count(r.idreserv) as nbreserv from t_reservation as r
+        inner join t_ministage as m on r.idministage = m.idministage
+        inner join t_formation as f on f.idformation = m.idformation
+        left join t_formation_compte as fc on fc.idcompte=m.idOffrant
+        inner join t_compte as c on c.idcompte = fc.idcompte
+        inner join t_etablissement as e on e.idetab = c.idetab
+        natural join t_typeformation as tf
+        where e.idetab = '.$_SESSION['IdUtilisateur'].'
+        group by f.idformation, f.nom_formation
+        order by nbreserv DESC';
+
+        $EtabNbResaForm = $mysqli->query($rqt) or exit(mysqli_error($mysqli));
+        return $EtabNbResaForm;
+    }
 ?>
