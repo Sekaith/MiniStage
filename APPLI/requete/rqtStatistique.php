@@ -21,7 +21,7 @@
 		return $nbrUtilisateur;/*,$nbrEtab, $nbrMinistage, $nbrFormation);
 	}*/
 
-    function getNbMSform(){
+    function getNbMSform(){  // Renvoie le nombre de ministage par formations
         global $mysqli;
 
         $rqt = "SELECT idformation, nom_typeformation, nom_formation, COUNT(idministage) AS nb_ministages
@@ -33,7 +33,7 @@
         return $nbMSf;
     }
 
-    function getNbPlaceform(){
+    function getNbPlaceform(){ // Renvoie le nombre total de places par formations
         global $mysqli;
 
         $rqt = "SELECT idformation, nom_typeformation, nom_formation, SUM(nbplace) AS Nb_places
@@ -45,7 +45,7 @@
         return $nbPlc;
     }
 
-    function getNbResaForm(){
+    function getNbResaForm(){  // Renvoie le nombre de réservations actées par formations
         global $mysqli;
 
         $rqt = "SELECT idformation, nom_typeformation, nom_formation, COUNT(confirmation) AS Nb_reserv_actee
@@ -58,7 +58,7 @@
         return $nbResa;
     }
 
-    function getEtabResa(){
+    function getEtabResa(){ // Renvoie un classement des établissement par nombre de réservations
         global $mysqli;
         $rqt = "SELECT idetab, nom_typeetab, nometab, COUNT(idreserv) AS Nb_reserv
         FROM t_reservation INNER JOIN t_compte ON t_reservation.idReservant = t_compte.idcompte NATURAL JOIN t_etablissement NATURAL JOIN t_typeetab
@@ -69,7 +69,7 @@
         return $rankEtab;
     }
 
-    function getEtabResaAnnul(){
+    function getEtabResaAnnul(){  // Renvoie un classement des établissements par nombre de réservations annulées
         global $mysqli;
         $rqt = "SELECT idetab, nom_typeetab, nometab, COUNT(confirmation) AS Nb_reserv_annulee
         FROM t_reservation INNER JOIN t_compte ON t_reservation.idReservant = t_compte.idcompte NATURAL JOIN t_etablissement NATURAL JOIN t_typeetab
@@ -81,7 +81,7 @@
         return $rankEtabCancel;
     }
 
-    function getEtabNbAbs(){
+    function getEtabNbAbs(){ // Renvoie un classement des établissements avec le plus d'absence à des mini_stages
         global $mysqli;
         $rqt = "SELECT idetab, nom_typeetab, nometab, COUNT(absence) AS Nb_absences
         FROM t_reservation INNER JOIN t_compte ON t_reservation.idReservant = t_compte.idcompte NATURAL JOIN t_etablissement NATURAL JOIN t_typeetab
@@ -93,7 +93,7 @@
         return $rankEtabAbs;
     }
 
-    function getResaFormEtab(){
+    function getResaFormEtab(){ // Renvoie pour l'établissement de l'utilisateur, son nombre de réservation par formation
         global $mysqli;
         $rqt ='select f.idformation, tf.nom_typeformation ,f.nom_formation,  count(r.idreserv) as nbreserv from t_reservation as r
         inner join t_ministage as m on r.idministage = m.idministage
