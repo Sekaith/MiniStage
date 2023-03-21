@@ -19,7 +19,6 @@ if (isset($_POST["launch"])) {
     $mysqli->set_charset("utf8");
 
     //on sauvegarde les data de la base de données
-
     $rqt = "SELECT * FROM t_academie";
     $academies = $mysqli->query($rqt)->fetch_all() or exit(mysqli_error($mysqli));
 
@@ -64,7 +63,7 @@ if (isset($_POST["launch"])) {
     $location = "create_ministages44.sql";
     $create_table = file_get_contents($location);
     $result = $mysqli->multi_query($create_table) or exit(mysqli_error($mysqli));
-    while ($mysqli->next_result()) ;
+    while ($mysqli->next_result());
 
 //insertion des typeformations
     $rqt_insert = "INSERT INTO t_typeformation (idtypeform, nom_typeformation, nomcourt_typeformation) VALUES ";
@@ -129,7 +128,7 @@ if (isset($_POST["launch"])) {
 
     $result = $mysqli->query($rqt_insert);
 
-    //creation des comptes et etabs
+    //creation des comptes et etablissements
     $comptes = array();
     $etabs = array();
     $RNE = array();
@@ -147,7 +146,7 @@ if (isset($_POST["launch"])) {
             "RNE" => $u[10]
 
         );
-
+//vérifer le numéro de colonne RNE
         $etab = array(
             "nometab" => $u[9],
             "idtype" => $u[11],
