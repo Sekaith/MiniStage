@@ -6,7 +6,9 @@ require "../../phpmailer/class.phpmailer.php";
 require "../../phpmailer/class.smtp.php";
 require "../../phpmailer/class.pop3.php";
 
+//Mise à jour de la réservation pour notifier l'abscence de l'élève
 if (isset($_POST['id'])) {
+    global $mysqli;
 
     $rqt = "UPDATE t_reservation SET absence = 1 WHERE id = " . $_POST['id'] . "";
     $abs = $mysqli->query($rqt);
@@ -28,6 +30,7 @@ if (isset($_POST['id'])) {
 			where r.id= '.$_POST['id'].'';
 */
 
+//Envoi d'un mail au compte qui a fait la réservation pour l'élève pour prévenir de l'absence
 $rqt = 'Select cRes.mail_compte as destinataire,
 			cOff.nom_compte as nomoffrant, cOff.prenom_compte as prenomoffrant, eOff.nometab, eOff.mailetab as expediteur,  tyRes.nom_typeetab as type,
 			r.prenom_eleve as prenom, r.nom_eleve as prenom,
@@ -94,6 +97,6 @@ $mail->SmtpClose(); // à supprimer si vous n'utilisez pas SMTP
 unset($mail);
 
 
-echo print_r($mail);
+//echo print_r($mail);
 
 ?>

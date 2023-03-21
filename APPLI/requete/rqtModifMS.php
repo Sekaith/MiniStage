@@ -22,7 +22,7 @@ function get_MS(){
 	return $MS;
 }
 
-
+//Requete pour le mise a jour d'un ministage
 function updateMS(){
     global $mysqli;
 	

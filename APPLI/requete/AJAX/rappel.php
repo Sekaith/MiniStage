@@ -6,9 +6,9 @@ require "../../phpmailer/class.phpmailer.php";
 require "../../phpmailer/class.smtp.php";
 require "../../phpmailer/class.pop3.php";
 
-
+//Notifier si on a fait un rappel à l'établissement pour avoir la convention d'un élève
 if (isset($_POST['id'])) {
-
+    global $mysqli;
     $rqt = "UPDATE t_reservation SET rappel = 1 WHERE id = " . $_POST['id'];
     $rappel = $mysqli->query($rqt);
 
@@ -96,7 +96,7 @@ where r.idreserv= ' . $_POST['id'];
     unset($mail);
 
 
-    echo print_r($mail);
+    //echo print_r($mail);
 
 }
 ?>

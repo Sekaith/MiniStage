@@ -7,7 +7,7 @@ if (is_null($_SESSION['ID'])) {
 require_once('Class/autoload.php');
 require_once('Class/Connexion.class.php');
 require_once('requete/rqtADM.php');
-
+//Ajout d'un
 if (!empty($_POST["idprofil"])) {
     insert_Util();
     echo("<SCRIPT LANGUAGE='JavaScript'>
@@ -172,19 +172,6 @@ $pageAjoutUtil->corps .= '
             </div>
             
 	</div>
-	<div class="form-group">
-                <label class="col-sm-2 control-label"> Secteur </label>
-                <div class="col-sm-10">
-                    <SELECT name="idsecteur" class="form-control" id="idsecteur" onchange="verifList(this)">
-                        	<option value="-1">--Choix du secteur--</option>';
-$secteur = get_secteur();
-while ($data = mysqli_fetch_array($secteur)) {
-    $pageAjoutUtil->corps .= '<option value="' . $data["idsecteur"] . '">' . $data["nom_secteur"] . '</option>';
-}
-$pageAjoutUtil->corps .= '
-						</SELECT>
-				</div>
-			</div>
 	<div id="logosign">
 	<div class="form-group">
                 <label for="input-rounded" class="col-sm-2 control-label">Nom logo</label>

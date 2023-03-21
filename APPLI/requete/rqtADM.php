@@ -10,16 +10,7 @@ function get_type()
 
     return $Type;
 }
-/* Liste les Academies */
-function get_secteur()
-{
-    global $mysqli;
 
-    $rqt = 'SELECT * FROM t_secteur';
-    $secteur = $mysqli->query($rqt) or exit(mysqli_error($mysqli));
-
-    return $secteur;
-}
 
 /* Liste les Academies */
 function get_academie()
@@ -77,7 +68,7 @@ function get_typeF()
 }
 
 
-/*insert utilisateur*/
+/*insertion utilisateur*/
 function insert_Util()
 {
     global $mysqli;
@@ -90,8 +81,8 @@ function insert_Util()
 		'.$_POST["fonction"].', "'.$_POST["tel"].'",'.$_POST["idrattache"].')';//idrattache refere un etablissement
         */
 
-        $rqt = 'INSERT INTO t_compte (identifiant, mdp, idprofil, nom_compte, prenom_compte, mail_compte, idfonction, tel, idetab, idsecteur) VALUES ("' . $_POST["identifiant"] . '","' . $_POST["mdp"] . '",3,"' . $_POST["nom"] . '","' . $_POST["prenom"] . '","' . $_POST["mail"] . '",
-		' . $_POST["fonction"] . ', "' . $_POST["tel"] . '",' . $_POST["idrattache"] . ', ' . $_POST["idsecteur"] . ');';
+        $rqt = 'INSERT INTO t_compte (identifiant, mdp, idprofil, nom_compte, prenom_compte, mail_compte, idfonction, tel, idetab) VALUES ("' . $_POST["identifiant"] . '","' . $_POST["mdp"] . '",3,"' . $_POST["nom"] . '","' . $_POST["prenom"] . '","' . $_POST["mail"] . '",
+		' . $_POST["fonction"] . ', "' . $_POST["tel"] . '",' . $_POST["idrattache"] . ');';
 
        mysqli_query($mysqli,$rqt) or exit(mysqli_error($mysqli));
 
@@ -113,8 +104,8 @@ VALUES ("' . $_POST["etab"] . '",' . $_POST["type"] . ',"' . $_POST["ville"] . '
             mysqli_query($mysqli,$rqt) or exit(mysqli_error($mysqli));
             $idetab = $mysqli->insert_id;
 
-            $rqt = 'INSERT INTO t_compte (identifiant, mdp,idprofil, nom_compte, prenom_compte, mail_compte, idfonction, tel, idetab, idsecteur) VALUES ("' . $_POST["identifiant"] . '","' . $_POST["mdp"] . '",4,"' . $_POST["nom"] . '","' . $_POST["prenom"] . '","' . $_POST["mail"] . '",
-		' . $_POST["fonction"] . ', "' . $_POST["tel"] . '",' . $idetab . ', ' . $_POST["idsecteur"] . ');';
+            $rqt = 'INSERT INTO t_compte (identifiant, mdp,idprofil, nom_compte, prenom_compte, mail_compte, idfonction, tel, idetab) VALUES ("' . $_POST["identifiant"] . '","' . $_POST["mdp"] . '",4,"' . $_POST["nom"] . '","' . $_POST["prenom"] . '","' . $_POST["mail"] . '",
+		' . $_POST["fonction"] . ', "' . $_POST["tel"] . '",' . $idetab . ');';
 
             mysqli_query($mysqli,$rqt) or exit(mysqli_error($mysqli));
 
@@ -136,8 +127,8 @@ VALUES ("' . $_POST["etab"] . '",' . $_POST["type"] . ',"' . $_POST["ville"] . '
             $idetab = $mysqli->insert_id;
 
 
-            $rqt = 'INSERT INTO t_compte (identifiant, mdp,idprofil, nom_compte, prenom_compte, mail_compte, idfonction, tel, idetab, idsecteur) VALUES ("' . $_POST["identifiant"] . '","' . $_POST["mdp"] . '","' . $_POST["idprofil"] . '","' . $_POST["nom"] . '","' . $_POST["prenom"] . '","' . $_POST["mail"] . '",
-		' . $_POST["fonction"] . ', "' . $_POST["tel"] . '",' . $idetab . ', ' . $_POST["idsecteur"] . ');';
+            $rqt = 'INSERT INTO t_compte (identifiant, mdp,idprofil, nom_compte, prenom_compte, mail_compte, idfonction, tel, idetab) VALUES ("' . $_POST["identifiant"] . '","' . $_POST["mdp"] . '","' . $_POST["idprofil"] . '","' . $_POST["nom"] . '","' . $_POST["prenom"] . '","' . $_POST["mail"] . '",
+		' . $_POST["fonction"] . ', "' . $_POST["tel"] . '",' . $idetab . ');';
 
             mysqli_query($mysqli,$rqt) or exit(mysqli_error($mysqli));
         }
@@ -145,7 +136,7 @@ VALUES ("' . $_POST["etab"] . '",' . $_POST["type"] . ',"' . $_POST["ville"] . '
 }
 
 
-/*liste utilisateur*/
+/*informations d'un utilisateur*/
 function get_utilisateur()
 {
     global $mysqli;

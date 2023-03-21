@@ -14,7 +14,7 @@ echo ("<SCRIPT LANGUAGE='JavaScript'>
 		</SCRIPT>");
 }
 
-
+//Page pour l'ajout d'une formation par un administrateur
 $pageAjoutForm = new page_base('Ajout Formation');
 $pageAjoutForm->corps .= '
 
@@ -33,6 +33,7 @@ $pageAjoutForm->corps .= '
                 <div class="col-sm-10">
                     <SELECT name="typeF" class="form-control" id="typeF" onchange="verifList(this)">
 							<option value="-1" id="none">--Choix du type de la formation--</option>';
+                            //on récupère les types de formations existantes
                             $typeF = get_typeF();
 								while($data=mysqli_fetch_array($typeF))
               					{

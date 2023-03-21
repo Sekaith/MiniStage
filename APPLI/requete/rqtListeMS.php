@@ -1,4 +1,5 @@
 <?php
+//On obtient les informations sur les ministages que l'utilisateur propose
 function get_ListeForm()
 {
     global $mysqli;
@@ -86,6 +87,8 @@ left join t_professeur as p on p.idProf = m.idProf
     $ListeForm = $mysqli->query($rqt) or exit(mysqli_error($mysqli));
     return $ListeForm;
 }
+
+//On obtient les informations sur les ministages que l'utilisateur propose pour une date antérieur
 
 function get_ListeFormAnt()
 {

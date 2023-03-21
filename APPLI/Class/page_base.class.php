@@ -2,6 +2,7 @@
 class page_base {
 	private $titre;
 	private $corps;
+    //ajout des fichiers Javascripts dans l'application
 	private $script=array('VerifJS','Reserver','Liste','modifMS','ADMUtilisateur','datatable', 'formation', 'Image', 'professeur');
 	
 	public function __construct($t){

@@ -1,5 +1,5 @@
 <?php
-
+//Insertion d'un professeur
 function insertProfesseur(){
 
         global $mysqli;

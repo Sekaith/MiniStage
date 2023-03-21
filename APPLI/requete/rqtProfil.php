@@ -251,6 +251,7 @@ function mdpoublie(){
 
 }
 
+//Formations qui ne sont pas affectés à l'établissement de l'utilisateur
 function getFormationsNotInProfil(){
     global $mysqli;
 
@@ -265,6 +266,8 @@ where fc.idcompte is null or fc.idcompte != '.$_SESSION['IdUtilisateur'].' ORDER
 
 
 }
+//Formations qui sont affectés à l'établissement de l'utilisateur
+
 function getFormationsInProfil(){
     global $mysqli;
 
@@ -278,7 +281,7 @@ where fc.idcompte = '.$_SESSION['IdUtilisateur'].' ORDER BY nom_formation';
     return $Formations;
 
 }
-
+//Liste des professeurs qui sont liés à un compte
 function getProfesseursInProfil(){
     global $mysqli;
 
@@ -290,6 +293,7 @@ function getProfesseursInProfil(){
     return $Professeurs;
 }
 
+//Obtention du logo
 function getLogo(){
     global $mysqli;
 
@@ -303,6 +307,7 @@ where c.idcompte= '.$_SESSION['IdUtilisateur'];
 
 }
 
+//Obtention du cachet de l'établissement
 function getSignature(){
     global $mysqli;
 

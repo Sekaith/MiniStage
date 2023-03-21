@@ -6,6 +6,7 @@ if(is_null($_SESSION['ID']))
 require_once('Class/autoload.php');
 require_once('Class/Connexion.class.php');
 
+//Création de la page d'accueil
 $pageAccueil = new page_base('Accueil');
 
 if ($_SESSION['IdProfil']!=1)
