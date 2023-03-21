@@ -27,7 +27,7 @@
         $rqt = "SELECT idformation, nom_typeformation, nom_formation, COUNT(idministage) AS nb_ministages
         FROM t_ministage NATURAL JOIN t_formation NATURAL JOIN t_typeformation
         GROUP BY idformation
-        ORDER BY nom_formation ASC";
+        ORDER BY nom_typeformation, nom_formation ASC";
 
         $nbMSf = $mysqli->query($rqt) or exit(mysqli_error($mysqli));
         return $nbMSf;
@@ -39,7 +39,7 @@
         $rqt = "SELECT idformation, nom_typeformation, nom_formation, SUM(nbplace) AS Nb_places
         FROM t_ministage NATURAL JOIN t_formation NATURAL JOIN t_typeformation
         GROUP BY idformation
-        ORDER BY nom_formation ASC";
+        ORDER BY nom_typeformation, nom_formation ASC";
 
         $nbPlc = $mysqli->query($rqt) or exit(mysqli_error($mysqli));
         return $nbPlc;
@@ -52,7 +52,7 @@
         FROM t_ministage NATURAL JOIN t_reservation NATURAL JOIN t_formation NATURAL JOIN t_typeformation
         WHERE confirmation = 1
         GROUP BY idformation
-        ORDER BY nom_formation ASC";
+        ORDER BY nom_typeformation, nom_formation ASC";
 
         $nbResa = $mysqli->query($rqt) or exit(mysqli_error($mysqli));
         return $nbResa;

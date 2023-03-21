@@ -468,13 +468,13 @@ function validFileType(file) {
 
         case "6" :
             $pageProfil->corps .= ' 
-                        <li><a href="stats.php?sbool=1">Mini_stages par formation</a></li>
-                        <li><a href="stats.php?sbool=2">Nombre de place par formation</a></li>
-                        <li><a href="stats.php?sbool=3">Nombre de réservation par formation</a></li>
-                        <li><a href="stats.php?sbool=4">Classement des établissements par réservations</a></li>
-                        <li><a href="stats.php?sbool=5">Classement des établissements par réservations annulées</a></li>
-                        <li><a href="stats.php?sbool=6">Classement des établissements par nombre d\'absences</a></li>
-                        <li><a href="stats.php?sbool=7">Nombre de réservations par formations de votre établissement</a></li>'
+                        <li><a href="stats.php?sbool=1"> <button align="centers" class="btn btn-success">Mini_stages par formation</button></a></li> </br>
+                        <li><a href="stats.php?sbool=2"><button align="centers" class="btn btn-success">Nombre de place par formation</button></a></li> </br>
+                        <li><a href="stats.php?sbool=3"><button align="centers" class="btn btn-success">Nombre de réservation par formation</button></a></li> </br>
+                        <li><a href="stats.php?sbool=4"><button align="centers" class="btn btn-success">Classement des établissements par réservations</button></a></li> </br>
+                        <li><a href="stats.php?sbool=5"><button align="centers" class="btn btn-success">Classement des établissements par réservations annulées</button></a></li> </br>
+                        <li><a href="stats.php?sbool=6"><button align="centers" class="btn btn-success">Classement des établissements par nombre d\'absences</button></a></li> </br>
+                        <li><a href="stats.php?sbool=7"><button align="centers" class="btn btn-success">Nombre de réservations par formations de votre établissement</button></a></li>'
             ;
             break;
     }
