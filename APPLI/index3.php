@@ -1,4 +1,4 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html>
     
 <!-- Mirrored from lambdathemes.in/admin1/login.html by HTTrack Website Copier/3.x [XR&CO'2014], Mon, 18 May 2015 06:33:04 GMT -->
@@ -66,18 +66,20 @@
                               <p class="text-center m-t-md">En raison du caractère personnel du contenu, <br>
                               ce site est soumis à des restrictions utilisateurs
                               </p>
-                              <p class="text-center">Pour accéder aux outils de réservation, identifiez-vous : </p>
+                              <!-- <p class="text-center">Pour accéder aux outils de réservation, identifiez-vous : </p> -->
+							  <p class="text-center" style="color:red;"><b>CAMPAGNE MINI-STAGES 2021 TERMINEE  <br>
+							  Rendez-vous fin déc.2021/ jan.2022</b></p>
 								<form class="m-t-md" action="login.php" method="post">
                                     <div class="form-group">
-                                        <input type="text" name="id" class="form-control" placeholder="Identifiant" required>
+                                        <input type="text" name="id" class="form-control" placeholder="Identifiant" required disabled>
                                     </div>
                                     <div class="form-group">
-                                        <input type="password" name="mdp" class="form-control" placeholder="Mot de passe" required>
+                                        <input type="password" name="mdp" class="form-control" placeholder="Mot de passe" required disabled>
                                     </div>
-                                    <button type="submit" name="connexion" class="btn btn-success btn-block">Se connecter</button>
-                                    <a href="forgot.php" class="display-block text-center m-t-md text-sm">Mot de passe perdu ?</a>
+                                    <button type="submit" name="connexion" class="btn btn-success btn-block" disabled>Se connecter</button>
+                                    <!-- <a href="forgot.php" class="display-block text-center m-t-md text-sm">Mot de passe perdu ?</a> -->
                                     <p class="text-center m-t-xs text-sm">Vous n'avez pas de compte ?</p>
-                                    <a href="inscription.php" class="btn btn-default btn-block m-t-md">Créer un compte</a>
+                                    <a href="inscription.php" class="btn btn-default btn-block m-t-md" disabled>Créer un compte</a>
                                 </form>
                                 
                               <p>&nbsp;</p>

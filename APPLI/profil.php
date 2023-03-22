@@ -264,7 +264,7 @@ if (isset($_GET["pbool"])) {
 
                 if(!empty($data[0])){
                     $pageProfil->corps .= '
-    <img src="../APPLI/image/logos/' . $data[0] . '"  style="max-block-size: 300px; size: 300px; max-height:300px;max-width:300px"/>
+    <img src="../image/logos/' . $data[0] . '"  style="max-block-size: 300px; size: 300px; max-height:300px;max-width:300px"/>
   </div>
   
   
@@ -292,7 +292,7 @@ if (isset($_GET["pbool"])) {
                 $data = mysqli_fetch_array($signature);
                 if(!empty($data[0])){
                 $pageProfil->corps .= '
-    <img src="../APPLI/image/signatures/' . $data[0] . '"  style="max-block-size: 300px; size: 300px; max-height:300px;max-width:300px"/>
+    <img src="../image/signatures/' . $data[0] . '"  style="max-block-size: 300px; size: 300px; max-height:300px;max-width:300px"/>
   </div>
   
   </td>

@@ -11,5 +11,5 @@
 
 ?>
 <script>
-    window.location = 'index2.php'; // Bien vérifier index et index2
+    window.location = 'index.php'; // Bien vérifier index et index2
 </script>
