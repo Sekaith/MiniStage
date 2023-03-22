@@ -6,10 +6,10 @@ Procédure pour le déploiement de l'application :
     avec les informations qui se trouvent dans le fichier Class/Connexion.class.php
 
 2 - Vérifier la cohérence de la base de données :
-    - Allez dans le gestionnaire de la base de données et executer cette requête : SELECT id, RNE FROM `t_utilisateur` WHERE length(RNE) != 8;
+    - Allez dans le gestionnaire de la base de données et executer cette requête : SELECT * FROM `t_utilisateur` WHERE length(RNE) != 8 OR RNE is NULL;
         On aura en résultat les comptes utilisateurs avec des RNE qui ne seront pas pris en compte par le déploiement
         Il est necéssaire de les modifier avant le traitement
-    - Vérifier que les codes postaux sont complets : SELECT id, RNE, cp FROM `t_utilisateur` WHERE length(CP) != 5;
+    - Vérifier que les codes postaux sont complets : SELECT * FROM `t_utilisateur` WHERE length(CP) != 5;
     - Vérifier que l'utilisateur administrateur à l'id est égal à 1
     - Vérifier que les id des types de formations sont cohérents : SELECT * FROM `t_formation` where idtype not in (1,2,3,4,5,6,7,8);
     - Vérifier que les id des types d'établissements sont cohérents : SELECT * FROM `t_utilisateur` where idtype not in (1,2,3,4,5,6,7,8,9,10,11,12);

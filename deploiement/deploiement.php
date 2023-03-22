@@ -20,32 +20,61 @@ if (isset($_POST["launch"])) {
 
     //on sauvegarde les data de la base de données
     $rqt = "SELECT * FROM t_academie";
-    $academies = $mysqli->query($rqt)->fetch_all() or exit(mysqli_error($mysqli));
+    $result = $mysqli->query($rqt) or exit(mysqli_error($mysqli));
+    $academies = array();
+    while ($row = $result->fetch_assoc()) {
+        $academies[] = $row;
+    }
 
     $rqt = "SELECT * FROM t_fonction";
-    $fonctions = $mysqli->query($rqt)->fetch_all() or exit(mysqli_error($mysqli));
-
+    $result = $mysqli->query($rqt) or exit(mysqli_error($mysqli));
+    $fonctions = array();
+    while ($row = $result->fetch_assoc()) {
+        $fonctions[] = $row;
+    }
     $rqt = "SELECT * FROM t_formation";
-    $formations = $mysqli->query($rqt)->fetch_all() or exit(mysqli_error($mysqli));
-
+    $result = $mysqli->query($rqt) or exit(mysqli_error($mysqli));
+    $formations = array();
+    while ($row = $result->fetch_assoc()) {
+        $formations[] = $row;
+    }
     $rqt = "SELECT * FROM t_ministage";
-    $ministages = $mysqli->query($rqt)->fetch_all() or exit(mysqli_error($mysqli));
-
+    $result = $mysqli->query($rqt) or exit(mysqli_error($mysqli));
+    $ministages = array();
+    while ($row = $result->fetch_assoc()) {
+        $ministages[] = $row;
+    }
     $rqt = "SELECT * FROM t_profil";
-    $profils = $mysqli->query($rqt)->fetch_all() or exit(mysqli_error($mysqli));
-
+    $result = $mysqli->query($rqt) or exit(mysqli_error($mysqli));
+    $profils = array();
+    while ($row = $result->fetch_assoc()) {
+        $profils[] = $row;
+    }
     $rqt = "SELECT * FROM t_reservation";
-    $reservations = $mysqli->query($rqt)->fetch_all() or exit(mysqli_error($mysqli));
-
+    $result = $mysqli->query($rqt) or exit(mysqli_error($mysqli));
+    $reservations = array();
+    while ($row = $result->fetch_assoc()) {
+        $reservations[] = $row;
+    }
     $rqt = "SELECT * FROM t_typeetab";
-    $typeetabs = $mysqli->query($rqt)->fetch_all() or exit(mysqli_error($mysqli));
-
+    $result = $mysqli->query($rqt) or exit(mysqli_error($mysqli));
+    $typeetabs = array();
+    while ($row = $result->fetch_assoc()) {
+        $typeetabs[] = $row;
+    }
     $rqt = "SELECT * FROM t_typeformation";
-    $typeformations = $mysqli->query($rqt)->fetch_all() or exit(mysqli_error($mysqli));
+    $result = $mysqli->query($rqt) or exit(mysqli_error($mysqli));
+    $typeformations = array();
+    while ($row = $result->fetch_assoc()) {
+        $typeformations[] = $row;
+    }
 
     $rqt = "SELECT * FROM t_utilisateur";
-    $utilisateurs = $mysqli->query($rqt)->fetch_all() or exit(mysqli_error($mysqli));
-
+    $result = $mysqli->query($rqt) or exit(mysqli_error($mysqli));
+    $utilisateurs = array();
+    while ($row = $result->fetch_assoc()) {
+        $utilisateurs[] = $row;
+    }
 
     $delete = "DROP TABLE t_academie;";
     $delete .= "DROP TABLE t_fonction;";
@@ -63,35 +92,34 @@ if (isset($_POST["launch"])) {
     $location = "create_ministages44.sql";
     $create_table = file_get_contents($location);
     $result = $mysqli->multi_query($create_table) or exit(mysqli_error($mysqli));
-    while ($mysqli->next_result());
+    while ($mysqli->next_result()) ;
 
-//insertion des typeformations
+    //insertion des typeformations
     $rqt_insert = "INSERT INTO t_typeformation (idtypeform, nom_typeformation, nomcourt_typeformation) VALUES ";
     foreach ($typeformations as $tf) {
-        $rqt_insert .= "($tf[0], '$tf[1]', '$tf[2]'),";
+        $rqt_insert .= "($tf[id], '$tf[nom]', '$tf[nomcourt]'),";
     }
     $rqt_insert = substr($rqt_insert, 0, -1);
     $rqt_insert .= ";";
 
     $result = $mysqli->query($rqt_insert);
 
-//insertion des formations
+    //insertion des formations
     $rqt_insert = "INSERT INTO t_formation (idformation, idtypeform, nom_formation) VALUES ";
     foreach ($formations as $f) {
-        $lat = str_replace('"', "", $f[2]);
+        $lat = str_replace('"', "", $f['nom']);
         $lat = str_replace("'", "\'", $lat);
-        $id = str_replace("-1", "1", $f[1]);
-        $rqt_insert .= "($f[0], '$id', '$lat'),";
+        $id = str_replace("-1", "1", $f['idtype']);
+        $rqt_insert .= "($f[id], '$id', '$lat'),";
     }
     $rqt_insert = substr($rqt_insert, 0, -1);
     $rqt_insert .= ";";
 
     $result = $mysqli->query($rqt_insert);
-
     //insertion des academies
     $rqt_insert = "INSERT INTO t_academie (idacademie, nom_academie) VALUES ";
     foreach ($academies as $a) {
-        $rqt_insert .= "($a[0], '$a[1]'),";
+        $rqt_insert .= "($a[id], '$a[nom]'),";
     }
     $rqt_insert = substr($rqt_insert, 0, -1);
     $rqt_insert .= ";";
@@ -101,7 +129,7 @@ if (isset($_POST["launch"])) {
 //insertion des typeetabs
     $rqt_insert = "INSERT INTO t_typeetab (idtypeetab, nom_typeetab, nomcourt_typeetab) VALUES ";
     foreach ($typeetabs as $te) {
-        $rqt_insert .= "($te[0], '$te[1]', '$te[2]'),";
+        $rqt_insert .= "($te[id], '$te[nom]', '$te[nomcourt]'),";
     }
     $rqt_insert = substr($rqt_insert, 0, -1);
     $rqt_insert .= ";";
@@ -111,7 +139,7 @@ if (isset($_POST["launch"])) {
 //insertion des fonctions
     $rqt_insert = "INSERT INTO t_fonction (idfonction, nom_fonct) VALUES ";
     foreach ($fonctions as $fn) {
-        $rqt_insert .= "($fn[0], '$fn[1]'),";
+        $rqt_insert .= "($fn[id], '$fn[nom]'),";
     }
     $rqt_insert = substr($rqt_insert, 0, -1);
     $rqt_insert .= ";";
@@ -121,7 +149,7 @@ if (isset($_POST["launch"])) {
 //insertion des profils
     $rqt_insert = "INSERT INTO t_profil (idprofil, nom_profil) VALUES ";
     foreach ($profils as $p) {
-        $rqt_insert .= "($p[0], '$p[1]'),";
+        $rqt_insert .= "($p[id], '$p[nom]'),";
     }
     $rqt_insert = substr($rqt_insert, 0, -1);
     $rqt_insert .= ";";
@@ -135,37 +163,37 @@ if (isset($_POST["launch"])) {
 
     foreach ($utilisateurs as $u) {
         $compte = array(
-            "identifiant" => $u[1],
-            "mdp" => $u[2],
-            "idprofil" => $u[3],
-            "nom" => $u[4],
-            "prenom" => $u[5],
-            "mail" => $u[6],
-            "idfonction" => $u[7],
-            "tel" => $u[8],
-            "RNE" => $u[10]
+            "identifiant" => $u['identifiant'],
+            "mdp" => $u['mdp'],
+            "idprofil" => $u['idprofil'],
+            "nom" => $u['nom'],
+            "prenom" => $u['prenom'],
+            "mail" => $u['mail'],
+            "idfonction" => $u['idfonction'],
+            "tel" => $u['tel'],
+            "RNE" => $u['RNE']
 
         );
 //vérifer le numéro de colonne RNE
         $etab = array(
-            "nometab" => $u[9],
-            "idtype" => $u[11],
-            "ville" => $u[12],
-            "adresse" => $u[13],
-            "mailetab" => $u[14],
-            "idacademie" => $u[15],
-            "cp" => $u[16],
-            "logo" => $u[17],
-            "cachet" => $u[18],
-            "important" => $u[19],
-            "important2" => $u[20],
-            "RNE" => $u[10],
+            "nometab" => $u["nometab"],
+            "idtype" => $u["idtype"],
+            "ville" => $u["ville"],
+            "adresse" => $u["adresse"],
+            "mailetab" => $u["mailetab"],
+            "idacademie" => $u["idacademie"],
+            "cp" => $u["cp"],
+            "logo" => $u["logo"],
+            "cachet" => $u["cachet"],
+            "important" => $u["important"],
+            "important2" => $u["important2"],
+            "RNE" => $u["RNE"],
         );
 
         $comptes[] = $compte;
 
-        if (!array_key_exists($u[10], $RNE)) {
-            $RNE[$u[10]] = $u[10];
+        if (!array_key_exists($u["RNE"], $RNE)) {
+            $RNE[$u["RNE"]] = $u["RNE"];
             $etabs[] = $etab;
         }
     }
@@ -174,8 +202,8 @@ if (isset($_POST["launch"])) {
     $rqt_insert = "INSERT INTO t_etablissement (nometab, idtypeetab, ville, adresse, mailetab, idacademie, cp, logo, cachet, important, important2, RNE) VALUES ";
     foreach ($etabs as $id => &$e) {
 
-        if ($id != 0 ) {
-            if($id != 27){
+        if ($id != 0) {
+            if ($id != 27) {
 
                 $e["nometab"] = str_replace("'", "\'", $e["nometab"]);
                 $e["adresse"] = str_replace("'", "\'", $e["adresse"]);
@@ -183,14 +211,14 @@ if (isset($_POST["launch"])) {
                 $e["important"] = str_replace("'", "\'", $e["important"]);
                 $e["important2"] = str_replace("'", "\'", $e["important2"]);
 
-                if($e["idtype"] == '-1' || $e["idtype"] == NULL ||$e["idtype"] == '0'){
-                        $e["idtype"] = '12';
+                if ($e["idtype"] == '-1' || $e["idtype"] == NULL || $e["idtype"] == '0') {
+                    $e["idtype"] = '12';
                 }
 
-                if($e["cp"] == NULL || $e["cp"] == '0'){
+                if ($e["cp"] == NULL || $e["cp"] == '0') {
                     $e["cp"] = '00000';
                 }
-                if($e["idacademie"] == NULL || $e["idacademie"] == '0'){
+                if ($e["idacademie"] == NULL || $e["idacademie"] == '0') {
                     $e["idacademie"] = '1';
                 }
                 $rqt_insert .= "('" . $e['nometab'] . "', " . $e['idtype'] . ", '" . $e['ville'] . "', '" . $e['adresse'] . "', '" . $e['mailetab'] . "', " . $e['idacademie'] . ", '" . $e['cp'] . "', '" . $e['logo'] . "', '" . $e['cachet'] . "', '" . $e['important'] . "', '" . $e['important2'] . "', '" . $e['RNE'] . "'),";
@@ -202,7 +230,6 @@ if (isset($_POST["launch"])) {
 
         }
     }
-
     $rqt_insert = substr($rqt_insert, 0, -1);
     $rqt_insert .= ";";
 
@@ -214,21 +241,21 @@ if (isset($_POST["launch"])) {
 
     $rqt_insert = "INSERT INTO t_compte (identifiant, mdp, idprofil, nom_compte, prenom_compte, mail_compte, idfonction, tel, idetab, datecreation) VALUES ";
 
-    foreach ($comptes as $id=>&$c) {
-        if ($id == 0){
+    foreach ($comptes as $id => &$c) {
+        if ($id == 0) {
             $rqt_insert .= "('" . $c["identifiant"] . "','" . $c["mdp"] . "'," . $c["idprofil"] . ",'" . $c["nom"] . "','" . $c["prenom"] . "','" . $c["mail"] . "'," . $c["idfonction"] . ",'" . $c["tel"] . "','1', NOW() ),";
 
-        }else{
+        } else {
             foreach ($etabRNE as $eRNE) {
                 if ($eRNE[1] == $c["RNE"]) {
-                    if($c["prenom"] == " 'Equipe'"){
+                    if ($c["prenom"] == " 'Equipe'") {
                         $c["prenom"] = "Equipe";
                     }
                     $c["nom"] = str_replace("'", "\'", $c["nom"]);
                     $c["prenom"] = str_replace("'", "\'", $c["prenom"]);
 
 
-                    if($c["idfonction"] == 0){
+                    if ($c["idfonction"] == 0) {
                         $c["idfonction"] = 6;
                     }
 
