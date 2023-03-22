@@ -26,7 +26,7 @@ function get_ListeReserv(){
 from t_reservation as r 
 inner join t_ministage as m on m.idministage=r.idministage
 	inner join t_formation as f on f.idformation=m.idformation
-	inner join t_typeformation as tf on f.idformation=tf.idtypeform
+	inner join t_typeformation as tf on f.idtypeform=tf.idtypeform
 	inner join t_compte as c on m.idOffrant=c.idcompte
     inner join t_etablissement as e on e.idetab = c.idetab
 	inner join t_typeetab as t on t.idtypeetab=e.idtypeetab
