@@ -308,12 +308,19 @@ if (isset($_GET["pbool"])) {
     </tr>
     <tr>
     <td style="border-top: 0px">
-        <div>
+          <div>
+      <span><i>Les dimensions doivent être de 300px par 300px</i></span>
+</div>
+        <div><br>
         <button class="btn btn-primary btn-sucess" onClick="AjouterLogo('.$idetab.')">Envoyer</button>
       </div>
+
   </td>
     <td style="border-top: 0px">
-        <div>
+              <div>
+      <span><i>Les dimensions doivent être de 300px par 300px</i></span>
+</div>
+        <div><br>
         <button class="btn btn-primary btn-sucess" onClick="AjouterSignature('.$idetab.')">Envoyer</button>
       </div>
   </td>
@@ -469,12 +476,12 @@ function validFileType(file) {
         case "6" :
             $pageProfil->corps .= ' 
                         <li><a href="stats.php?sbool=1"> <button align="centers" class="btn btn-success">Mini_stages par formation</button></a></li> </br>
-                        <li><a href="stats.php?sbool=2"><button align="centers" class="btn btn-success">Nombre de place par formation</button></a></li> </br>
-                        <li><a href="stats.php?sbool=3"><button align="centers" class="btn btn-success">Nombre de réservation par formation</button></a></li> </br>
-                        <li><a href="stats.php?sbool=4"><button align="centers" class="btn btn-success">Classement des établissements par réservations</button></a></li> </br>
-                        <li><a href="stats.php?sbool=5"><button align="centers" class="btn btn-success">Classement des établissements par réservations annulées</button></a></li> </br>
+                        <li><a href="stats.php?sbool=2"><button align="centers" class="btn btn-success">Nombre de places par formation</button></a></li> </br>
+                        <li><a href="stats.php?sbool=3"><button align="centers" class="btn btn-success">Nombre de réservations par formation</button></a></li> </br>
+                        <li><a href="stats.php?sbool=4"><button align="centers" class="btn btn-success">Classement des établissements par réservation</button></a></li> </br>
+                        <li><a href="stats.php?sbool=5"><button align="centers" class="btn btn-success">Classement des établissements par réservation annulée</button></a></li> </br>
                         <li><a href="stats.php?sbool=6"><button align="centers" class="btn btn-success">Classement des établissements par nombre d\'absences</button></a></li> </br>
-                        <li><a href="stats.php?sbool=7"><button align="centers" class="btn btn-success">Nombre de réservations par formations de votre établissement</button></a></li>'
+                        <li><a href="stats.php?sbool=7"><button align="centers" class="btn btn-success">Nombre de réservations par formation de votre établissement</button></a></li>'
             ;
             break;
     }
