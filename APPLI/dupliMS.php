@@ -59,9 +59,9 @@ $pageAjoutMS->corps .= '
 					<label for="input-Default" class="col-sm-2 control-label">Horaires</label>
 					<div class="col-sm-10">
 						<input size="25" type="text" value="" class="col-sm-2 control-label" id="heure1" 
-						placeholder="début"  name="heure1" required/>
+						placeholder="début"  name="heure1" required value="'.$MS['hdebut'].'"/>
 						<input size="25" type="text" value="" id="heure2" class="col-sm-2 control-label" 
-						placeholder="fin"  name="heure2" required" /> 
+						placeholder="fin"  name="heure2" required value="'.$MS['hfinwa'].'" /> 
 					</div>
 				</div>
 				
