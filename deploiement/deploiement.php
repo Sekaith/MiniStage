@@ -174,6 +174,7 @@ if (isset($_POST["launch"])) {
             "RNE" => $u['RNE']
 
         );
+
 //vérifer le numéro de colonne RNE
         $etab = array(
             "nometab" => $u["nometab"],
@@ -251,7 +252,7 @@ if (isset($_POST["launch"])) {
 
         } else {
             foreach ($etabRNE as $eRNE) {
-                if ($eRNE[1] == $c["RNE"]) {
+                if ($eRNE["RNE"] == $c["RNE"]) {
                     if ($c["prenom"] == " 'Equipe'") {
                         $c["prenom"] = "Equipe";
                     }
@@ -263,11 +264,12 @@ if (isset($_POST["launch"])) {
                         $c["idfonction"] = 6;
                     }
 
-                    $rqt_insert .= "('" . $c["identifiant"] . "','" . $c["mdp"] . "'," . $c["idprofil"] . ",'" . $c["nom"] . "','" . $c["prenom"] . "','" . $c["mail"] . "'," . $c["idfonction"] . ",'" . $c["tel"] . "','" . $eRNE[0] . "', NOW() ),";
+                    $rqt_insert .= "('" . $c["identifiant"] . "','" . $c["mdp"] . "'," . $c["idprofil"] . ",'" . $c["nom"] . "','" . $c["prenom"] . "','" . $c["mail"] . "'," . $c["idfonction"] . ",'" . $c["tel"] . "','" . $eRNE["RNE"] . "', NOW() ),";
                 }
             }
         }
     }
+
     $rqt_insert = substr($rqt_insert, 0, -1);
     $rqt_insert .= ";";
 
