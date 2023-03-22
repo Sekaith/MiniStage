@@ -2,8 +2,8 @@ Procédure pour le déploiement de l'application :
 
 1 - Vérifier la connexion de la base de données dans le code :
     - Faire une sauvegarde de la base de données !
-    - Remplir le nom du domaine du site (hostname), le nom de l'utilisateur de phpmyadmin (user), le mot de passe (password) et le nom de la base de données
-    - Vérifier que la connexion à la base de données est la même que la connexion dans le fichier Class/Connexion.class.php
+    - Dans le fichier deploiement.php, remplir le nom du domaine du site (hostname), le nom de l'utilisateur de phpmyadmin (user), le mot de passe (password) et le nom de la base de données
+    avec les informations qui se trouvent dans le fichier Class/Connexion.class.php
 
 2 - Vérifier la cohérence de la base de données :
     - Allez dans le gestionnaire de la base de données et executer cette requête : SELECT id, RNE FROM `t_utilisateur` WHERE length(RNE) != 8;
