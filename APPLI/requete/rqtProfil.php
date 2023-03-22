@@ -31,7 +31,7 @@ function get_profil(){
 function updateProfil(){
     global $mysqli;
 
-    $rqt ='UPDATE t_compte SET identifiant="'.$_SESSION['ID'].'",mdp="'.$_POST['mdp'].'",
+    $rqt ='UPDATE t_compte SET identifiant="'.$_POST['identifiant'].'",mdp="'.$_POST['mdp'].'",
 	nom_compte="'.$_POST['nom'].'",prenom_compte="'.$_POST['prenom'].'", idfonction="'.$_POST['fct'].'",
     mail_compte="'.$_POST['mail'].'",tel="'.$_POST['tel'].'"  
 	where idcompte= '.$_SESSION['IdUtilisateur'].'';

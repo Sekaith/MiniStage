@@ -66,7 +66,7 @@ if (isset($_GET["pbool"])) {
 				
 						<tr>
 							<td><input type="text" name="id" style="text-align : center" class="form-control" id="id" 
-								value = "' . $identifiant . '" required disabled></td>
+								value = "' . $identifiant . '" required ></td>
 								
                 			<td><input type="text" name="mdp" style="text-align : center" class="form-control" id="mdp" 
 								value = "' . $mdp . '" required></td>
