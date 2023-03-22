@@ -237,7 +237,11 @@ if (isset($_POST["launch"])) {
 
 
     $rqt = "SELECT idetab, RNE  FROM t_etablissement";
-    $etabRNE = $mysqli->query($rqt)->fetch_all() or exit(mysqli_error($mysqli));
+    $result = $mysqli->query($rqt) or exit(mysqli_error($mysqli));
+    $etabRNE = array();
+    while ($row = $result->fetch_assoc()) {
+        $etabRNE[] = $row;
+    }
 
     $rqt_insert = "INSERT INTO t_compte (identifiant, mdp, idprofil, nom_compte, prenom_compte, mail_compte, idfonction, tel, idetab, datecreation) VALUES ";
 
