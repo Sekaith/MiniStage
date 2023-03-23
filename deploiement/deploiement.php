@@ -264,7 +264,7 @@ if (isset($_POST["launch"])) {
                         $c["idfonction"] = 6;
                     }
 
-                    $rqt_insert .= "('" . $c["identifiant"] . "','" . $c["mdp"] . "'," . $c["idprofil"] . ",'" . $c["nom"] . "','" . $c["prenom"] . "','" . $c["mail"] . "'," . $c["idfonction"] . ",'" . $c["tel"] . "','" . $eRNE["RNE"] . "', NOW() ),";
+                    $rqt_insert .= "('" . $c["identifiant"] . "','" . $c["mdp"] . "'," . $c["idprofil"] . ",'" . $c["nom"] . "','" . $c["prenom"] . "','" . $c["mail"] . "'," . $c["idfonction"] . ",'" . $c["tel"] . "','" . $eRNE["idetab"] . "', NOW() ),";
                 }
             }
         }
